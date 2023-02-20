@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-
+using System.Web.Http.Cors;
 
 namespace Acotma_API
 {
@@ -10,8 +10,16 @@ namespace Acotma_API
     {
         public static void Register(HttpConfiguration config)
         {
+
             // Configuración y servicios de API web
+            //crea una variable para habilitar el acceso al api
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            //brinda el acceso al api 
+            config.EnableCors(cors);
             
+
+
+
             // Rutas de API web
             config.MapHttpAttributeRoutes();
 
