@@ -9,11 +9,11 @@ namespace Acotma_API.Models_DB.EntityModels
     {
         public int idAsignacion { get; set; }
         public string tipoUnidad { get; set; }
-        public Nullable<int> economico { get; set; }
-        public Nullable<int> tarjeton { get; set; }
+        public int economico { get; set; }
+        public int tarjeton { get; set; }
         public string nomChofer { get; set; }
-        public Nullable<int> fkVerificacionSalida { get; set; }
-        public Nullable<int> fkCorrida { get; set; }
-        public Nullable<System.DateTime> fkFecha { get; set; }
+        public int fkVerificacionSalida { get; set; }
+        public int fkCorrida { get; set; }
+        public DateTime fkFecha { get; set; }
     }
 }
