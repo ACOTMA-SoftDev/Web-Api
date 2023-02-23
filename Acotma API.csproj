@@ -130,6 +130,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBContext.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models DB\EntityModels\asignacionEntity.cs" />
+    <Compile Include="Models DB\EntityModels\horarioServicioEntity.cs" />
+    <Compile Include="Models DB\EntityModels\usuariosEntity.cs" />
+    <Compile Include="Models DB\EntityModels\verificacionDiaEntity.cs" />
+    <Compile Include="Models DB\EntityModels\verificacionSalidaEntity.cs" />
     <Compile Include="Models DB\estado.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>

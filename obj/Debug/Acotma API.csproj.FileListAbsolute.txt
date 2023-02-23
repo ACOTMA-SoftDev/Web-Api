@@ -216,6 +216,7 @@ D:\Documentos\ACOTMA\ACOTMA API\bin\Microsoft.CodeDom.Providers.DotNetCompilerPl
 D:\Documentos\ACOTMA\ACOTMA API\bin\es\System.Net.Http.Formatting.resources.dll
 D:\Documentos\ACOTMA\ACOTMA API\bin\es\System.Web.Http.resources.dll
 D:\Documentos\ACOTMA\ACOTMA API\bin\es\System.Web.Http.WebHost.resources.dll
+D:\Documentos\ACOTMA\ACOTMA API\obj\Debug\Acotma API.csproj.AssemblyReference.cache
 D:\Documentos\ACOTMA\ACOTMA API\obj\Debug\Acotma API.csproj.CoreCompileInputs.cache
 D:\Documentos\ACOTMA\ACOTMA API\obj\Debug\Acotma API.csproj.CopyComplete
 D:\Documentos\ACOTMA\ACOTMA API\obj\Debug\Acotma API.dll
