@@ -30,5 +30,10 @@ namespace Acotma_API.Controllers
             }
             return response;            
         }
+        [HttpPost]
+        public bool updateAsigancion(asignacionEntity uAsignacion)
+        {
+            return service.UpdateAsignacion(uAsignacion);
+        }
     }
 }

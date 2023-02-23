@@ -35,5 +35,29 @@ namespace Acotma_API.serviciosModels
             }
             return response;
         }
+        public bool UpdateAsignacion(asignacionEntity asigna)
+        {
+            bool response = false;
+            try
+            {
+                asignacion newAsignacion = (new asignacion
+                {
+                    idAsignacion = asigna.idAsignacion
+                });
+                asignacion oldAsigancion = DB.asignacion.FirstOrDefault(a => a.idAsignacion == asigna.idAsignacion);
+                oldAsigancion.idAsignacion = newAsignacion.idAsignacion;
+
+                DB.SaveChanges();
+                response = true;
+
+            }
+
+            catch (Exception e)
+            {
+                String mensaje = e.Message;
+            }
+            return response;
+        }
+
     }
 }
