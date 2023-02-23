@@ -95,9 +95,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Models-DB\dbAcotma.Context.tt">
+    <Content Include="Models DB\DBContext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>dbAcotma.Context.cs</LastGenOutput>
+      <DependentUpon>DBContext.edmx</DependentUpon>
+      <LastGenOutput>DBContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models DB\DBContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBContext.edmx</DependentUpon>
+      <LastGenOutput>DBContext.cs</LastGenOutput>
     </Content>
     <Content Include="Web.config" />
   </ItemGroup>
@@ -106,26 +112,52 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models-DB\dbAcotma.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbAcotma.Context.tt</DependentUpon>
+    <Compile Include="Models DB\asignacion.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models-DB\dbAcotma.Designer.cs">
+    <Compile Include="Models DB\DBContext.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>dbAcotma.edmx</DependentUpon>
+      <DependentUpon>DBContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models DB\DBContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models DB\DBContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models DB\estado.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models DB\horarioServicio.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models DB\permisos.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models DB\usuarios.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models DB\verificacionDia.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models DB\verificacionSalida.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Models-DB\dbAcotma.edmx">
+    <EntityDeploy Include="Models DB\DBContext.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>dbAcotma.Designer.cs</LastGenOutput>
+      <LastGenOutput>DBContext.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Models-DB\dbAcotma.edmx.diagram">
-      <DependentUpon>dbAcotma.edmx</DependentUpon>
-    </None>
+    <Content Include="Models DB\DBContext.edmx.diagram">
+      <DependentUpon>DBContext.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
