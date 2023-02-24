@@ -133,6 +133,7 @@
     </Compile>
     <Compile Include="Models DB\EntityModels\asignacionEntity.cs" />
     <Compile Include="Models DB\EntityModels\horarioServicioEntity.cs" />
+    <Compile Include="Models DB\EntityModels\matchAsignHorario.cs" />
     <Compile Include="Models DB\EntityModels\usuariosEntity.cs" />
     <Compile Include="Models DB\EntityModels\verificacionDiaEntity.cs" />
     <Compile Include="Models DB\EntityModels\verificacionSalidaEntity.cs" />
@@ -175,7 +176,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

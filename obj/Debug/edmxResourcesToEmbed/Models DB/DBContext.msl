@@ -9,7 +9,6 @@
           <ScalarProperty Name="economico" ColumnName="economico" />
           <ScalarProperty Name="tarjeton" ColumnName="tarjeton" />
           <ScalarProperty Name="nomChofer" ColumnName="nomChofer" />
-          <ScalarProperty Name="fkVerificacionSalida" ColumnName="fkVerificacionSalida" />
           <ScalarProperty Name="fkCorrida" ColumnName="fkCorrida" />
           <ScalarProperty Name="fkFecha" ColumnName="fkFecha" />
         </MappingFragment>
@@ -73,6 +72,7 @@
           <ScalarProperty Name="observaciones" ColumnName="observaciones" />
           <ScalarProperty Name="fechaSalida" ColumnName="fechaSalida" />
           <ScalarProperty Name="fkusuario" ColumnName="fkusuario" />
+          <ScalarProperty Name="fkasignacion" ColumnName="fkasignacion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

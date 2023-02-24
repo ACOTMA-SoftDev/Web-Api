@@ -14,7 +14,6 @@
           <Property Name="economico" Type="int" />
           <Property Name="tarjeton" Type="int" />
           <Property Name="nomChofer" Type="varchar" MaxLength="100" />
-          <Property Name="fkVerificacionSalida" Type="int" />
           <Property Name="fkCorrida" Type="int" />
           <Property Name="fkFecha" Type="date" />
         </EntityType>
@@ -23,7 +22,7 @@
             <PropertyRef Name="idEstado" />
           </Key>
           <Property Name="idEstado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="numEstado" Type="nvarchar" MaxLength="1" />
+          <Property Name="numEstado" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="horarioServicio">
           <Key>
@@ -32,7 +31,7 @@
           </Key>
           <Property Name="corrida" Type="int" Nullable="false" />
           <Property Name="fecha" Type="date" Nullable="false" />
-          <Property Name="ruta" Type="nvarchar" MaxLength="1" />
+          <Property Name="ruta" Type="varchar" MaxLength="100" />
           <Property Name="horarioSalida" Type="time" Precision="0" />
         </EntityType>
         <EntityType Name="permisos">
@@ -40,17 +39,17 @@
             <PropertyRef Name="idPermiso" />
           </Key>
           <Property Name="idPermiso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="permiso" Type="nvarchar" MaxLength="1" />
+          <Property Name="permiso" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="usuarios">
           <Key>
             <PropertyRef Name="usuario" />
           </Key>
-          <Property Name="usuario" Type="nvarchar" MaxLength="1" Nullable="false" />
-          <Property Name="nombre" Type="nvarchar" MaxLength="1" />
-          <Property Name="apellidoP" Type="nvarchar" MaxLength="1" />
-          <Property Name="apellidoM" Type="nvarchar" MaxLength="1" />
-          <Property Name="pass" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" />
+          <Property Name="apellidoP" Type="varchar" MaxLength="100" />
+          <Property Name="apellidoM" Type="varchar" MaxLength="100" />
+          <Property Name="pass" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="fkPermiso" Type="int" />
         </EntityType>
         <EntityType Name="verificacionDia">
@@ -59,9 +58,9 @@
           </Key>
           <Property Name="idVerificacionDia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="noUnidad" Type="int" />
-          <Property Name="observaciones" Type="nvarchar" MaxLength="1" />
+          <Property Name="observaciones" Type="varchar" MaxLength="1000" />
           <Property Name="fecha" Type="date" />
-          <Property Name="fkUsuario" Type="nvarchar" MaxLength="1" />
+          <Property Name="fkUsuario" Type="varchar" MaxLength="100" />
           <Property Name="fkEstado" Type="int" />
         </EntityType>
         <EntityType Name="verificacionSalida">
@@ -69,11 +68,24 @@
             <PropertyRef Name="idVerificacionSalida" />
           </Key>
           <Property Name="idVerificacionSalida" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="estado" Type="varchar" MaxLength="10" />
-          <Property Name="observaciones" Type="nvarchar" MaxLength="1" />
+          <Property Name="estado" Type="varchar" MaxLength="100" />
+          <Property Name="observaciones" Type="varchar" MaxLength="100" />
           <Property Name="fechaSalida" Type="date" />
-          <Property Name="fkusuario" Type="nvarchar" MaxLength="1" />
+          <Property Name="fkusuario" Type="varchar" MaxLength="100" />
+          <Property Name="fkasignacion" Type="int" />
         </EntityType>
+        <Association Name="fkAsignacionSalida">
+          <End Role="asignacion" Type="Self.asignacion" Multiplicity="0..1" />
+          <End Role="verificacionSalida" Type="Self.verificacionSalida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="asignacion">
+              <PropertyRef Name="idAsignacion" />
+            </Principal>
+            <Dependent Role="verificacionSalida">
+              <PropertyRef Name="fkasignacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fkEstadoVerificacionDia">
           <End Role="estado" Type="Self.estado" Multiplicity="0..1" />
           <End Role="verificacionDia" Type="Self.verificacionDia" Multiplicity="*" />
@@ -136,18 +148,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fkVerificacionSalidaAsignacion">
-          <End Role="verificacionSalida" Type="Self.verificacionSalida" Multiplicity="0..1" />
-          <End Role="asignacion" Type="Self.asignacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="verificacionSalida">
-              <PropertyRef Name="idVerificacionSalida" />
-            </Principal>
-            <Dependent Role="asignacion">
-              <PropertyRef Name="fkVerificacionSalida" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="ACOTMADBModelStoreContainer">
           <EntitySet Name="asignacion" EntityType="Self.asignacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="estado" EntityType="Self.estado" Schema="dbo" store:Type="Tables" />
@@ -156,6 +156,10 @@
           <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="verificacionDia" EntityType="Self.verificacionDia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="verificacionSalida" EntityType="Self.verificacionSalida" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fkAsignacionSalida" Association="Self.fkAsignacionSalida">
+            <End Role="asignacion" EntitySet="asignacion" />
+            <End Role="verificacionSalida" EntitySet="verificacionSalida" />
+          </AssociationSet>
           <AssociationSet Name="fkEstadoVerificacionDia" Association="Self.fkEstadoVerificacionDia">
             <End Role="estado" EntitySet="estado" />
             <End Role="verificacionDia" EntitySet="verificacionDia" />
@@ -176,10 +180,6 @@
             <End Role="usuarios" EntitySet="usuarios" />
             <End Role="verificacionSalida" EntitySet="verificacionSalida" />
           </AssociationSet>
-          <AssociationSet Name="fkVerificacionSalidaAsignacion" Association="Self.fkVerificacionSalidaAsignacion">
-            <End Role="verificacionSalida" EntitySet="verificacionSalida" />
-            <End Role="asignacion" EntitySet="asignacion" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -195,18 +195,17 @@
           <Property Name="economico" Type="Int32" />
           <Property Name="tarjeton" Type="Int32" />
           <Property Name="nomChofer" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="fkVerificacionSalida" Type="Int32" />
           <Property Name="fkCorrida" Type="Int32" />
           <Property Name="fkFecha" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="verificacionSalida" Relationship="Self.fkAsignacionSalida" FromRole="asignacion" ToRole="verificacionSalida" />
           <NavigationProperty Name="horarioServicio" Relationship="Self.fkHorarioAsignacion" FromRole="asignacion" ToRole="horarioServicio" />
-          <NavigationProperty Name="verificacionSalida" Relationship="Self.fkVerificacionSalidaAsignacion" FromRole="asignacion" ToRole="verificacionSalida" />
         </EntityType>
         <EntityType Name="estado">
           <Key>
             <PropertyRef Name="idEstado" />
           </Key>
           <Property Name="idEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="numEstado" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="numEstado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="verificacionDia" Relationship="Self.fkEstadoVerificacionDia" FromRole="estado" ToRole="verificacionDia" />
         </EntityType>
         <EntityType Name="horarioServicio">
@@ -216,7 +215,7 @@
           </Key>
           <Property Name="corrida" Type="Int32" Nullable="false" />
           <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="ruta" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="ruta" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="horarioSalida" Type="Time" Precision="0" />
           <NavigationProperty Name="asignacion" Relationship="Self.fkHorarioAsignacion" FromRole="horarioServicio" ToRole="asignacion" />
         </EntityType>
@@ -225,18 +224,18 @@
             <PropertyRef Name="idPermiso" />
           </Key>
           <Property Name="idPermiso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="permiso" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="permiso" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="usuarios" Relationship="Self.fkPermisoUsuario" FromRole="permisos" ToRole="usuarios" />
         </EntityType>
         <EntityType Name="usuarios">
           <Key>
             <PropertyRef Name="usuario" />
           </Key>
-          <Property Name="usuario" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="nombre" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="apellidoP" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="apellidoM" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="pass" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="apellidoP" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="apellidoM" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="pass" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="fkPermiso" Type="Int32" />
           <NavigationProperty Name="permisos" Relationship="Self.fkPermisoUsuario" FromRole="usuarios" ToRole="permisos" />
           <NavigationProperty Name="verificacionDia" Relationship="Self.fkUsuarioVerificacionDia" FromRole="usuarios" ToRole="verificacionDia" />
@@ -248,9 +247,9 @@
           </Key>
           <Property Name="idVerificacionDia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="noUnidad" Type="Int32" />
-          <Property Name="observaciones" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="observaciones" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="fecha" Type="DateTime" Precision="0" />
-          <Property Name="fkUsuario" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="fkUsuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="fkEstado" Type="Int32" />
           <NavigationProperty Name="estado" Relationship="Self.fkEstadoVerificacionDia" FromRole="verificacionDia" ToRole="estado" />
           <NavigationProperty Name="usuarios" Relationship="Self.fkUsuarioVerificacionDia" FromRole="verificacionDia" ToRole="usuarios" />
@@ -260,13 +259,26 @@
             <PropertyRef Name="idVerificacionSalida" />
           </Key>
           <Property Name="idVerificacionSalida" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="estado" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="observaciones" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="estado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="observaciones" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="fechaSalida" Type="DateTime" Precision="0" />
-          <Property Name="fkusuario" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="asignacion" Relationship="Self.fkVerificacionSalidaAsignacion" FromRole="verificacionSalida" ToRole="asignacion" />
+          <Property Name="fkusuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fkasignacion" Type="Int32" />
+          <NavigationProperty Name="asignacion" Relationship="Self.fkAsignacionSalida" FromRole="verificacionSalida" ToRole="asignacion" />
           <NavigationProperty Name="usuarios" Relationship="Self.fkUsuarioVerificacionSalida" FromRole="verificacionSalida" ToRole="usuarios" />
         </EntityType>
+        <Association Name="fkAsignacionSalida">
+          <End Role="asignacion" Type="Self.asignacion" Multiplicity="0..1" />
+          <End Role="verificacionSalida" Type="Self.verificacionSalida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="asignacion">
+              <PropertyRef Name="idAsignacion" />
+            </Principal>
+            <Dependent Role="verificacionSalida">
+              <PropertyRef Name="fkasignacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fkHorarioAsignacion">
           <End Role="horarioServicio" Type="Self.horarioServicio" Multiplicity="0..1" />
           <End Role="asignacion" Type="Self.asignacion" Multiplicity="*" />
@@ -278,18 +290,6 @@
             <Dependent Role="asignacion">
               <PropertyRef Name="fkCorrida" />
               <PropertyRef Name="fkFecha" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fkVerificacionSalidaAsignacion">
-          <End Role="verificacionSalida" Type="Self.verificacionSalida" Multiplicity="0..1" />
-          <End Role="asignacion" Type="Self.asignacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="verificacionSalida">
-              <PropertyRef Name="idVerificacionSalida" />
-            </Principal>
-            <Dependent Role="asignacion">
-              <PropertyRef Name="fkVerificacionSalida" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -349,12 +349,12 @@
           <EntitySet Name="usuarios" EntityType="Self.usuarios" />
           <EntitySet Name="verificacionDia" EntityType="Self.verificacionDia" />
           <EntitySet Name="verificacionSalida" EntityType="Self.verificacionSalida" />
+          <AssociationSet Name="fkAsignacionSalida" Association="Self.fkAsignacionSalida">
+            <End Role="asignacion" EntitySet="asignacion" />
+            <End Role="verificacionSalida" EntitySet="verificacionSalida" />
+          </AssociationSet>
           <AssociationSet Name="fkHorarioAsignacion" Association="Self.fkHorarioAsignacion">
             <End Role="horarioServicio" EntitySet="horarioServicio" />
-            <End Role="asignacion" EntitySet="asignacion" />
-          </AssociationSet>
-          <AssociationSet Name="fkVerificacionSalidaAsignacion" Association="Self.fkVerificacionSalidaAsignacion">
-            <End Role="verificacionSalida" EntitySet="verificacionSalida" />
             <End Role="asignacion" EntitySet="asignacion" />
           </AssociationSet>
           <AssociationSet Name="fkEstadoVerificacionDia" Association="Self.fkEstadoVerificacionDia">
@@ -388,7 +388,6 @@
                 <ScalarProperty Name="economico" ColumnName="economico" />
                 <ScalarProperty Name="tarjeton" ColumnName="tarjeton" />
                 <ScalarProperty Name="nomChofer" ColumnName="nomChofer" />
-                <ScalarProperty Name="fkVerificacionSalida" ColumnName="fkVerificacionSalida" />
                 <ScalarProperty Name="fkCorrida" ColumnName="fkCorrida" />
                 <ScalarProperty Name="fkFecha" ColumnName="fkFecha" />
               </MappingFragment>
@@ -452,6 +451,7 @@
                 <ScalarProperty Name="observaciones" ColumnName="observaciones" />
                 <ScalarProperty Name="fechaSalida" ColumnName="fechaSalida" />
                 <ScalarProperty Name="fkusuario" ColumnName="fkusuario" />
+                <ScalarProperty Name="fkasignacion" ColumnName="fkasignacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -1,4 +1,5 @@
-﻿using Acotma_API.Models_DB.EntityModels;
+﻿using Acotma_API.Models_DB;
+using Acotma_API.Models_DB.EntityModels;
 using Acotma_API.serviciosModels;
 using System;
 using System.Collections.Generic;
@@ -30,10 +31,20 @@ namespace Acotma_API.Controllers
             }
             return response;            
         }
+        [Route("api/UpdateAsignacion")]
         [HttpPost]
         public bool updateAsigancion(asignacionEntity uAsignacion)
         {
             return service.UpdateAsignacion(uAsignacion);
         }
+        
+        [HttpGet]
+        public List<matchAsignHorario> asignaciones(DateTime fkFecha)
+        {
+            var lista = service.asignHorarios(fkFecha);
+            return lista.ToList();
+        }
+
+        
     }
 }

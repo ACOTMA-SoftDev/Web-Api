@@ -14,20 +14,14 @@ namespace Acotma_API.Models_DB
     
     public partial class verificacionSalida
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public verificacionSalida()
-        {
-            this.asignacion = new HashSet<asignacion>();
-        }
-    
         public int idVerificacionSalida { get; set; }
         public string estado { get; set; }
         public string observaciones { get; set; }
         public Nullable<System.DateTime> fechaSalida { get; set; }
         public string fkusuario { get; set; }
+        public Nullable<int> fkasignacion { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<asignacion> asignacion { get; set; }
+        public virtual asignacion asignacion { get; set; }
         public virtual usuarios usuarios { get; set; }
     }
 }
