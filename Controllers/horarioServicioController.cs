@@ -1,4 +1,5 @@
-﻿using Acotma_API.Models_DB.EntityModels;
+﻿using Acotma_API.Models_DB;
+using Acotma_API.Models_DB.EntityModels;
 using Acotma_API.serviciosModels;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,11 @@ namespace Acotma_API.Controllers
                 Console.WriteLine(ex);
             }
             return response;
+        }
+        [HttpGet]
+        public List<horarioServicioEntity> GetHorarios()
+        {
+            return service.GetHorarios();
         }
     }
 }

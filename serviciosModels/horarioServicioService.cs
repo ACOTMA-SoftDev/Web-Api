@@ -1,4 +1,5 @@
 ﻿using Acotma_API.Models_DB;
+using Acotma_API.Models_DB.EntityModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,23 @@ namespace Acotma_API.serviciosModels
 
             }
             return response;
+        }
+        public List<horarioServicioEntity> GetHorarios()
+        {
+            var horarioEncrypt= DB.horarioServicio.ToList<horarioServicio>();
+            List<horarioServicioEntity> horarioDecrypt = new List<horarioServicioEntity>();
+            foreach(horarioServicio horario in horarioEncrypt)
+            {
+                horarioDecrypt.Add(new horarioServicioEntity
+                {
+                    corrida = horario.corrida,
+                    fecha = horario.fecha,
+                    horarioSalida = (TimeSpan)horario.horarioSalida,
+                    ruta = horario.ruta
+                });
+            }
+            return horarioDecrypt;
+            
         }
     }
 }
