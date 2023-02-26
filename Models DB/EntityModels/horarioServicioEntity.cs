@@ -10,6 +10,6 @@ namespace Acotma_API.Models_DB.EntityModels
         public int corrida { get; set; }
         public System.DateTime fecha { get; set; }
         public string ruta { get; set; }
-        public Nullable<System.TimeSpan> horarioSalida { get; set; }
+        public DateTime horarioSalida { get; set; }
     }
 }
