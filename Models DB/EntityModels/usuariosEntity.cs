@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Acotma_API.Models_DB.EntityModels
 {
-    public class usuariosEntity
+    public class UsuariosEntity
     {
         public string usuario { get; set; }
         public string nombre { get; set; }

@@ -10,16 +10,16 @@ using System.Web.Http;
 
 namespace Acotma_API.Controllers
 {
-    public class horarioServicioController : ApiController
+    public class HorarioServicioController : ApiController
     {
-        horarioServicioService service = new horarioServicioService();
+        HorarioServicioService service = new HorarioServicioService();
         [HttpPost]
         public bool insertHorario(OperacionesHorario obj)
         {
             bool response = false;
             try
             {
-                for (DateTime fecha = obj.fechaInicio; fecha <= obj.fechaFinal; fecha = fecha.AddDays(1))
+                for (DateTime fecha = DateTime.Parse(obj.fechaInicio); fecha <= DateTime.Parse(obj.fechaFinal); fecha = fecha.AddDays(1))
                 {
                     TimeSpan timeSpan = obj.primeraSalida;
                     TimeSpan horaSalida = timeSpan - TimeSpan.FromMinutes(obj.intervalo);
@@ -30,7 +30,6 @@ namespace Acotma_API.Controllers
                     }
                 }
                 response = true;
-
             }
             catch (Exception ex)
             {
@@ -39,7 +38,7 @@ namespace Acotma_API.Controllers
             return response;
         }
         [HttpGet]
-        public List<horarioServicioEntity> GetHorarios()
+        public List<HorarioServicioEntity> GetHorarios()
         {
             return service.GetHorarios();
         }

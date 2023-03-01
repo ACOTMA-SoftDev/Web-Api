@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Acotma_API.Models_DB.EntityModels
 {
-    public class verificacionDiaEntity
+    public class VerificacionDiaEntity
     {
         public int idVerificacionDia { get; set; }
         public Nullable<int> noUnidad { get; set; }

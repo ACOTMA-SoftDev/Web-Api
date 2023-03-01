@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Acotma_API.serviciosModels
 {
-    public class horarioServicioService
+    public class HorarioServicioService
     {
         ACOTMADBEntities DB = new ACOTMADBEntities();
 
@@ -35,13 +35,13 @@ namespace Acotma_API.serviciosModels
             }
             return response;
         }
-        public List<horarioServicioEntity> GetHorarios()
+        public List<HorarioServicioEntity> GetHorarios()
         {
             var horarioEncrypt= DB.horarioServicio.ToList<horarioServicio>();
-            List<horarioServicioEntity> horarioDecrypt = new List<horarioServicioEntity>();
+            List<HorarioServicioEntity> horarioDecrypt = new List<HorarioServicioEntity>();
             foreach(horarioServicio horario in horarioEncrypt)
             {
-                horarioDecrypt.Add(new horarioServicioEntity
+                horarioDecrypt.Add(new HorarioServicioEntity
                 {
                     corrida = horario.corrida,
                     fecha = horario.fecha,

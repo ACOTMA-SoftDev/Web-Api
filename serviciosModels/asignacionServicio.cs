@@ -7,10 +7,10 @@ using System.Web;
 
 namespace Acotma_API.serviciosModels
 {
-    public class asignacionServicio
+    public class AsignacionServicio
     {
         ACOTMADBEntities DB = new ACOTMADBEntities();
-        public bool addAsignacion(asignacionEntity newAsignacion)
+        public bool addAsignacion(AsignacionEntity newAsignacion)
         {
             bool response = false;
             try
@@ -21,6 +21,9 @@ namespace Acotma_API.serviciosModels
                     economico = newAsignacion.economico,
                     tarjeton = newAsignacion.tarjeton,
                     nomChofer = newAsignacion.nomChofer,
+                    fkCorrida=newAsignacion.fkCorrida,
+                    fkFecha=DateTime.Now
+                    
                     
                 });
                 DB.asignacion.Add(insertAsignacion);
@@ -34,7 +37,7 @@ namespace Acotma_API.serviciosModels
             }
             return response;
         }
-        public bool UpdateAsignacion(asignacionEntity asigna)
+        public bool UpdateAsignacion(AsignacionEntity asigna)
         {
             bool response = false;
             try
@@ -62,32 +65,44 @@ namespace Acotma_API.serviciosModels
         {
             return DB.horarioServicio.ToList<horarioServicio>();
         }        
-        public List<matchAsignHorario> asignHorarios(DateTime fecha)
+        public List<MatchAsignHorario> asignHorarios(DateTime fecha)
         {
-            var horario = getHorarioServicios();
-            var asignacion = getAsignacions();
-            List<matchAsignHorario> asignaciones = new List<matchAsignHorario>();
-            foreach(asignacion asignacions in asignacion.Where(x=>x.fkFecha==fecha))
+            List<MatchAsignHorario> hServ = new List<MatchAsignHorario>();
+            var data = from asig in DB.asignacion
+                       join horario in DB.horarioServicio
+                       on asig.fkCorrida equals horario.corrida
+                       where (horario.fecha == fecha)
+                       select new
+                       {
+                           asig.idAsignacion,
+                           asig.tipoUnidad,
+                           asig.economico,
+                           asig.tarjeton,
+                           asig.nomChofer,
+                           asig.fkCorrida,
+                           asig.fkFecha,
+                           horario.corrida,
+                           horario.fecha,
+                           horario.ruta
+                       };
+            data.ToList();
+            foreach (var dataHS in data)
             {
-                foreach(horarioServicio horarioServ in horario.Where(x => x.fecha == fecha))
+                hServ.Add(new MatchAsignHorario
                 {
-                    asignaciones.Add(new matchAsignHorario
-                    {
-                        idAsignacion = asignacions.idAsignacion,
-                        tipoUnidad = asignacions.tipoUnidad,
-                        economico = (int)asignacions.economico,
-                        tarjeton = (int)asignacions.economico,
-                        nomChofer = asignacions.nomChofer,
-                        fkCorrida = (int)asignacions.fkCorrida,
-                        fkFecha = (DateTime)asignacions.fkFecha,
-                        corrida = horarioServ.corrida,
-                        fecha = horarioServ.fecha,
-                        ruta = horarioServ.ruta,
-                        
-                    });
-                }
+                    idAsignacion=dataHS.idAsignacion,
+                    tipoUnidad=dataHS.tipoUnidad,
+                    economico= (int)dataHS.economico,
+                    tarjeton= (int)dataHS.tarjeton,
+                    nomChofer=dataHS.nomChofer,
+                    fkCorrida= (int)dataHS.fkCorrida,
+                    fkFecha= (DateTime)dataHS.fkFecha,
+                    corrida=dataHS.corrida,
+                    fecha=dataHS.fecha,
+                    ruta=dataHS.ruta                    
+                });
             }
-            return asignaciones;
+            return hServ;
         }                
     }
 }

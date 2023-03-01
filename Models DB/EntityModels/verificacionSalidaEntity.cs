@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Acotma_API.Models_DB.EntityModels
 {
-    public class verificacionSalidaEntity
+    public class VerificacionSalidaEntity
     {
         public int idVerificacionSalida { get; set; }
         public string estado { get; set; }

@@ -10,11 +10,11 @@ using System.Web.Http;
 
 namespace Acotma_API.Controllers
 {
-    public class asignacionController : ApiController
+    public class AsignacionController : ApiController
     {
-        asignacionServicio service = new asignacionServicio();        
+        AsignacionServicio service = new AsignacionServicio();        
         [HttpPost]
-        public bool agregarServicio(List<asignacionEntity> oService)
+        public bool agregarServicio(List<AsignacionEntity> oService)
         {
             bool response = false;
             try                
@@ -33,15 +33,16 @@ namespace Acotma_API.Controllers
         }
         [Route("api/UpdateAsignacion")]
         [HttpPost]
-        public bool updateAsigancion(asignacionEntity uAsignacion)
+        public bool updateAsigancion(AsignacionEntity uAsignacion)
         {
             return service.UpdateAsignacion(uAsignacion);
         }
         
         [HttpGet]
-        public List<matchAsignHorario> asignaciones(DateTime fkFecha)
+        public List<MatchAsignHorario> asignaciones(string fkFecha)
         {
-            var lista = service.asignHorarios(fkFecha);
+            DateTime f= DateTime.Parse(fkFecha);
+            var lista = service.asignHorarios(f);
             return lista.ToList();
         }
 

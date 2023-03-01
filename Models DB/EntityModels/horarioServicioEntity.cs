@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Acotma_API.Models_DB.EntityModels
 {
-    public class horarioServicioEntity
+    public class HorarioServicioEntity
     {
         public int corrida { get; set; }
         public System.DateTime fecha { get; set; }
