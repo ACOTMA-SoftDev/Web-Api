@@ -9,16 +9,7 @@ namespace Acotma_API.ServiciosModels
 {
     public class VerificadoresService
     {
-        ACOTMADBEntities DB = new ACOTMADBEntities();
-        public List<asignacion> asignacion()
-        {            
-            return DB.asignacion.ToList();
-        }
-        public List<horarioServicio> horario()
-        {            
-            return DB.horarioServicio.ToList();
-        }
-
+        ACOTMADBEntities DB = new ACOTMADBEntities();        
         public List<GetServVerificadores> getServiceVerficadores()
         {
             DateTime date = DateTime.Today;
@@ -54,6 +45,27 @@ namespace Acotma_API.ServiciosModels
                 });
             }
             return data;
+        }
+        public bool updateVerificacion(VerificacionSalidaEntity salidaEntity)
+        {
+            bool response = false;
+            try
+            {
+                verificacionSalida verificacion = (new verificacionSalida
+                {
+                    estado = salidaEntity.estado,
+                    observaciones = salidaEntity.observaciones,
+                    fechaSalida = salidaEntity.fechaSalida,
+                });
+                verificacionSalida salida = DB.verificacionSalida.FirstOrDefault(a => a.idVerificacionSalida == salidaEntity.idVerificacionSalida);
+                salida.idVerificacionSalida = verificacion.idVerificacionSalida;
+                DB.SaveChanges();
+                response = true;
+            }catch(Exception e)
+            {
+                e.Message.ToString();
+            }
+            return response;
         }
     }
 }       

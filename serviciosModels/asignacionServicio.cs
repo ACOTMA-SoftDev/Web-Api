@@ -22,9 +22,7 @@ namespace Acotma_API.serviciosModels
                     tarjeton = newAsignacion.tarjeton,
                     nomChofer = newAsignacion.nomChofer,
                     fkCorrida=newAsignacion.fkCorrida,
-                    fkFecha=DateTime.Now
-                    
-                    
+                    fkFecha=DateTime.Now                                        
                 });
                 DB.asignacion.Add(insertAsignacion);
                 DB.SaveChanges();
@@ -56,15 +54,7 @@ namespace Acotma_API.serviciosModels
                 String mensaje = e.Message;
             }
             return response;
-        }
-        public List<asignacion> getAsignacions()
-        {            
-            return DB.asignacion.ToList<asignacion>();
-        }        
-        public List<horarioServicio> getHorarioServicios()
-        {
-            return DB.horarioServicio.ToList<horarioServicio>();
-        }        
+        }                
         public List<MatchAsignHorario> asignHorarios(DateTime fecha)
         {
             List<MatchAsignHorario> hServ = new List<MatchAsignHorario>();

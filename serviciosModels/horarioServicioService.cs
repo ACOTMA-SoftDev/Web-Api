@@ -31,7 +31,6 @@ namespace Acotma_API.serviciosModels
             {
                 string ex = e.Message;
                 Console.WriteLine(ex);
-
             }
             return response;
         }
@@ -49,8 +48,7 @@ namespace Acotma_API.serviciosModels
                     ruta = horario.ruta
                 });
             }
-            return horarioDecrypt;
-            
+            return horarioDecrypt;            
         }
     }
 }
