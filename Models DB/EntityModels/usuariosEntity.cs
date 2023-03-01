@@ -12,6 +12,6 @@ namespace Acotma_API.Models_DB.EntityModels
         public string apellidoP { get; set; }
         public string apellidoM { get; set; }
         public string pass { get; set; }
-        public Nullable<int> fkPermiso { get; set; }
+        public int fkPermiso { get; set; }
     }
 }
