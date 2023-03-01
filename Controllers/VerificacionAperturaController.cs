@@ -9,13 +9,18 @@ using System.Web.Http;
 
 namespace Acotma_API.Controllers
 {
-    public class VerificadoresController : ApiController
+    public class VerificacionAperturaController : ApiController
     {
         VerificadoresService service = new VerificadoresService();
         [HttpGet]
-        public List<GetServVerificadores> getServs()
+        public List<GetServVerificadores> getCheck()
         {
             return service.getServiceVerficadores();
+        }
+        [HttpPost]
+        public bool updateChech(VerificacionSalidaEntity verificacion)
+        {
+            return service.updateVerificacion(verificacion);
         }
     }
 }

@@ -12,17 +12,12 @@ namespace Acotma_API.Models_DB
     using System;
     using System.Collections.Generic;
     
-    public partial class verificacionDia
+    public partial class sysdiagrams
     {
-        public int idVerificacionDia { get; set; }
-        public string tipoUnidad { get; set; }
-        public Nullable<int> economico { get; set; }
-        public Nullable<int> noTarjeton { get; set; }
-        public string ruta { get; set; }
-        public string observaciones { get; set; }
-        public Nullable<System.DateTime> fecha { get; set; }
-        public string fkUsuario { get; set; }
-    
-        public virtual usuarios usuarios { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

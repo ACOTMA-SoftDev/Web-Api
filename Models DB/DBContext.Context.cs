@@ -26,9 +26,9 @@ namespace Acotma_API.Models_DB
         }
     
         public virtual DbSet<asignacion> asignacion { get; set; }
-        public virtual DbSet<estado> estado { get; set; }
         public virtual DbSet<horarioServicio> horarioServicio { get; set; }
         public virtual DbSet<permisos> permisos { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<usuarios> usuarios { get; set; }
         public virtual DbSet<verificacionDia> verificacionDia { get; set; }
         public virtual DbSet<verificacionSalida> verificacionSalida { get; set; }

@@ -12,13 +12,6 @@
     <Property Name="fkCorrida" Type="int" />
     <Property Name="fkFecha" Type="date" />
   </EntityType>
-  <EntityType Name="estado">
-    <Key>
-      <PropertyRef Name="idEstado" />
-    </Key>
-    <Property Name="idEstado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="numEstado" Type="varchar" MaxLength="100" />
-  </EntityType>
   <EntityType Name="horarioServicio">
     <Key>
       <PropertyRef Name="corrida" />
@@ -36,6 +29,16 @@
     <Property Name="idPermiso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="permiso" Type="varchar" MaxLength="100" />
   </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
   <EntityType Name="usuarios">
     <Key>
       <PropertyRef Name="usuario" />
@@ -52,11 +55,13 @@
       <PropertyRef Name="idVerificacionDia" />
     </Key>
     <Property Name="idVerificacionDia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="noUnidad" Type="int" />
+    <Property Name="tipoUnidad" Type="varchar" MaxLength="100" />
+    <Property Name="economico" Type="int" />
+    <Property Name="noTarjeton" Type="int" />
+    <Property Name="ruta" Type="varchar" MaxLength="100" />
     <Property Name="observaciones" Type="varchar" MaxLength="1000" />
     <Property Name="fecha" Type="date" />
-    <Property Name="fkUsuario" Type="varchar" MaxLength="100" />
-    <Property Name="fkEstado" Type="int" />
+    <Property Name="fkUsuario" Type="varchar" MaxLength="100" Nullable="false" />
   </EntityType>
   <EntityType Name="verificacionSalida">
     <Key>
@@ -78,18 +83,6 @@
       </Principal>
       <Dependent Role="verificacionSalida">
         <PropertyRef Name="fkasignacion" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="fkEstadoVerificacionDia">
-    <End Role="estado" Type="Self.estado" Multiplicity="0..1" />
-    <End Role="verificacionDia" Type="Self.verificacionDia" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="estado">
-        <PropertyRef Name="idEstado" />
-      </Principal>
-      <Dependent Role="verificacionDia">
-        <PropertyRef Name="fkEstado" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -120,7 +113,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="fkUsuarioVerificacionDia">
-    <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="1" />
     <End Role="verificacionDia" Type="Self.verificacionDia" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="usuarios">
@@ -145,19 +138,15 @@
   </Association>
   <EntityContainer Name="ACOTMADBModelStoreContainer">
     <EntitySet Name="asignacion" EntityType="Self.asignacion" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="estado" EntityType="Self.estado" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="horarioServicio" EntityType="Self.horarioServicio" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="permisos" EntityType="Self.permisos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="verificacionDia" EntityType="Self.verificacionDia" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="verificacionSalida" EntityType="Self.verificacionSalida" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="fkAsignacionSalida" Association="Self.fkAsignacionSalida">
       <End Role="asignacion" EntitySet="asignacion" />
       <End Role="verificacionSalida" EntitySet="verificacionSalida" />
-    </AssociationSet>
-    <AssociationSet Name="fkEstadoVerificacionDia" Association="Self.fkEstadoVerificacionDia">
-      <End Role="estado" EntitySet="estado" />
-      <End Role="verificacionDia" EntitySet="verificacionDia" />
     </AssociationSet>
     <AssociationSet Name="fkHorarioAsignacion" Association="Self.fkHorarioAsignacion">
       <End Role="horarioServicio" EntitySet="horarioServicio" />

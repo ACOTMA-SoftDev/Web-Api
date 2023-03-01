@@ -17,13 +17,6 @@
           <Property Name="fkCorrida" Type="int" />
           <Property Name="fkFecha" Type="date" />
         </EntityType>
-        <EntityType Name="estado">
-          <Key>
-            <PropertyRef Name="idEstado" />
-          </Key>
-          <Property Name="idEstado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="numEstado" Type="varchar" MaxLength="100" />
-        </EntityType>
         <EntityType Name="horarioServicio">
           <Key>
             <PropertyRef Name="corrida" />
@@ -41,6 +34,16 @@
           <Property Name="idPermiso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="permiso" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="usuarios">
           <Key>
             <PropertyRef Name="usuario" />
@@ -57,11 +60,13 @@
             <PropertyRef Name="idVerificacionDia" />
           </Key>
           <Property Name="idVerificacionDia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="noUnidad" Type="int" />
+          <Property Name="tipoUnidad" Type="varchar" MaxLength="100" />
+          <Property Name="economico" Type="int" />
+          <Property Name="noTarjeton" Type="int" />
+          <Property Name="ruta" Type="varchar" MaxLength="100" />
           <Property Name="observaciones" Type="varchar" MaxLength="1000" />
           <Property Name="fecha" Type="date" />
-          <Property Name="fkUsuario" Type="varchar" MaxLength="100" />
-          <Property Name="fkEstado" Type="int" />
+          <Property Name="fkUsuario" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="verificacionSalida">
           <Key>
@@ -83,18 +88,6 @@
             </Principal>
             <Dependent Role="verificacionSalida">
               <PropertyRef Name="fkasignacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fkEstadoVerificacionDia">
-          <End Role="estado" Type="Self.estado" Multiplicity="0..1" />
-          <End Role="verificacionDia" Type="Self.verificacionDia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="estado">
-              <PropertyRef Name="idEstado" />
-            </Principal>
-            <Dependent Role="verificacionDia">
-              <PropertyRef Name="fkEstado" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -125,7 +118,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fkUsuarioVerificacionDia">
-          <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="1" />
           <End Role="verificacionDia" Type="Self.verificacionDia" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="usuarios">
@@ -150,19 +143,15 @@
         </Association>
         <EntityContainer Name="ACOTMADBModelStoreContainer">
           <EntitySet Name="asignacion" EntityType="Self.asignacion" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="estado" EntityType="Self.estado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="horarioServicio" EntityType="Self.horarioServicio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="permisos" EntityType="Self.permisos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="verificacionDia" EntityType="Self.verificacionDia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="verificacionSalida" EntityType="Self.verificacionSalida" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="fkAsignacionSalida" Association="Self.fkAsignacionSalida">
             <End Role="asignacion" EntitySet="asignacion" />
             <End Role="verificacionSalida" EntitySet="verificacionSalida" />
-          </AssociationSet>
-          <AssociationSet Name="fkEstadoVerificacionDia" Association="Self.fkEstadoVerificacionDia">
-            <End Role="estado" EntitySet="estado" />
-            <End Role="verificacionDia" EntitySet="verificacionDia" />
           </AssociationSet>
           <AssociationSet Name="fkHorarioAsignacion" Association="Self.fkHorarioAsignacion">
             <End Role="horarioServicio" EntitySet="horarioServicio" />
@@ -200,14 +189,6 @@
           <NavigationProperty Name="verificacionSalida" Relationship="Self.fkAsignacionSalida" FromRole="asignacion" ToRole="verificacionSalida" />
           <NavigationProperty Name="horarioServicio" Relationship="Self.fkHorarioAsignacion" FromRole="asignacion" ToRole="horarioServicio" />
         </EntityType>
-        <EntityType Name="estado">
-          <Key>
-            <PropertyRef Name="idEstado" />
-          </Key>
-          <Property Name="idEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="numEstado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="verificacionDia" Relationship="Self.fkEstadoVerificacionDia" FromRole="estado" ToRole="verificacionDia" />
-        </EntityType>
         <EntityType Name="horarioServicio">
           <Key>
             <PropertyRef Name="corrida" />
@@ -226,6 +207,16 @@
           <Property Name="idPermiso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="permiso" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="usuarios" Relationship="Self.fkPermisoUsuario" FromRole="permisos" ToRole="usuarios" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="usuarios">
           <Key>
@@ -246,12 +237,13 @@
             <PropertyRef Name="idVerificacionDia" />
           </Key>
           <Property Name="idVerificacionDia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="noUnidad" Type="Int32" />
+          <Property Name="tipoUnidad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="economico" Type="Int32" />
+          <Property Name="noTarjeton" Type="Int32" />
+          <Property Name="ruta" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="observaciones" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="fecha" Type="DateTime" Precision="0" />
-          <Property Name="fkUsuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="fkEstado" Type="Int32" />
-          <NavigationProperty Name="estado" Relationship="Self.fkEstadoVerificacionDia" FromRole="verificacionDia" ToRole="estado" />
+          <Property Name="fkUsuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="usuarios" Relationship="Self.fkUsuarioVerificacionDia" FromRole="verificacionDia" ToRole="usuarios" />
         </EntityType>
         <EntityType Name="verificacionSalida">
@@ -293,18 +285,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fkEstadoVerificacionDia">
-          <End Role="estado" Type="Self.estado" Multiplicity="0..1" />
-          <End Role="verificacionDia" Type="Self.verificacionDia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="estado">
-              <PropertyRef Name="idEstado" />
-            </Principal>
-            <Dependent Role="verificacionDia">
-              <PropertyRef Name="fkEstado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fkPermisoUsuario">
           <End Role="permisos" Type="Self.permisos" Multiplicity="0..1" />
           <End Role="usuarios" Type="Self.usuarios" Multiplicity="*" />
@@ -318,7 +298,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fkUsuarioVerificacionDia">
-          <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="1" />
           <End Role="verificacionDia" Type="Self.verificacionDia" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="usuarios">
@@ -343,9 +323,9 @@
         </Association>
         <EntityContainer Name="ACOTMADBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="asignacion" EntityType="Self.asignacion" />
-          <EntitySet Name="estado" EntityType="Self.estado" />
           <EntitySet Name="horarioServicio" EntityType="Self.horarioServicio" />
           <EntitySet Name="permisos" EntityType="Self.permisos" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="usuarios" EntityType="Self.usuarios" />
           <EntitySet Name="verificacionDia" EntityType="Self.verificacionDia" />
           <EntitySet Name="verificacionSalida" EntityType="Self.verificacionSalida" />
@@ -356,10 +336,6 @@
           <AssociationSet Name="fkHorarioAsignacion" Association="Self.fkHorarioAsignacion">
             <End Role="horarioServicio" EntitySet="horarioServicio" />
             <End Role="asignacion" EntitySet="asignacion" />
-          </AssociationSet>
-          <AssociationSet Name="fkEstadoVerificacionDia" Association="Self.fkEstadoVerificacionDia">
-            <End Role="estado" EntitySet="estado" />
-            <End Role="verificacionDia" EntitySet="verificacionDia" />
           </AssociationSet>
           <AssociationSet Name="fkPermisoUsuario" Association="Self.fkPermisoUsuario">
             <End Role="permisos" EntitySet="permisos" />
@@ -393,14 +369,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="estado">
-            <EntityTypeMapping TypeName="ACOTMADBModel.estado">
-              <MappingFragment StoreEntitySet="estado">
-                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
-                <ScalarProperty Name="numEstado" ColumnName="numEstado" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="horarioServicio">
             <EntityTypeMapping TypeName="ACOTMADBModel.horarioServicio">
               <MappingFragment StoreEntitySet="horarioServicio">
@@ -416,6 +384,17 @@
               <MappingFragment StoreEntitySet="permisos">
                 <ScalarProperty Name="idPermiso" ColumnName="idPermiso" />
                 <ScalarProperty Name="permiso" ColumnName="permiso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ACOTMADBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -435,11 +414,13 @@
             <EntityTypeMapping TypeName="ACOTMADBModel.verificacionDia">
               <MappingFragment StoreEntitySet="verificacionDia">
                 <ScalarProperty Name="idVerificacionDia" ColumnName="idVerificacionDia" />
-                <ScalarProperty Name="noUnidad" ColumnName="noUnidad" />
+                <ScalarProperty Name="tipoUnidad" ColumnName="tipoUnidad" />
+                <ScalarProperty Name="economico" ColumnName="economico" />
+                <ScalarProperty Name="noTarjeton" ColumnName="noTarjeton" />
+                <ScalarProperty Name="ruta" ColumnName="ruta" />
                 <ScalarProperty Name="observaciones" ColumnName="observaciones" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="fkUsuario" ColumnName="fkUsuario" />
-                <ScalarProperty Name="fkEstado" ColumnName="fkEstado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
