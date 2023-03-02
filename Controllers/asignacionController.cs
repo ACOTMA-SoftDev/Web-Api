@@ -46,6 +46,12 @@ namespace Acotma_API.Controllers
             return lista.ToList();
         }
 
-        
+
+        [Route("api/consultarAsignacionDay")]
+        [HttpGet]
+        public List<AsignacionEntity> getAsignacionDay()
+        {
+            return service.consultarAsignacionDay();
+        }
+
     }
-}
