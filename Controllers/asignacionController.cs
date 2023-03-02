@@ -45,7 +45,12 @@ namespace Acotma_API.Controllers
             var lista = service.asignHorarios(f);
             return lista.ToList();
         }
+        [Route("api/consultarAsignacionDay")]
+        [HttpGet]
+        public List<AsignacionEntity> getAsignacionDay()
+        {
+            return service.consultarAsignacionDay();
+        }
 
-        
     }
 }

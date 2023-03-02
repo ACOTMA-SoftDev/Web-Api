@@ -42,5 +42,6 @@ namespace Acotma_API.Controllers
         {
             return service.GetHorarios();
         }
+
     }
 }

@@ -93,6 +93,38 @@ namespace Acotma_API.serviciosModels
                 });
             }
             return hServ;
-        }                
+        }
+        public List<AsignacionEntity> consultarAsignacionDay()
+        {
+            List<AsignacionEntity> conAsig = new List<AsignacionEntity>();
+            var data = from cons in DB.asignacion
+                       where (cons.fkFecha == DateTime.Today)
+                       select new
+                       {
+                           cons.idAsignacion,
+                           cons.tipoUnidad,
+                           cons.economico,
+                           cons.tarjeton,
+                           cons.nomChofer,
+                           cons.fkCorrida,
+                           cons.fkFecha
+                       };
+            data.ToList();
+            foreach (var dataASi in data)
+            {
+                var dataASi1 = dataASi;
+                conAsig.Add(new AsignacionEntity
+                {
+                    idAsignacion = dataASi.idAsignacion,
+                    tipoUnidad = dataASi.tipoUnidad,
+                    economico = (int)dataASi.economico,
+                    tarjeton = (int)dataASi.tarjeton,
+                    nomChofer = dataASi.nomChofer,
+                    fkCorrida = (int)dataASi.fkCorrida,
+                    fkFecha = (DateTime)dataASi.fkFecha
+                });
+            }
+            return conAsig;
+        }
     }
 }
