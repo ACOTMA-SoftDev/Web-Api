@@ -34,5 +34,36 @@ namespace Acotma_API.ServiciosModels
             }
             return response;
         }
+        public bool InsertarVerificacionDay(VerificacionDiaEntity newVerificacion)
+        {
+            bool response = false;
+            try
+            {
+                verificacionDia addVerificacion = (new verificacionDia
+                {
+
+                    tipoUnidad = newVerificacion.tipoUnidad,
+                    observaciones = newVerificacion.observaciones,
+                    fkUsuario = newVerificacion.fkUsuario,
+                    economico = newVerificacion.economico,
+                    noTarjeton = newVerificacion.noTarjeton,
+                    ruta = newVerificacion.ruta,
+                    fecha = DateTime.Today
+                });
+
+                DB.verificacionDia.Add(addVerificacion);
+                DB.SaveChanges();
+                response = true;
+            }
+            catch (Exception e)
+            {
+                String ex = e.Message;
+                Console.WriteLine(ex);
+
+            }
+            return response;
+        }
+
+
     }
 }

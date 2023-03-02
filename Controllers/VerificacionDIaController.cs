@@ -17,6 +17,12 @@ namespace Acotma_API.Controllers
         public bool updateServApert(VerificacionDiaEntity verificacion)
         {
             return service.updateVerificacionDia(verificacion);
-        }        
+        }
+        [Route ("api/InsertarVerificacionDay")]
+        [HttpPost]
+        public bool insertarVerificacionDay (VerificacionDiaEntity newVerificacion)
+        {
+            return service.InsertarVerificacionDay(newVerificacion);
+        }
     }
 }
