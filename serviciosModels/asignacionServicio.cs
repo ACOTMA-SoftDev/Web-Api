@@ -42,7 +42,13 @@ namespace Acotma_API.serviciosModels
             {
                 asignacion newAsignacion = (new asignacion
                 {
-                    idAsignacion = asigna.idAsignacion
+
+                    tipoUnidad = asigna.tipoUnidad,
+                    economico = asigna.economico,
+                    tarjeton = asigna.tarjeton,
+                    nomChofer = asigna.nomChofer
+
+
                 });
                 asignacion oldAsigancion = DB.asignacion.FirstOrDefault(a => a.idAsignacion == asigna.idAsignacion);
                 oldAsigancion.idAsignacion = newAsignacion.idAsignacion;
@@ -54,7 +60,7 @@ namespace Acotma_API.serviciosModels
                 String mensaje = e.Message;
             }
             return response;
-        }                
+        }
         public List<MatchAsignHorario> asignHorarios(DateTime fecha)
         {
             List<MatchAsignHorario> hServ = new List<MatchAsignHorario>();
