@@ -37,7 +37,7 @@ namespace Acotma_API.Controllers
         {
             return service.UpdateAsignacion(uAsignacion);
         }
-        
+
         [HttpGet]
         public List<MatchAsignHorario> asignaciones(string fkFecha)
         {
