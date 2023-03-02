@@ -50,5 +50,33 @@ namespace Acotma_API.serviciosModels
             }
             return horarioDecrypt;            
         }
+        public List<HorarioServicioEntity> consultarHorarioDay()
+        {
+            List<HorarioServicioEntity> conHora = new List<HorarioServicioEntity>();
+            var datah = from hora in DB.horarioServicio
+                        where (hora.fecha == DateTime.Today)
+                        select new
+                        {
+                            hora.corrida,
+                            hora.fecha,
+                            hora.ruta,
+                            hora.horarioSalida
+                        };
+            datah.ToList();
+            foreach (var dataHora in datah)
+            {
+                var dataASi = dataHora;
+                conHora.Add(new HorarioServicioEntity
+                {
+
+                    corrida = dataHora.corrida,
+                    fecha = dataHora.fecha,
+                    ruta = dataHora.ruta,
+                    horarioSalida = (TimeSpan)dataHora.horarioSalida
+                });
+            }
+            return conHora;
+        }
+
     }
 }

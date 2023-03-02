@@ -42,5 +42,10 @@ namespace Acotma_API.Controllers
         {
             return service.GetHorarios();
         }
+        [HttpGet]
+        public List<HorarioServicioEntity> getHorarioRutasDay()
+        {
+            return service.consultarHorarioDay();
+        }
     }
 }
