@@ -12,24 +12,25 @@ namespace Acotma_API.Controllers
 {
     public class AsignacionController : ApiController
     {
-        AsignacionServicio service = new AsignacionServicio();        
+        AsignacionServicio service = new AsignacionServicio();
         [HttpPost]
         public bool agregarServicio(List<AsignacionEntity> oService)
         {
             bool response = false;
-            try                
+            try
             {
                 for (int i = 0; i < oService.Count; i++)
                 {
                     service.addAsignacion(oService[i]);
                 }
                 response = true;
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 string ex = e.Message;
                 Console.WriteLine(ex);
             }
-            return response;            
+            return response;
         }
         [Route("api/UpdateAsignacion")]
         [HttpPost]
@@ -41,11 +42,19 @@ namespace Acotma_API.Controllers
         [HttpGet]
         public List<MatchAsignHorario> asignaciones(string fkFecha)
         {
-            DateTime f= DateTime.Parse(fkFecha);
+            DateTime f = DateTime.Parse(fkFecha);
             var lista = service.asignHorarios(f);
             return lista.ToList();
         }
 
-        
+
+        [Route("api/consultarAsignacionDay")]
+        [HttpGet]
+        public List<AsignacionEntity> getAsignacionDay()
+        {
+            return service.consultarAsignacionDay();
+        }
+
     }
 }
+    
