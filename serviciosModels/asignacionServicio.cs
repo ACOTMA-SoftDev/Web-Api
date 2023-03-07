@@ -62,7 +62,7 @@ namespace Acotma_API.serviciosModels
             return response;
         }
         public List<MatchAsignHorario> asignHorarios(DateTime fecha)
-        {
+        {            
             List<MatchAsignHorario> hServ = new List<MatchAsignHorario>();
             var data = from asig in DB.asignacion
                        join horario in DB.horarioServicio

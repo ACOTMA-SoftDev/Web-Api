@@ -13,15 +13,20 @@ namespace Acotma_API.Controllers
     public class AsignacionController : ApiController
     {
         AsignacionServicio service = new AsignacionServicio();
+        HorarioServicioService hServ = new HorarioServicioService();
         [HttpPost]
         public bool agregarServicio(List<AsignacionEntity> oService)
         {
+            List<HorarioServicioEntity> h = new List<HorarioServicioEntity>();
             bool response = false;
             try
             {
                 for (int i = 0; i < oService.Count; i++)
                 {
+                    h = hServ.getCorridaToday(oService[i].fkCorrida);
+                    if(h.Count>0) { 
                     service.addAsignacion(oService[i]);
+                    }
                 }
                 response = true;
             }
