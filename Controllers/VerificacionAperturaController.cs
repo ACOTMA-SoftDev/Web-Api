@@ -17,10 +17,18 @@ namespace Acotma_API.Controllers
         {
             return service.getServiceVerficadores();
         }
+        
         [HttpPost]
         public bool updateChech(VerificacionSalidaEntity verificacion)
         {
             return service.updateVerificacion(verificacion);
+        }
+
+        [Route ("api/addverificacion")]
+        [HttpPost]
+        public bool agregarVerificacion(VerificacionSalidaEntity oVerificacion)
+        {
+            return service.AddVerificacion(oVerificacion);
         }
     }
 }

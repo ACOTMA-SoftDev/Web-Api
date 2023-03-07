@@ -75,7 +75,7 @@
           <Property Name="idVerificacionSalida" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="estado" Type="varchar" MaxLength="100" />
           <Property Name="observaciones" Type="varchar" MaxLength="100" />
-          <Property Name="fechaSalida" Type="date" />
+          <Property Name="fechaSalida" Type="time" Precision="0" />
           <Property Name="fkusuario" Type="varchar" MaxLength="100" />
           <Property Name="fkasignacion" Type="int" />
         </EntityType>
@@ -253,7 +253,7 @@
           <Property Name="idVerificacionSalida" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="estado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="observaciones" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="fechaSalida" Type="DateTime" Precision="0" />
+          <Property Name="fechaSalida" Type="Time" Precision="0" />
           <Property Name="fkusuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="fkasignacion" Type="Int32" />
           <NavigationProperty Name="asignacion" Relationship="Self.fkAsignacionSalida" FromRole="verificacionSalida" ToRole="asignacion" />

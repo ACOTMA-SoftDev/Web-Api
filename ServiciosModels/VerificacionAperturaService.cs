@@ -67,5 +67,31 @@ namespace Acotma_API.ServiciosModels
             }
             return response;
         }
+        public bool AddVerificacion(VerificacionSalidaEntity newVeriSalida)
+        {
+            bool response = false;
+            try
+            {
+                verificacionSalida addVerifi = (new verificacionSalida
+                {
+                    estado = newVeriSalida.estado,
+                    observaciones = newVeriSalida.observaciones,
+                    fechaSalida = newVeriSalida.fechaSalida,
+                     fkasignacion = newVeriSalida.fkasignacion,
+                    fkusuario = newVeriSalida.fkusuario
+                });
+
+                DB.verificacionSalida.Add(addVerifi);
+                DB.SaveChanges();
+                response = true;
+            }
+            catch (Exception e)
+            {
+                String ex = e.Message;
+                Console.WriteLine(ex);
+
+            }
+            return response;
+        }
     }
 }       

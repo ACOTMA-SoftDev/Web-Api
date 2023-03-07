@@ -17,7 +17,7 @@ namespace Acotma_API.Models_DB
         public int idVerificacionSalida { get; set; }
         public string estado { get; set; }
         public string observaciones { get; set; }
-        public Nullable<System.DateTime> fechaSalida { get; set; }
+        public Nullable<System.TimeSpan> fechaSalida { get; set; }
         public string fkusuario { get; set; }
         public Nullable<int> fkasignacion { get; set; }
     

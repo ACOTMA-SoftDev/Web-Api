@@ -70,7 +70,7 @@
     <Property Name="idVerificacionSalida" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="estado" Type="varchar" MaxLength="100" />
     <Property Name="observaciones" Type="varchar" MaxLength="100" />
-    <Property Name="fechaSalida" Type="date" />
+    <Property Name="fechaSalida" Type="time" Precision="0" />
     <Property Name="fkusuario" Type="varchar" MaxLength="100" />
     <Property Name="fkasignacion" Type="int" />
   </EntityType>

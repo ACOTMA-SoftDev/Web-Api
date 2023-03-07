@@ -10,7 +10,8 @@ namespace Acotma_API.Models_DB.EntityModels
         public int idVerificacionSalida { get; set; }
         public string estado { get; set; }
         public string observaciones { get; set; }
-        public Nullable<System.DateTime> fechaSalida { get; set; }
+        public TimeSpan fechaSalida { get; set; }
         public string fkusuario { get; set; }
+        public int fkasignacion { get; set; }
     }
 }
