@@ -17,6 +17,9 @@ namespace Acotma_API.Models_DB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public usuarios()
         {
+            this.Informe_incidencias_tecnologicas = new HashSet<Informe_incidencias_tecnologicas>();
+            this.Informe_Limpieza = new HashSet<Informe_Limpieza>();
+            this.Informe_Percances = new HashSet<Informe_Percances>();
             this.verificacionDia = new HashSet<verificacionDia>();
             this.verificacionSalida = new HashSet<verificacionSalida>();
         }
@@ -28,6 +31,12 @@ namespace Acotma_API.Models_DB
         public string pass { get; set; }
         public Nullable<int> fkPermiso { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Informe_incidencias_tecnologicas> Informe_incidencias_tecnologicas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Informe_Limpieza> Informe_Limpieza { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Informe_Percances> Informe_Percances { get; set; }
         public virtual permisos permisos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<verificacionDia> verificacionDia { get; set; }

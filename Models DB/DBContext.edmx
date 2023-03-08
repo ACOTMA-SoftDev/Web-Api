@@ -27,6 +27,56 @@
           <Property Name="ruta" Type="varchar" MaxLength="100" />
           <Property Name="horarioSalida" Type="time" Precision="0" />
         </EntityType>
+        <EntityType Name="Informe_incidencias_tecnologicas">
+          <Key>
+            <PropertyRef Name="ID_InformeIncidencias" />
+          </Key>
+          <Property Name="ID_InformeIncidencias" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha_incidencia" Type="date" Nullable="false" />
+          <Property Name="Hora_de_registro" Type="time" Precision="7" />
+          <Property Name="Servicio" Type="varchar" MaxLength="200" />
+          <Property Name="VehiculoECO" Type="varchar" MaxLength="40" />
+          <Property Name="Equipo_afectado" Type="varchar" MaxLength="100" />
+          <Property Name="Falla" Type="varchar" MaxLength="50" />
+          <Property Name="usuario" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Informe_Limpieza">
+          <Key>
+            <PropertyRef Name="IdInformeLimpieza" />
+          </Key>
+          <Property Name="IdInformeLimpieza" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha_Limpieza" Type="date" Nullable="false" />
+          <Property Name="Estación" Type="varchar" MaxLength="50" />
+          <Property Name="LimpiezaPiso" Type="varchar" MaxLength="5" />
+          <Property Name="LimpiezaVidrio" Type="varchar" MaxLength="5" />
+          <Property Name="LimpiezaAreaServicios" Type="varchar" MaxLength="5" />
+          <Property Name="LimpiezaAreaEstructura" Type="varchar" MaxLength="5" />
+          <Property Name="LimpiezaTorniquetes" Type="varchar" MaxLength="5" />
+          <Property Name="LimpiezaSanitarios" Type="varchar" MaxLength="5" />
+          <Property Name="Observaciones" Type="varchar" MaxLength="1000" />
+          <Property Name="Usuario" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Informe_Percances">
+          <Key>
+            <PropertyRef Name="id_Percance" />
+          </Key>
+          <Property Name="id_Percance" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha_Percance" Type="date" Nullable="false" />
+          <Property Name="NoEconomico" Type="int" />
+          <Property Name="ServicioRuta" Type="varchar" MaxLength="100" />
+          <Property Name="TipoUnidad" Type="varchar" MaxLength="50" />
+          <Property Name="Marca" Type="varchar" MaxLength="50" />
+          <Property Name="Modelo" Type="varchar" MaxLength="50" />
+          <Property Name="Color" Type="varchar" MaxLength="50" />
+          <Property Name="Placas" Type="varchar" MaxLength="50" />
+          <Property Name="Conductor" Type="varchar" MaxLength="50" />
+          <Property Name="Tarjeton" Type="int" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="2000" />
+          <Property Name="Ubicacion" Type="varchar" MaxLength="200" />
+          <Property Name="Hora" Type="time" Precision="7" />
+          <Property Name="Fotos" Type="image" />
+          <Property Name="usuario" Type="varchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="permisos">
           <Key>
             <PropertyRef Name="idPermiso" />
@@ -65,7 +115,8 @@
           <Property Name="noTarjeton" Type="int" />
           <Property Name="ruta" Type="varchar" MaxLength="100" />
           <Property Name="observaciones" Type="varchar" MaxLength="1000" />
-          <Property Name="fecha" Type="date" />
+          <Property Name="fecha" Type="datetime" />
+          <Property Name="hora" Type="time" Precision="7" />
           <Property Name="fkUsuario" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="verificacionSalida">
@@ -75,10 +126,46 @@
           <Property Name="idVerificacionSalida" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="estado" Type="varchar" MaxLength="100" />
           <Property Name="observaciones" Type="varchar" MaxLength="100" />
-          <Property Name="fechaSalida" Type="time" Precision="0" />
+          <Property Name="horaSalida" Type="time" Precision="0" />
           <Property Name="fkusuario" Type="varchar" MaxLength="100" />
           <Property Name="fkasignacion" Type="int" />
         </EntityType>
+        <Association Name="FK__Informe_i__usuar__2A164134">
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+          <End Role="Informe_incidencias_tecnologicas" Type="Self.Informe_incidencias_tecnologicas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios">
+              <PropertyRef Name="usuario" />
+            </Principal>
+            <Dependent Role="Informe_incidencias_tecnologicas">
+              <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Informe_L__Usuar__245D67DE">
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+          <End Role="Informe_Limpieza" Type="Self.Informe_Limpieza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios">
+              <PropertyRef Name="usuario" />
+            </Principal>
+            <Dependent Role="Informe_Limpieza">
+              <PropertyRef Name="Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Informe_P__usuar__2739D489">
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+          <End Role="Informe_Percances" Type="Self.Informe_Percances" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios">
+              <PropertyRef Name="usuario" />
+            </Principal>
+            <Dependent Role="Informe_Percances">
+              <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fkAsignacionSalida">
           <End Role="asignacion" Type="Self.asignacion" Multiplicity="0..1" />
           <End Role="verificacionSalida" Type="Self.verificacionSalida" Multiplicity="*" />
@@ -144,11 +231,26 @@
         <EntityContainer Name="ACOTMADBModelStoreContainer">
           <EntitySet Name="asignacion" EntityType="Self.asignacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="horarioServicio" EntityType="Self.horarioServicio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Informe_incidencias_tecnologicas" EntityType="Self.Informe_incidencias_tecnologicas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Informe_Limpieza" EntityType="Self.Informe_Limpieza" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Informe_Percances" EntityType="Self.Informe_Percances" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="permisos" EntityType="Self.permisos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="verificacionDia" EntityType="Self.verificacionDia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="verificacionSalida" EntityType="Self.verificacionSalida" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Informe_i__usuar__2A164134" Association="Self.FK__Informe_i__usuar__2A164134">
+            <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="Informe_incidencias_tecnologicas" EntitySet="Informe_incidencias_tecnologicas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Informe_L__Usuar__245D67DE" Association="Self.FK__Informe_L__Usuar__245D67DE">
+            <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="Informe_Limpieza" EntitySet="Informe_Limpieza" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Informe_P__usuar__2739D489" Association="Self.FK__Informe_P__usuar__2739D489">
+            <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="Informe_Percances" EntitySet="Informe_Percances" />
+          </AssociationSet>
           <AssociationSet Name="fkAsignacionSalida" Association="Self.fkAsignacionSalida">
             <End Role="asignacion" EntitySet="asignacion" />
             <End Role="verificacionSalida" EntitySet="verificacionSalida" />
@@ -200,6 +302,59 @@
           <Property Name="horarioSalida" Type="Time" Precision="0" />
           <NavigationProperty Name="asignacion" Relationship="Self.fkHorarioAsignacion" FromRole="horarioServicio" ToRole="asignacion" />
         </EntityType>
+        <EntityType Name="Informe_incidencias_tecnologicas">
+          <Key>
+            <PropertyRef Name="ID_InformeIncidencias" />
+          </Key>
+          <Property Name="ID_InformeIncidencias" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha_incidencia" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Hora_de_registro" Type="Time" Precision="7" />
+          <Property Name="Servicio" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="VehiculoECO" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Equipo_afectado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Falla" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="usuarios" Relationship="Self.FK__Informe_i__usuar__2A164134" FromRole="Informe_incidencias_tecnologicas" ToRole="usuarios" />
+        </EntityType>
+        <EntityType Name="Informe_Limpieza">
+          <Key>
+            <PropertyRef Name="IdInformeLimpieza" />
+          </Key>
+          <Property Name="IdInformeLimpieza" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha_Limpieza" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Estación" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LimpiezaPiso" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="LimpiezaVidrio" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="LimpiezaAreaServicios" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="LimpiezaAreaEstructura" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="LimpiezaTorniquetes" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="LimpiezaSanitarios" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="usuarios" Relationship="Self.FK__Informe_L__Usuar__245D67DE" FromRole="Informe_Limpieza" ToRole="usuarios" />
+        </EntityType>
+        <EntityType Name="Informe_Percances">
+          <Key>
+            <PropertyRef Name="id_Percance" />
+          </Key>
+          <Property Name="id_Percance" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha_Percance" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="NoEconomico" Type="Int32" />
+          <Property Name="ServicioRuta" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TipoUnidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Marca" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Modelo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Placas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Conductor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tarjeton" Type="Int32" />
+          <Property Name="Descripcion" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Ubicacion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Hora" Type="Time" Precision="7" />
+          <Property Name="Fotos" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="usuarios" Relationship="Self.FK__Informe_P__usuar__2739D489" FromRole="Informe_Percances" ToRole="usuarios" />
+        </EntityType>
         <EntityType Name="permisos">
           <Key>
             <PropertyRef Name="idPermiso" />
@@ -228,6 +383,9 @@
           <Property Name="apellidoM" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="pass" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="fkPermiso" Type="Int32" />
+          <NavigationProperty Name="Informe_incidencias_tecnologicas" Relationship="Self.FK__Informe_i__usuar__2A164134" FromRole="usuarios" ToRole="Informe_incidencias_tecnologicas" />
+          <NavigationProperty Name="Informe_Limpieza" Relationship="Self.FK__Informe_L__Usuar__245D67DE" FromRole="usuarios" ToRole="Informe_Limpieza" />
+          <NavigationProperty Name="Informe_Percances" Relationship="Self.FK__Informe_P__usuar__2739D489" FromRole="usuarios" ToRole="Informe_Percances" />
           <NavigationProperty Name="permisos" Relationship="Self.fkPermisoUsuario" FromRole="usuarios" ToRole="permisos" />
           <NavigationProperty Name="verificacionDia" Relationship="Self.fkUsuarioVerificacionDia" FromRole="usuarios" ToRole="verificacionDia" />
           <NavigationProperty Name="verificacionSalida" Relationship="Self.fkUsuarioVerificacionSalida" FromRole="usuarios" ToRole="verificacionSalida" />
@@ -242,7 +400,8 @@
           <Property Name="noTarjeton" Type="Int32" />
           <Property Name="ruta" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="observaciones" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="hora" Type="Time" Precision="7" />
           <Property Name="fkUsuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="usuarios" Relationship="Self.fkUsuarioVerificacionDia" FromRole="verificacionDia" ToRole="usuarios" />
         </EntityType>
@@ -253,7 +412,7 @@
           <Property Name="idVerificacionSalida" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="estado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="observaciones" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="fechaSalida" Type="Time" Precision="0" />
+          <Property Name="horaSalida" Type="Time" Precision="0" />
           <Property Name="fkusuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="fkasignacion" Type="Int32" />
           <NavigationProperty Name="asignacion" Relationship="Self.fkAsignacionSalida" FromRole="verificacionSalida" ToRole="asignacion" />
@@ -282,6 +441,42 @@
             <Dependent Role="asignacion">
               <PropertyRef Name="fkCorrida" />
               <PropertyRef Name="fkFecha" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Informe_i__usuar__2A164134">
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+          <End Role="Informe_incidencias_tecnologicas" Type="Self.Informe_incidencias_tecnologicas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios">
+              <PropertyRef Name="usuario" />
+            </Principal>
+            <Dependent Role="Informe_incidencias_tecnologicas">
+              <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Informe_L__Usuar__245D67DE">
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+          <End Role="Informe_Limpieza" Type="Self.Informe_Limpieza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios">
+              <PropertyRef Name="usuario" />
+            </Principal>
+            <Dependent Role="Informe_Limpieza">
+              <PropertyRef Name="Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Informe_P__usuar__2739D489">
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+          <End Role="Informe_Percances" Type="Self.Informe_Percances" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios">
+              <PropertyRef Name="usuario" />
+            </Principal>
+            <Dependent Role="Informe_Percances">
+              <PropertyRef Name="usuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -324,6 +519,9 @@
         <EntityContainer Name="ACOTMADBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="asignacion" EntityType="Self.asignacion" />
           <EntitySet Name="horarioServicio" EntityType="Self.horarioServicio" />
+          <EntitySet Name="Informe_incidencias_tecnologicas" EntityType="Self.Informe_incidencias_tecnologicas" />
+          <EntitySet Name="Informe_Limpieza" EntityType="Self.Informe_Limpieza" />
+          <EntitySet Name="Informe_Percances" EntityType="Self.Informe_Percances" />
           <EntitySet Name="permisos" EntityType="Self.permisos" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="usuarios" EntityType="Self.usuarios" />
@@ -336,6 +534,18 @@
           <AssociationSet Name="fkHorarioAsignacion" Association="Self.fkHorarioAsignacion">
             <End Role="horarioServicio" EntitySet="horarioServicio" />
             <End Role="asignacion" EntitySet="asignacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Informe_i__usuar__2A164134" Association="Self.FK__Informe_i__usuar__2A164134">
+            <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="Informe_incidencias_tecnologicas" EntitySet="Informe_incidencias_tecnologicas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Informe_L__Usuar__245D67DE" Association="Self.FK__Informe_L__Usuar__245D67DE">
+            <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="Informe_Limpieza" EntitySet="Informe_Limpieza" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Informe_P__usuar__2739D489" Association="Self.FK__Informe_P__usuar__2739D489">
+            <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="Informe_Percances" EntitySet="Informe_Percances" />
           </AssociationSet>
           <AssociationSet Name="fkPermisoUsuario" Association="Self.fkPermisoUsuario">
             <End Role="permisos" EntitySet="permisos" />
@@ -376,6 +586,59 @@
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="ruta" ColumnName="ruta" />
                 <ScalarProperty Name="horarioSalida" ColumnName="horarioSalida" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Informe_incidencias_tecnologicas">
+            <EntityTypeMapping TypeName="ACOTMADBModel.Informe_incidencias_tecnologicas">
+              <MappingFragment StoreEntitySet="Informe_incidencias_tecnologicas">
+                <ScalarProperty Name="ID_InformeIncidencias" ColumnName="ID_InformeIncidencias" />
+                <ScalarProperty Name="Fecha_incidencia" ColumnName="Fecha_incidencia" />
+                <ScalarProperty Name="Hora_de_registro" ColumnName="Hora_de_registro" />
+                <ScalarProperty Name="Servicio" ColumnName="Servicio" />
+                <ScalarProperty Name="VehiculoECO" ColumnName="VehiculoECO" />
+                <ScalarProperty Name="Equipo_afectado" ColumnName="Equipo_afectado" />
+                <ScalarProperty Name="Falla" ColumnName="Falla" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Informe_Limpieza">
+            <EntityTypeMapping TypeName="ACOTMADBModel.Informe_Limpieza">
+              <MappingFragment StoreEntitySet="Informe_Limpieza">
+                <ScalarProperty Name="IdInformeLimpieza" ColumnName="IdInformeLimpieza" />
+                <ScalarProperty Name="Fecha_Limpieza" ColumnName="Fecha_Limpieza" />
+                <ScalarProperty Name="Estación" ColumnName="Estación" />
+                <ScalarProperty Name="LimpiezaPiso" ColumnName="LimpiezaPiso" />
+                <ScalarProperty Name="LimpiezaVidrio" ColumnName="LimpiezaVidrio" />
+                <ScalarProperty Name="LimpiezaAreaServicios" ColumnName="LimpiezaAreaServicios" />
+                <ScalarProperty Name="LimpiezaAreaEstructura" ColumnName="LimpiezaAreaEstructura" />
+                <ScalarProperty Name="LimpiezaTorniquetes" ColumnName="LimpiezaTorniquetes" />
+                <ScalarProperty Name="LimpiezaSanitarios" ColumnName="LimpiezaSanitarios" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Informe_Percances">
+            <EntityTypeMapping TypeName="ACOTMADBModel.Informe_Percances">
+              <MappingFragment StoreEntitySet="Informe_Percances">
+                <ScalarProperty Name="id_Percance" ColumnName="id_Percance" />
+                <ScalarProperty Name="Fecha_Percance" ColumnName="Fecha_Percance" />
+                <ScalarProperty Name="NoEconomico" ColumnName="NoEconomico" />
+                <ScalarProperty Name="ServicioRuta" ColumnName="ServicioRuta" />
+                <ScalarProperty Name="TipoUnidad" ColumnName="TipoUnidad" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Placas" ColumnName="Placas" />
+                <ScalarProperty Name="Conductor" ColumnName="Conductor" />
+                <ScalarProperty Name="Tarjeton" ColumnName="Tarjeton" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
+                <ScalarProperty Name="Hora" ColumnName="Hora" />
+                <ScalarProperty Name="Fotos" ColumnName="Fotos" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -420,6 +683,7 @@
                 <ScalarProperty Name="ruta" ColumnName="ruta" />
                 <ScalarProperty Name="observaciones" ColumnName="observaciones" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
                 <ScalarProperty Name="fkUsuario" ColumnName="fkUsuario" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -430,7 +694,7 @@
                 <ScalarProperty Name="idVerificacionSalida" ColumnName="idVerificacionSalida" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="observaciones" ColumnName="observaciones" />
-                <ScalarProperty Name="fechaSalida" ColumnName="fechaSalida" />
+                <ScalarProperty Name="horaSalida" ColumnName="horaSalida" />
                 <ScalarProperty Name="fkusuario" ColumnName="fkusuario" />
                 <ScalarProperty Name="fkasignacion" ColumnName="fkasignacion" />
               </MappingFragment>

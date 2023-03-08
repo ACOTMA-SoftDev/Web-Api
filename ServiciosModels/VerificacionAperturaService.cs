@@ -9,8 +9,8 @@ namespace Acotma_API.ServiciosModels
 {
     public class VerificadoresService
     {
-        ACOTMADBEntities DB = new ACOTMADBEntities();        
-        public List<GetServVerificadores> getServiceVerficadores()
+        private readonly ACOTMADBEntities DB = new ACOTMADBEntities();        
+        public List<GetServVerificadores> GetServiceVerficadores()
         {
             DateTime date = DateTime.Today;
             List<GetServVerificadores> data = new List<GetServVerificadores>();
@@ -46,18 +46,18 @@ namespace Acotma_API.ServiciosModels
             }
             return data;
         }
-        public bool updateVerificacion(VerificacionSalidaEntity salidaEntity)
+        public bool UpdateVerificacion(VerificacionSalidaEntity salidaEntity)
         {
             bool response = false;
             try
             {
                 verificacionSalida verificacion = (new verificacionSalida
                 {
-                    estado = salidaEntity.estado,
-                    observaciones = salidaEntity.observaciones,
-                    fechaSalida = salidaEntity.fechaSalida,
+                    estado = salidaEntity.Estado,
+                    observaciones = salidaEntity.Observaciones,
+                    horaSalida = salidaEntity.HoraSalida,
                 });
-                verificacionSalida salida = DB.verificacionSalida.FirstOrDefault(a => a.idVerificacionSalida == salidaEntity.idVerificacionSalida);
+                verificacionSalida salida = DB.verificacionSalida.FirstOrDefault(a => a.idVerificacionSalida == salidaEntity.IdVerificacionSalida);
                 salida.idVerificacionSalida = verificacion.idVerificacionSalida;
                 DB.SaveChanges();
                 response = true;
@@ -74,11 +74,11 @@ namespace Acotma_API.ServiciosModels
             {
                 verificacionSalida addVerifi = (new verificacionSalida
                 {
-                    estado = newVeriSalida.estado,
-                    observaciones = newVeriSalida.observaciones,
-                    fechaSalida = newVeriSalida.fechaSalida,
-                     fkasignacion = newVeriSalida.fkasignacion,
-                    fkusuario = newVeriSalida.fkusuario
+                    estado = newVeriSalida.Estado,
+                    observaciones = newVeriSalida.Observaciones,
+                    horaSalida = newVeriSalida.HoraSalida,
+                     fkasignacion = newVeriSalida.Fkasignacion,
+                    fkusuario = newVeriSalida.Fkusuario
                 });
 
                 DB.verificacionSalida.Add(addVerifi);

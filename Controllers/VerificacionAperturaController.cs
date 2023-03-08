@@ -11,22 +11,22 @@ namespace Acotma_API.Controllers
 {
     public class VerificacionAperturaController : ApiController
     {
-        VerificadoresService service = new VerificadoresService();
+        private readonly VerificadoresService service = new VerificadoresService();
         [HttpGet]
-        public List<GetServVerificadores> getCheck()
+        public List<GetServVerificadores> GetCheck()
         {
-            return service.getServiceVerficadores();
+            return service.GetServiceVerficadores();
         }
         
         [HttpPost]
-        public bool updateChech(VerificacionSalidaEntity verificacion)
+        public bool UpdateChech(VerificacionSalidaEntity verificacion)
         {
-            return service.updateVerificacion(verificacion);
+            return service.UpdateVerificacion(verificacion);
         }
 
         [Route ("api/addverificacion")]
         [HttpPost]
-        public bool agregarVerificacion(VerificacionSalidaEntity oVerificacion)
+        public bool AgregarVerificacion(VerificacionSalidaEntity oVerificacion)
         {
             return service.AddVerificacion(oVerificacion);
         }

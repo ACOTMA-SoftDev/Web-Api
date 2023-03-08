@@ -12,17 +12,16 @@ namespace Acotma_API.Models_DB
     using System;
     using System.Collections.Generic;
     
-    public partial class verificacionDia
+    public partial class Informe_incidencias_tecnologicas
     {
-        public int idVerificacionDia { get; set; }
-        public string tipoUnidad { get; set; }
-        public Nullable<int> economico { get; set; }
-        public Nullable<int> noTarjeton { get; set; }
-        public string ruta { get; set; }
-        public string observaciones { get; set; }
-        public Nullable<System.DateTime> fecha { get; set; }
-        public Nullable<System.TimeSpan> hora { get; set; }
-        public string fkUsuario { get; set; }
+        public int ID_InformeIncidencias { get; set; }
+        public System.DateTime Fecha_incidencia { get; set; }
+        public Nullable<System.TimeSpan> Hora_de_registro { get; set; }
+        public string Servicio { get; set; }
+        public string VehiculoECO { get; set; }
+        public string Equipo_afectado { get; set; }
+        public string Falla { get; set; }
+        public string usuario { get; set; }
     
         public virtual usuarios usuarios { get; set; }
     }

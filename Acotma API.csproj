@@ -146,6 +146,15 @@
     <Compile Include="Models DB\horarioServicio.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models DB\Informe_incidencias_tecnologicas.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models DB\Informe_Limpieza.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models DB\Informe_Percances.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models DB\permisos.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>

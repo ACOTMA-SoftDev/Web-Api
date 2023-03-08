@@ -24,6 +24,59 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Informe_incidencias_tecnologicas">
+      <EntityTypeMapping TypeName="ACOTMADBModel.Informe_incidencias_tecnologicas">
+        <MappingFragment StoreEntitySet="Informe_incidencias_tecnologicas">
+          <ScalarProperty Name="ID_InformeIncidencias" ColumnName="ID_InformeIncidencias" />
+          <ScalarProperty Name="Fecha_incidencia" ColumnName="Fecha_incidencia" />
+          <ScalarProperty Name="Hora_de_registro" ColumnName="Hora_de_registro" />
+          <ScalarProperty Name="Servicio" ColumnName="Servicio" />
+          <ScalarProperty Name="VehiculoECO" ColumnName="VehiculoECO" />
+          <ScalarProperty Name="Equipo_afectado" ColumnName="Equipo_afectado" />
+          <ScalarProperty Name="Falla" ColumnName="Falla" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Informe_Limpieza">
+      <EntityTypeMapping TypeName="ACOTMADBModel.Informe_Limpieza">
+        <MappingFragment StoreEntitySet="Informe_Limpieza">
+          <ScalarProperty Name="IdInformeLimpieza" ColumnName="IdInformeLimpieza" />
+          <ScalarProperty Name="Fecha_Limpieza" ColumnName="Fecha_Limpieza" />
+          <ScalarProperty Name="Estación" ColumnName="Estación" />
+          <ScalarProperty Name="LimpiezaPiso" ColumnName="LimpiezaPiso" />
+          <ScalarProperty Name="LimpiezaVidrio" ColumnName="LimpiezaVidrio" />
+          <ScalarProperty Name="LimpiezaAreaServicios" ColumnName="LimpiezaAreaServicios" />
+          <ScalarProperty Name="LimpiezaAreaEstructura" ColumnName="LimpiezaAreaEstructura" />
+          <ScalarProperty Name="LimpiezaTorniquetes" ColumnName="LimpiezaTorniquetes" />
+          <ScalarProperty Name="LimpiezaSanitarios" ColumnName="LimpiezaSanitarios" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Informe_Percances">
+      <EntityTypeMapping TypeName="ACOTMADBModel.Informe_Percances">
+        <MappingFragment StoreEntitySet="Informe_Percances">
+          <ScalarProperty Name="id_Percance" ColumnName="id_Percance" />
+          <ScalarProperty Name="Fecha_Percance" ColumnName="Fecha_Percance" />
+          <ScalarProperty Name="NoEconomico" ColumnName="NoEconomico" />
+          <ScalarProperty Name="ServicioRuta" ColumnName="ServicioRuta" />
+          <ScalarProperty Name="TipoUnidad" ColumnName="TipoUnidad" />
+          <ScalarProperty Name="Marca" ColumnName="Marca" />
+          <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Placas" ColumnName="Placas" />
+          <ScalarProperty Name="Conductor" ColumnName="Conductor" />
+          <ScalarProperty Name="Tarjeton" ColumnName="Tarjeton" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
+          <ScalarProperty Name="Hora" ColumnName="Hora" />
+          <ScalarProperty Name="Fotos" ColumnName="Fotos" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="permisos">
       <EntityTypeMapping TypeName="ACOTMADBModel.permisos">
         <MappingFragment StoreEntitySet="permisos">
@@ -65,6 +118,7 @@
           <ScalarProperty Name="ruta" ColumnName="ruta" />
           <ScalarProperty Name="observaciones" ColumnName="observaciones" />
           <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="hora" ColumnName="hora" />
           <ScalarProperty Name="fkUsuario" ColumnName="fkUsuario" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -75,7 +129,7 @@
           <ScalarProperty Name="idVerificacionSalida" ColumnName="idVerificacionSalida" />
           <ScalarProperty Name="estado" ColumnName="estado" />
           <ScalarProperty Name="observaciones" ColumnName="observaciones" />
-          <ScalarProperty Name="fechaSalida" ColumnName="fechaSalida" />
+          <ScalarProperty Name="horaSalida" ColumnName="horaSalida" />
           <ScalarProperty Name="fkusuario" ColumnName="fkusuario" />
           <ScalarProperty Name="fkasignacion" ColumnName="fkasignacion" />
         </MappingFragment>
