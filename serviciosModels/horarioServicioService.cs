@@ -103,6 +103,23 @@ namespace Acotma_API.serviciosModels
                     });
                 }
                 return conHora;
-            }        
+            }
+        public bool DeleteHorarioServicio(eliminarHorarioServicio fecha)
+        {
+            bool response = false;
+            try
+            {
+                var eliminarHoarios = DB.horarioServicio;
+               var deletHorarioServicio = eliminarHoarios.Where(a => a.fecha >= fecha.fechaInicio && a.fecha <= fecha.fechaFinal);
+                eliminarHoarios.RemoveRange(deletHorarioServicio);
+                DB.SaveChanges();
+                response = true;
+            }
+            catch (Exception e)
+            {
+                String mensaje = e.Message;
+            }
+            return response;
+        }
     }
 }
