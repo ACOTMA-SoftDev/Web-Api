@@ -47,5 +47,11 @@ namespace Acotma_API.Controllers
         {
             return service.consultarHorarioDay();
         }
+        [Route ("api/DeleteHorarioServicio")]
+        [HttpPost]
+        public bool DeleteHorarioServicio(eliminarHorarioServicio fecha)
+        {
+            return service.DeleteHorarioServicio(fecha);
+        }
     }
 }
