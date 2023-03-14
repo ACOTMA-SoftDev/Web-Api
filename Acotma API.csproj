@@ -154,6 +154,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AsignacionController.cs" />
     <Compile Include="Controllers\HorarioServicioController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegisterAccountController.cs" />
     <Compile Include="Controllers\VerificacionAperturaController.cs" />
     <Compile Include="Controllers\VerificacionDiaController.cs" />
@@ -202,6 +203,9 @@
     <Compile Include="Models DB\permisos.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models DB\permisoUsuario.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models DB\sysdiagrams.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
@@ -217,6 +221,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiciosModels\AsignacionServicio.cs" />
     <Compile Include="ServiciosModels\HorarioServicioService.cs" />
+    <Compile Include="ServiciosModels\LoginService.cs" />
     <Compile Include="ServiciosModels\RegistroUsuariosService.cs" />
     <Compile Include="ServiciosModels\VerificacionAperturaService.cs" />
     <Compile Include="ServiciosModels\VerificacionDiaService.cs" />
@@ -224,6 +229,10 @@
     <Compile Include="Token\ValidationToken.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Certificate\certificate.crt" />
+    <Content Include="Certificate\certificate.csr" />
+    <Content Include="Certificate\certificate.p12" />
+    <Content Include="Certificate\domain.key" />
     <EntityDeploy Include="Models DB\DBContext.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DBContext.Designer.cs</LastGenOutput>
@@ -231,10 +240,6 @@
     <Content Include="Models DB\DBContext.edmx.diagram">
       <DependentUpon>DBContext.edmx</DependentUpon>
     </Content>
-    <Content Include="Certificate\certificate.crt" />
-    <Content Include="Certificate\certificate.csr" />
-    <Content Include="Certificate\certificate.p12" />
-    <Content Include="Certificate\domain.key" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

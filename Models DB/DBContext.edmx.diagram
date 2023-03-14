@@ -4,23 +4,25 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6942c1dbd22a4c3080faa307a6083e03" Name="Diagram1">
-        <EntityTypeShape EntityType="ACOTMADBModel.asignacion" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ACOTMADBModel.horarioServicio" Width="1.5" PointX="3.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ACOTMADBModel.Informe_incidencias_tecnologicas" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ACOTMADBModel.Informe_Limpieza" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ACOTMADBModel.Informe_Percances" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ACOTMADBModel.permisos" Width="1.5" PointX="0.75" PointY="11.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ACOTMADBModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ACOTMADBModel.usuarios" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ACOTMADBModel.verificacionDia" Width="1.5" PointX="5.25" PointY="17" IsExpanded="true" />
-        <EntityTypeShape EntityType="ACOTMADBModel.verificacionSalida" Width="1.5" PointX="8.25" PointY="10.875" IsExpanded="true" />
+      <Diagram DiagramId="9530c3ea9aa341348000ee130427ab86" Name="Diagram1">
+        <EntityTypeShape EntityType="ACOTMADBModel.asignacion" Width="1.5" PointX="3.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACOTMADBModel.horarioServicio" Width="1.5" PointX="1.5" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACOTMADBModel.Informe_incidencias_tecnologicas" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACOTMADBModel.Informe_Limpieza" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACOTMADBModel.Informe_Percances" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACOTMADBModel.permisos" Width="1.5" PointX="3.75" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACOTMADBModel.permisoUsuario" Width="1.5" PointX="6" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACOTMADBModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACOTMADBModel.usuarios" Width="1.5" PointX="0.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACOTMADBModel.verificacionDia" Width="1.5" PointX="3" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACOTMADBModel.verificacionSalida" Width="1.5" PointX="6" PointY="8.375" IsExpanded="true" />
         <AssociationConnector Association="ACOTMADBModel.fkAsignacionSalida" ManuallyRouted="false" />
         <AssociationConnector Association="ACOTMADBModel.fkHorarioAsignacion" ManuallyRouted="false" />
-        <AssociationConnector Association="ACOTMADBModel.FK__Informe_i__usuar__2A164134" ManuallyRouted="false" />
-        <AssociationConnector Association="ACOTMADBModel.FK__Informe_L__Usuar__245D67DE" ManuallyRouted="false" />
-        <AssociationConnector Association="ACOTMADBModel.FK__Informe_P__usuar__2739D489" ManuallyRouted="false" />
-        <AssociationConnector Association="ACOTMADBModel.fkPermisoUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="ACOTMADBModel.FK__Informe_i__usuar__4B7734FF" ManuallyRouted="false" />
+        <AssociationConnector Association="ACOTMADBModel.FK__Informe_L__Usuar__45BE5BA9" ManuallyRouted="false" />
+        <AssociationConnector Association="ACOTMADBModel.FK__Informe_P__usuar__489AC854" ManuallyRouted="false" />
+        <AssociationConnector Association="ACOTMADBModel.permiso" ManuallyRouted="false" />
+        <AssociationConnector Association="ACOTMADBModel.usuario" ManuallyRouted="false" />
         <AssociationConnector Association="ACOTMADBModel.fkUsuarioVerificacionDia" ManuallyRouted="false" />
         <AssociationConnector Association="ACOTMADBModel.fkUsuarioVerificacionSalida" ManuallyRouted="false" />
       </Diagram>

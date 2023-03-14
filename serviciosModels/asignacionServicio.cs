@@ -9,8 +9,8 @@ namespace Acotma_API.serviciosModels
 {
     public class AsignacionServicio
     {
-        ACOTMADBEntities DB = new ACOTMADBEntities();
-        public bool addAsignacion(AsignacionEntity newAsignacion)
+        readonly ACOTMADBEntities DB = new ACOTMADBEntities();
+        public bool AddAsignacion(AsignacionEntity newAsignacion)
         {
             bool response = false;
             try
@@ -61,7 +61,7 @@ namespace Acotma_API.serviciosModels
             }
             return response;
         }
-        public List<MatchAsignHorario> asignHorarios(DateTime fecha)
+        public List<MatchAsignHorario> AsignHorarios(DateTime fecha)
         {            
             List<MatchAsignHorario> hServ = new List<MatchAsignHorario>();
             var data = from asig in DB.asignacion
@@ -100,7 +100,7 @@ namespace Acotma_API.serviciosModels
             }
             return hServ;
         }
-        public List<AsignacionEntity> consultarAsignacionDay()
+        public List<AsignacionEntity> ConsultarAsignacionDay()
         {
             List<AsignacionEntity> conAsig = new List<AsignacionEntity>();
             var data = from cons in DB.asignacion

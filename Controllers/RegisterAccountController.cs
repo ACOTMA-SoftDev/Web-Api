@@ -11,12 +11,12 @@ namespace Acotma_API.Controllers
 {
     public class RegisterAccountController : ApiController
     {
-        RegistroUsuariosService service = new RegistroUsuariosService();
+        readonly RegistroUsuariosService service = new RegistroUsuariosService();
 
         [HttpPost]
-        public bool addAccountUser(UsuariosEntity oUser)
+        public bool AddAccountUser(UsuariosEntity oUser)
         {
-            return service.registerAccount(oUser);
+            return service.RegisterAccount(oUser);
         }
     }
 }

@@ -79,9 +79,16 @@
         </EntityType>
         <EntityType Name="permisos">
           <Key>
-            <PropertyRef Name="idPermiso" />
+            <PropertyRef Name="permiso" />
           </Key>
-          <Property Name="idPermiso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="permiso" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="permisoUsuario">
+          <Key>
+            <PropertyRef Name="idPermisoUsuario" />
+          </Key>
+          <Property Name="idPermisoUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="100" />
           <Property Name="permiso" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -103,7 +110,6 @@
           <Property Name="apellidoP" Type="varchar" MaxLength="100" />
           <Property Name="apellidoM" Type="varchar" MaxLength="100" />
           <Property Name="pass" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="fkPermiso" Type="int" />
         </EntityType>
         <EntityType Name="verificacionDia">
           <Key>
@@ -130,7 +136,7 @@
           <Property Name="fkusuario" Type="varchar" MaxLength="100" />
           <Property Name="fkasignacion" Type="int" />
         </EntityType>
-        <Association Name="FK__Informe_i__usuar__2A164134">
+        <Association Name="FK__Informe_i__usuar__4B7734FF">
           <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
           <End Role="Informe_incidencias_tecnologicas" Type="Self.Informe_incidencias_tecnologicas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -142,7 +148,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Informe_L__Usuar__245D67DE">
+        <Association Name="FK__Informe_L__Usuar__45BE5BA9">
           <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
           <End Role="Informe_Limpieza" Type="Self.Informe_Limpieza" Multiplicity="*" />
           <ReferentialConstraint>
@@ -154,7 +160,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Informe_P__usuar__2739D489">
+        <Association Name="FK__Informe_P__usuar__489AC854">
           <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
           <End Role="Informe_Percances" Type="Self.Informe_Percances" Multiplicity="*" />
           <ReferentialConstraint>
@@ -192,18 +198,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fkPermisoUsuario">
-          <End Role="permisos" Type="Self.permisos" Multiplicity="0..1" />
-          <End Role="usuarios" Type="Self.usuarios" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="permisos">
-              <PropertyRef Name="idPermiso" />
-            </Principal>
-            <Dependent Role="usuarios">
-              <PropertyRef Name="fkPermiso" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fkUsuarioVerificacionDia">
           <End Role="usuarios" Type="Self.usuarios" Multiplicity="1" />
           <End Role="verificacionDia" Type="Self.verificacionDia" Multiplicity="*" />
@@ -228,6 +222,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="permiso">
+          <End Role="permisos" Type="Self.permisos" Multiplicity="0..1" />
+          <End Role="permisoUsuario" Type="Self.permisoUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="permisos">
+              <PropertyRef Name="permiso" />
+            </Principal>
+            <Dependent Role="permisoUsuario">
+              <PropertyRef Name="permiso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usuario">
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+          <End Role="permisoUsuario" Type="Self.permisoUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios">
+              <PropertyRef Name="usuario" />
+            </Principal>
+            <Dependent Role="permisoUsuario">
+              <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ACOTMADBModelStoreContainer">
           <EntitySet Name="asignacion" EntityType="Self.asignacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="horarioServicio" EntityType="Self.horarioServicio" Schema="dbo" store:Type="Tables" />
@@ -235,19 +253,20 @@
           <EntitySet Name="Informe_Limpieza" EntityType="Self.Informe_Limpieza" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Informe_Percances" EntityType="Self.Informe_Percances" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="permisos" EntityType="Self.permisos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="permisoUsuario" EntityType="Self.permisoUsuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="verificacionDia" EntityType="Self.verificacionDia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="verificacionSalida" EntityType="Self.verificacionSalida" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Informe_i__usuar__2A164134" Association="Self.FK__Informe_i__usuar__2A164134">
+          <AssociationSet Name="FK__Informe_i__usuar__4B7734FF" Association="Self.FK__Informe_i__usuar__4B7734FF">
             <End Role="usuarios" EntitySet="usuarios" />
             <End Role="Informe_incidencias_tecnologicas" EntitySet="Informe_incidencias_tecnologicas" />
           </AssociationSet>
-          <AssociationSet Name="FK__Informe_L__Usuar__245D67DE" Association="Self.FK__Informe_L__Usuar__245D67DE">
+          <AssociationSet Name="FK__Informe_L__Usuar__45BE5BA9" Association="Self.FK__Informe_L__Usuar__45BE5BA9">
             <End Role="usuarios" EntitySet="usuarios" />
             <End Role="Informe_Limpieza" EntitySet="Informe_Limpieza" />
           </AssociationSet>
-          <AssociationSet Name="FK__Informe_P__usuar__2739D489" Association="Self.FK__Informe_P__usuar__2739D489">
+          <AssociationSet Name="FK__Informe_P__usuar__489AC854" Association="Self.FK__Informe_P__usuar__489AC854">
             <End Role="usuarios" EntitySet="usuarios" />
             <End Role="Informe_Percances" EntitySet="Informe_Percances" />
           </AssociationSet>
@@ -259,10 +278,6 @@
             <End Role="horarioServicio" EntitySet="horarioServicio" />
             <End Role="asignacion" EntitySet="asignacion" />
           </AssociationSet>
-          <AssociationSet Name="fkPermisoUsuario" Association="Self.fkPermisoUsuario">
-            <End Role="permisos" EntitySet="permisos" />
-            <End Role="usuarios" EntitySet="usuarios" />
-          </AssociationSet>
           <AssociationSet Name="fkUsuarioVerificacionDia" Association="Self.fkUsuarioVerificacionDia">
             <End Role="usuarios" EntitySet="usuarios" />
             <End Role="verificacionDia" EntitySet="verificacionDia" />
@@ -270,6 +285,14 @@
           <AssociationSet Name="fkUsuarioVerificacionSalida" Association="Self.fkUsuarioVerificacionSalida">
             <End Role="usuarios" EntitySet="usuarios" />
             <End Role="verificacionSalida" EntitySet="verificacionSalida" />
+          </AssociationSet>
+          <AssociationSet Name="permiso" Association="Self.permiso">
+            <End Role="permisos" EntitySet="permisos" />
+            <End Role="permisoUsuario" EntitySet="permisoUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="usuario" Association="Self.usuario">
+            <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="permisoUsuario" EntitySet="permisoUsuario" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -314,7 +337,7 @@
           <Property Name="Equipo_afectado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Falla" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="usuarios" Relationship="Self.FK__Informe_i__usuar__2A164134" FromRole="Informe_incidencias_tecnologicas" ToRole="usuarios" />
+          <NavigationProperty Name="usuarios" Relationship="Self.FK__Informe_i__usuar__4B7734FF" FromRole="Informe_incidencias_tecnologicas" ToRole="usuarios" />
         </EntityType>
         <EntityType Name="Informe_Limpieza">
           <Key>
@@ -331,7 +354,7 @@
           <Property Name="LimpiezaSanitarios" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="Observaciones" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="Usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="usuarios" Relationship="Self.FK__Informe_L__Usuar__245D67DE" FromRole="Informe_Limpieza" ToRole="usuarios" />
+          <NavigationProperty Name="usuarios" Relationship="Self.FK__Informe_L__Usuar__45BE5BA9" FromRole="Informe_Limpieza" ToRole="usuarios" />
         </EntityType>
         <EntityType Name="Informe_Percances">
           <Key>
@@ -353,15 +376,24 @@
           <Property Name="Hora" Type="Time" Precision="7" />
           <Property Name="Fotos" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="usuarios" Relationship="Self.FK__Informe_P__usuar__2739D489" FromRole="Informe_Percances" ToRole="usuarios" />
+          <NavigationProperty Name="usuarios" Relationship="Self.FK__Informe_P__usuar__489AC854" FromRole="Informe_Percances" ToRole="usuarios" />
         </EntityType>
         <EntityType Name="permisos">
           <Key>
-            <PropertyRef Name="idPermiso" />
+            <PropertyRef Name="permiso" />
           </Key>
-          <Property Name="idPermiso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="permiso" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="permisoUsuario" Relationship="Self.permiso" FromRole="permisos" ToRole="permisoUsuario" />
+        </EntityType>
+        <EntityType Name="permisoUsuario">
+          <Key>
+            <PropertyRef Name="idPermisoUsuario" />
+          </Key>
+          <Property Name="idPermisoUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="permiso" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="usuarios" Relationship="Self.fkPermisoUsuario" FromRole="permisos" ToRole="usuarios" />
+          <NavigationProperty Name="permisos" Relationship="Self.permiso" FromRole="permisoUsuario" ToRole="permisos" />
+          <NavigationProperty Name="usuarios" Relationship="Self.usuario" FromRole="permisoUsuario" ToRole="usuarios" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -382,11 +414,10 @@
           <Property Name="apellidoP" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="apellidoM" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="pass" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="fkPermiso" Type="Int32" />
-          <NavigationProperty Name="Informe_incidencias_tecnologicas" Relationship="Self.FK__Informe_i__usuar__2A164134" FromRole="usuarios" ToRole="Informe_incidencias_tecnologicas" />
-          <NavigationProperty Name="Informe_Limpieza" Relationship="Self.FK__Informe_L__Usuar__245D67DE" FromRole="usuarios" ToRole="Informe_Limpieza" />
-          <NavigationProperty Name="Informe_Percances" Relationship="Self.FK__Informe_P__usuar__2739D489" FromRole="usuarios" ToRole="Informe_Percances" />
-          <NavigationProperty Name="permisos" Relationship="Self.fkPermisoUsuario" FromRole="usuarios" ToRole="permisos" />
+          <NavigationProperty Name="Informe_incidencias_tecnologicas" Relationship="Self.FK__Informe_i__usuar__4B7734FF" FromRole="usuarios" ToRole="Informe_incidencias_tecnologicas" />
+          <NavigationProperty Name="Informe_Limpieza" Relationship="Self.FK__Informe_L__Usuar__45BE5BA9" FromRole="usuarios" ToRole="Informe_Limpieza" />
+          <NavigationProperty Name="Informe_Percances" Relationship="Self.FK__Informe_P__usuar__489AC854" FromRole="usuarios" ToRole="Informe_Percances" />
+          <NavigationProperty Name="permisoUsuario" Relationship="Self.usuario" FromRole="usuarios" ToRole="permisoUsuario" />
           <NavigationProperty Name="verificacionDia" Relationship="Self.fkUsuarioVerificacionDia" FromRole="usuarios" ToRole="verificacionDia" />
           <NavigationProperty Name="verificacionSalida" Relationship="Self.fkUsuarioVerificacionSalida" FromRole="usuarios" ToRole="verificacionSalida" />
         </EntityType>
@@ -444,7 +475,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Informe_i__usuar__2A164134">
+        <Association Name="FK__Informe_i__usuar__4B7734FF">
           <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
           <End Role="Informe_incidencias_tecnologicas" Type="Self.Informe_incidencias_tecnologicas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -456,7 +487,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Informe_L__Usuar__245D67DE">
+        <Association Name="FK__Informe_L__Usuar__45BE5BA9">
           <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
           <End Role="Informe_Limpieza" Type="Self.Informe_Limpieza" Multiplicity="*" />
           <ReferentialConstraint>
@@ -468,7 +499,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Informe_P__usuar__2739D489">
+        <Association Name="FK__Informe_P__usuar__489AC854">
           <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
           <End Role="Informe_Percances" Type="Self.Informe_Percances" Multiplicity="*" />
           <ReferentialConstraint>
@@ -480,15 +511,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fkPermisoUsuario">
+        <Association Name="permiso">
           <End Role="permisos" Type="Self.permisos" Multiplicity="0..1" />
-          <End Role="usuarios" Type="Self.usuarios" Multiplicity="*" />
+          <End Role="permisoUsuario" Type="Self.permisoUsuario" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="permisos">
-              <PropertyRef Name="idPermiso" />
+              <PropertyRef Name="permiso" />
             </Principal>
-            <Dependent Role="usuarios">
-              <PropertyRef Name="fkPermiso" />
+            <Dependent Role="permisoUsuario">
+              <PropertyRef Name="permiso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usuario">
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+          <End Role="permisoUsuario" Type="Self.permisoUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios">
+              <PropertyRef Name="usuario" />
+            </Principal>
+            <Dependent Role="permisoUsuario">
+              <PropertyRef Name="usuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -523,6 +566,7 @@
           <EntitySet Name="Informe_Limpieza" EntityType="Self.Informe_Limpieza" />
           <EntitySet Name="Informe_Percances" EntityType="Self.Informe_Percances" />
           <EntitySet Name="permisos" EntityType="Self.permisos" />
+          <EntitySet Name="permisoUsuario" EntityType="Self.permisoUsuario" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="usuarios" EntityType="Self.usuarios" />
           <EntitySet Name="verificacionDia" EntityType="Self.verificacionDia" />
@@ -535,21 +579,25 @@
             <End Role="horarioServicio" EntitySet="horarioServicio" />
             <End Role="asignacion" EntitySet="asignacion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Informe_i__usuar__2A164134" Association="Self.FK__Informe_i__usuar__2A164134">
+          <AssociationSet Name="FK__Informe_i__usuar__4B7734FF" Association="Self.FK__Informe_i__usuar__4B7734FF">
             <End Role="usuarios" EntitySet="usuarios" />
             <End Role="Informe_incidencias_tecnologicas" EntitySet="Informe_incidencias_tecnologicas" />
           </AssociationSet>
-          <AssociationSet Name="FK__Informe_L__Usuar__245D67DE" Association="Self.FK__Informe_L__Usuar__245D67DE">
+          <AssociationSet Name="FK__Informe_L__Usuar__45BE5BA9" Association="Self.FK__Informe_L__Usuar__45BE5BA9">
             <End Role="usuarios" EntitySet="usuarios" />
             <End Role="Informe_Limpieza" EntitySet="Informe_Limpieza" />
           </AssociationSet>
-          <AssociationSet Name="FK__Informe_P__usuar__2739D489" Association="Self.FK__Informe_P__usuar__2739D489">
+          <AssociationSet Name="FK__Informe_P__usuar__489AC854" Association="Self.FK__Informe_P__usuar__489AC854">
             <End Role="usuarios" EntitySet="usuarios" />
             <End Role="Informe_Percances" EntitySet="Informe_Percances" />
           </AssociationSet>
-          <AssociationSet Name="fkPermisoUsuario" Association="Self.fkPermisoUsuario">
+          <AssociationSet Name="permiso" Association="Self.permiso">
             <End Role="permisos" EntitySet="permisos" />
+            <End Role="permisoUsuario" EntitySet="permisoUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="usuario" Association="Self.usuario">
             <End Role="usuarios" EntitySet="usuarios" />
+            <End Role="permisoUsuario" EntitySet="permisoUsuario" />
           </AssociationSet>
           <AssociationSet Name="fkUsuarioVerificacionDia" Association="Self.fkUsuarioVerificacionDia">
             <End Role="usuarios" EntitySet="usuarios" />
@@ -645,7 +693,15 @@
           <EntitySetMapping Name="permisos">
             <EntityTypeMapping TypeName="ACOTMADBModel.permisos">
               <MappingFragment StoreEntitySet="permisos">
-                <ScalarProperty Name="idPermiso" ColumnName="idPermiso" />
+                <ScalarProperty Name="permiso" ColumnName="permiso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="permisoUsuario">
+            <EntityTypeMapping TypeName="ACOTMADBModel.permisoUsuario">
+              <MappingFragment StoreEntitySet="permisoUsuario">
+                <ScalarProperty Name="idPermisoUsuario" ColumnName="idPermisoUsuario" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
                 <ScalarProperty Name="permiso" ColumnName="permiso" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -669,7 +725,6 @@
                 <ScalarProperty Name="apellidoP" ColumnName="apellidoP" />
                 <ScalarProperty Name="apellidoM" ColumnName="apellidoM" />
                 <ScalarProperty Name="pass" ColumnName="pass" />
-                <ScalarProperty Name="fkPermiso" ColumnName="fkPermiso" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

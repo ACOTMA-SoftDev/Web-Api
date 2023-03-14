@@ -12,17 +12,13 @@ namespace Acotma_API.Models_DB
     using System;
     using System.Collections.Generic;
     
-    public partial class permisos
+    public partial class permisoUsuario
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public permisos()
-        {
-            this.permisoUsuario = new HashSet<permisoUsuario>();
-        }
-    
+        public int idPermisoUsuario { get; set; }
+        public string usuario { get; set; }
         public string permiso { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<permisoUsuario> permisoUsuario { get; set; }
+        public virtual permisos permisos { get; set; }
+        public virtual usuarios usuarios { get; set; }
     }
 }

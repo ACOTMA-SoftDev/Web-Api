@@ -12,9 +12,9 @@ namespace Acotma_API.Controllers
 {
     public class HorarioServicioController : ApiController
     {
-        HorarioServicioService service = new HorarioServicioService();
+        readonly HorarioServicioService service = new HorarioServicioService();
         [HttpPost]
-        public bool insertHorario(OperacionesHorario obj)
+        public bool InsertHorario(OperacionesHorario obj)
         {
             bool response = false;
             try
@@ -26,7 +26,7 @@ namespace Acotma_API.Controllers
                     for (int corrida = obj.corridaInicial; corrida <= obj.corridaFinal; corrida++)
                     {
                         horaSalida += TimeSpan.FromMinutes(obj.intervalo);
-                        service.addHorarios(corrida, obj.ruta, horaSalida, fecha);
+                        service.AddHorarios(corrida, obj.ruta, horaSalida, fecha);
                     }
                 }
                 response = true;
@@ -43,9 +43,9 @@ namespace Acotma_API.Controllers
             return service.GetHorarios();
         }
         [HttpGet]
-        public List<HorarioServicioEntity> getHorarioRutasDay()
+        public List<HorarioServicioEntity> GetHorarioRutasDay()
         {
-            return service.consultarHorarioDay();
+            return service.ConsultarHorarioDay();
         }
         [Route ("api/DeleteHorarioServicio")]
         [HttpPost]

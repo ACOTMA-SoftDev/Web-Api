@@ -80,7 +80,15 @@
     <EntitySetMapping Name="permisos">
       <EntityTypeMapping TypeName="ACOTMADBModel.permisos">
         <MappingFragment StoreEntitySet="permisos">
-          <ScalarProperty Name="idPermiso" ColumnName="idPermiso" />
+          <ScalarProperty Name="permiso" ColumnName="permiso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="permisoUsuario">
+      <EntityTypeMapping TypeName="ACOTMADBModel.permisoUsuario">
+        <MappingFragment StoreEntitySet="permisoUsuario">
+          <ScalarProperty Name="idPermisoUsuario" ColumnName="idPermisoUsuario" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
           <ScalarProperty Name="permiso" ColumnName="permiso" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -104,7 +112,6 @@
           <ScalarProperty Name="apellidoP" ColumnName="apellidoP" />
           <ScalarProperty Name="apellidoM" ColumnName="apellidoM" />
           <ScalarProperty Name="pass" ColumnName="pass" />
-          <ScalarProperty Name="fkPermiso" ColumnName="fkPermiso" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

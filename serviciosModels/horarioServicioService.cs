@@ -9,9 +9,9 @@ namespace Acotma_API.serviciosModels
 {
     public class HorarioServicioService
     {
-        ACOTMADBEntities DB = new ACOTMADBEntities();
+        readonly ACOTMADBEntities DB = new ACOTMADBEntities();
 
-        public bool addHorarios(int corrida, string ruta, TimeSpan horarioSalida, DateTime fecha)
+        public bool AddHorarios(int corrida, string ruta, TimeSpan horarioSalida, DateTime fecha)
         {
             bool response = false;
             try
@@ -50,7 +50,7 @@ namespace Acotma_API.serviciosModels
             }
             return horarioDecrypt;
         }
-        public List<HorarioServicioEntity> consultarHorarioDay()
+        public List<HorarioServicioEntity> ConsultarHorarioDay()
         {
             List<HorarioServicioEntity> conHora = new List<HorarioServicioEntity>();
             var datah = from hora in DB.horarioServicio
@@ -77,7 +77,7 @@ namespace Acotma_API.serviciosModels
             }
             return conHora;
         }
-        public List<HorarioServicioEntity> getCorridaToday(int fkCorrida)
+        public List<HorarioServicioEntity> GetCorridaToday(int fkCorrida)
         {                        
                 List<HorarioServicioEntity> conHora = new List<HorarioServicioEntity>();
                 var datah = from hora in DB.horarioServicio

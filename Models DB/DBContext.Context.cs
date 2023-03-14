@@ -31,6 +31,7 @@ namespace Acotma_API.Models_DB
         public virtual DbSet<Informe_Limpieza> Informe_Limpieza { get; set; }
         public virtual DbSet<Informe_Percances> Informe_Percances { get; set; }
         public virtual DbSet<permisos> permisos { get; set; }
+        public virtual DbSet<permisoUsuario> permisoUsuario { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<usuarios> usuarios { get; set; }
         public virtual DbSet<verificacionDia> verificacionDia { get; set; }

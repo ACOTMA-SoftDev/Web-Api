@@ -9,8 +9,8 @@ namespace Acotma_API.ServiciosModels
 {
     public class VerificacionDiaService
     {
-        ACOTMADBEntities DB = new ACOTMADBEntities();
-        public bool updateVerificacionDia(VerificacionDiaEntity diaEntity)
+        readonly ACOTMADBEntities DB = new ACOTMADBEntities();
+        public bool UpdateVerificacionDia(VerificacionDiaEntity diaEntity)
         {
             bool response = false;
             try

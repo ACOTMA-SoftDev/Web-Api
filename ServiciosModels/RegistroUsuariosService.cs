@@ -9,8 +9,8 @@ namespace Acotma_API.ServiciosModels
 {
     public class RegistroUsuariosService
     {
-        ACOTMADBEntities DB = new ACOTMADBEntities();        
-        public bool registerAccount(UsuariosEntity oUser)
+        readonly ACOTMADBEntities DB = new ACOTMADBEntities();        
+        public bool RegisterAccount(UsuariosEntity oUser)
         {
             bool response = false;
             try
@@ -21,8 +21,7 @@ namespace Acotma_API.ServiciosModels
                     nombre = oUser.nombre,
                     apellidoP = oUser.apellidoP,
                     apellidoM = oUser.apellidoM,
-                    pass = oUser.pass,
-                    fkPermiso = oUser.fkPermiso
+                    pass = oUser.pass,                    
                 });
                 DB.usuarios.Add(addoUser);
                 DB.SaveChanges();

@@ -34,7 +34,7 @@ namespace Acotma_API.Token
                 throw;
             }
         }
-        private string GeneratingToken(UsuariosEntity oUser, string[]roles)
+        public string GeneratingToken(UsuariosEntity oUser, string[]roles)
         {
             var sendCrentials = new JwtHeader(new SigningCredentials(GetCertificate(), SecurityAlgorithms.RsaSha256));
             var getRoles = roles.Select(x => new Claim(ClaimTypes.Role, x));

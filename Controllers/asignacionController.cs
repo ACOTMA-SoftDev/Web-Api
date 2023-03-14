@@ -12,20 +12,20 @@ namespace Acotma_API.Controllers
 {
     public class AsignacionController : ApiController
     {
-        AsignacionServicio service = new AsignacionServicio();
-        HorarioServicioService hServ = new HorarioServicioService();
+        readonly AsignacionServicio service = new AsignacionServicio();
+        readonly HorarioServicioService hServ = new HorarioServicioService();
         [HttpPost]
-        public bool agregarServicio(List<AsignacionEntity> oService)
+        public bool AgregarServicio(List<AsignacionEntity> oService)
         {
-            List<HorarioServicioEntity> h = new List<HorarioServicioEntity>();
+            _ = new List<HorarioServicioEntity>();
             bool response = false;
             try
             {
                 for (int i = 0; i < oService.Count; i++)
                 {
-                    h = hServ.getCorridaToday(oService[i].fkCorrida);
-                    if(h.Count>0) { 
-                    service.addAsignacion(oService[i]);
+                    List<HorarioServicioEntity> horario = hServ.GetCorridaToday(oService[i].fkCorrida);
+                    if (horario.Count>0) { 
+                    service.AddAsignacion(oService[i]);
                     }
                 }
                 response = true;
@@ -39,25 +39,25 @@ namespace Acotma_API.Controllers
         }
         [Route("api/UpdateAsignacion")]
         [HttpPost]
-        public bool updateAsigancion(AsignacionEntity uAsignacion)
+        public bool UpdateAsigancion(AsignacionEntity uAsignacion)
         {
             return service.UpdateAsignacion(uAsignacion);
         }
 
         [HttpGet]
-        public List<MatchAsignHorario> asignaciones(string fkFecha)
+        public List<MatchAsignHorario> Asignaciones(string fkFecha)
         {
             DateTime f = DateTime.Parse(fkFecha);
-            var lista = service.asignHorarios(f);
+            var lista = service.AsignHorarios(f);
             return lista.ToList();
         }
 
 
         [Route("api/consultarAsignacionDay")]
         [HttpGet]
-        public List<AsignacionEntity> getAsignacionDay()
+        public List<AsignacionEntity> GetAsignacionDay()
         {
-            return service.consultarAsignacionDay();
+            return service.ConsultarAsignacionDay();
         }
 
     }

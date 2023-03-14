@@ -12,15 +12,15 @@ namespace Acotma_API.Controllers
 {
     public class VerificacionDiaController : ApiController
     {
-        VerificacionDiaService service = new VerificacionDiaService();
+        readonly VerificacionDiaService service = new VerificacionDiaService();
         [HttpPost]
-        public bool updateServApert(VerificacionDiaEntity verificacion)
+        public bool UpdateServApert(VerificacionDiaEntity verificacion)
         {
-            return service.updateVerificacionDia(verificacion);
+            return service.UpdateVerificacionDia(verificacion);
         }
         [Route ("api/InsertarVerificacionDay")]
         [HttpPost]
-        public bool insertarVerificacionDay (VerificacionDiaEntity newVerificacion)
+        public bool InsertarVerificacionDay (VerificacionDiaEntity newVerificacion)
         {
             return service.InsertarVerificacionDay(newVerificacion);
         }
