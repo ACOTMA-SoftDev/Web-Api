@@ -67,7 +67,7 @@ namespace Acotma_API.serviciosModels
             var data = from asig in DB.asignacion
                        join horario in DB.horarioServicio
                        on asig.fkCorrida equals horario.corrida
-                       where (horario.fecha == fecha)
+                       where ((horario.fecha == fecha)&& (asig.fkFecha==fecha))
                        select new
                        {
                            asig.idAsignacion,
