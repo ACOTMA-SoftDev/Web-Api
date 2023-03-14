@@ -297,3 +297,31 @@ D:\Documentos\ACOTMA\ACOTMA API\obj\Debug\Acotma API.csproj.CopyComplete
 D:\Documentos\ACOTMA\ACOTMA API\obj\Debug\Acotma API.dll
 D:\Documentos\ACOTMA\ACOTMA API\obj\Debug\Acotma API.pdb
 C:\Users\brend\OneDrive\Documentos\ARCHIVOS-ACOTMA\ACOTMA-API\obj\Debug\Acotma API.csproj.AssemblyReference.cache
+D:\Documentos\ACOTMA\ACOTMA API\bin\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Documentos\ACOTMA\ACOTMA API\bin\Microsoft.IdentityModel.Abstractions.dll
+D:\Documentos\ACOTMA\ACOTMA API\bin\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Documentos\ACOTMA\ACOTMA API\bin\Microsoft.IdentityModel.Logging.dll
+D:\Documentos\ACOTMA\ACOTMA API\bin\Microsoft.IdentityModel.Tokens.dll
+D:\Documentos\ACOTMA\ACOTMA API\bin\System.Buffers.dll
+D:\Documentos\ACOTMA\ACOTMA API\bin\System.IdentityModel.Tokens.Jwt.dll
+D:\Documentos\ACOTMA\ACOTMA API\bin\System.Memory.dll
+D:\Documentos\ACOTMA\ACOTMA API\bin\System.Numerics.Vectors.dll
+D:\Documentos\ACOTMA\ACOTMA API\bin\System.Runtime.CompilerServices.Unsafe.dll
+D:\Documentos\ACOTMA\ACOTMA API\bin\System.Text.Encodings.Web.dll
+D:\Documentos\ACOTMA\ACOTMA API\bin\System.Text.Json.dll
+D:\Documentos\ACOTMA\ACOTMA API\bin\System.Threading.Tasks.Extensions.dll
+D:\Documentos\ACOTMA\ACOTMA API\bin\System.ValueTuple.dll
+D:\Documentos\ACOTMA\ACOTMA API\bin\Microsoft.Bcl.AsyncInterfaces.xml
+D:\Documentos\ACOTMA\ACOTMA API\bin\Microsoft.IdentityModel.Abstractions.xml
+D:\Documentos\ACOTMA\ACOTMA API\bin\Microsoft.IdentityModel.JsonWebTokens.xml
+D:\Documentos\ACOTMA\ACOTMA API\bin\Microsoft.IdentityModel.Logging.xml
+D:\Documentos\ACOTMA\ACOTMA API\bin\Microsoft.IdentityModel.Tokens.xml
+D:\Documentos\ACOTMA\ACOTMA API\bin\System.Buffers.xml
+D:\Documentos\ACOTMA\ACOTMA API\bin\System.IdentityModel.Tokens.Jwt.xml
+D:\Documentos\ACOTMA\ACOTMA API\bin\System.Memory.xml
+D:\Documentos\ACOTMA\ACOTMA API\bin\System.Numerics.Vectors.xml
+D:\Documentos\ACOTMA\ACOTMA API\bin\System.Runtime.CompilerServices.Unsafe.xml
+D:\Documentos\ACOTMA\ACOTMA API\bin\System.Text.Encodings.Web.xml
+D:\Documentos\ACOTMA\ACOTMA API\bin\System.Text.Json.xml
+D:\Documentos\ACOTMA\ACOTMA API\bin\System.Threading.Tasks.Extensions.xml
+D:\Documentos\ACOTMA\ACOTMA API\bin\System.ValueTuple.xml

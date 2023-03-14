@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Acotma_API.Token;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -15,19 +16,17 @@ namespace Acotma_API
             //crea una variable para habilitar el acceso al api
             var cors = new EnableCorsAttribute("*", "*", "*");
             //brinda el acceso al api 
-            config.EnableCors(cors);
-            
-
-
-
+            config.EnableCors(cors);            
             // Rutas de API web
             config.MapHttpAttributeRoutes();
-
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+            //Configuracion de Authorization por Cabeceras
+            config.MessageHandlers.Add(new ValidationToken());
+
         }
     }
 }
