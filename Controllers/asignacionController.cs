@@ -14,6 +14,7 @@ namespace Acotma_API.Controllers
     {
         readonly AsignacionServicio service = new AsignacionServicio();
         readonly HorarioServicioService hServ = new HorarioServicioService();
+        [Authorize(Roles ="Operadora")]
         [HttpPost]
         public bool AgregarServicio(List<AsignacionEntity> oService)
         {
@@ -37,13 +38,13 @@ namespace Acotma_API.Controllers
             }
             return response;
         }
+        [Authorize(Roles = "Operadora")]
         [Route("api/UpdateAsignacion")]
         [HttpPost]
         public bool UpdateAsigancion(AsignacionEntity uAsignacion)
         {
             return service.UpdateAsignacion(uAsignacion);
         }
-
         [HttpGet]
         public List<MatchAsignHorario> Asignaciones(string fkFecha)
         {
@@ -51,15 +52,12 @@ namespace Acotma_API.Controllers
             var lista = service.AsignHorarios(f);
             return lista.ToList();
         }
-
-
+        [Authorize(Roles = "Operadora")]
         [Route("api/consultarAsignacionDay")]
         [HttpGet]
         public List<AsignacionEntity> GetAsignacionDay()
         {
             return service.ConsultarAsignacionDay();
         }
-
     }
-}
-    
+}   

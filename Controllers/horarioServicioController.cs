@@ -13,6 +13,7 @@ namespace Acotma_API.Controllers
     public class HorarioServicioController : ApiController
     {
         readonly HorarioServicioService service = new HorarioServicioService();
+        [Authorize(Roles = "Operadora")]
         [HttpPost]
         public bool InsertHorario(OperacionesHorario obj)
         {
@@ -37,11 +38,13 @@ namespace Acotma_API.Controllers
             }
             return response;
         }
+        [Authorize(Roles = "Operadora")]
         [HttpGet]
         public List<HorarioServicioEntity> GetHorarios()
         {
             return service.GetHorarios();
         }
+        [Authorize(Roles = "Operadora")]
         [HttpGet]
         public List<HorarioServicioEntity> GetHorarioRutasDay()
         {

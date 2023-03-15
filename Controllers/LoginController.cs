@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace Acotma_API.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : ApiController
     {
         readonly LoginService loginService = new LoginService();
