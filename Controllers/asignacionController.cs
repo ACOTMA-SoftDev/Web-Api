@@ -13,9 +13,10 @@ namespace Acotma_API.Controllers
     public class AsignacionController : ApiController
     {
         readonly AsignacionServicio service = new AsignacionServicio();
-        readonly HorarioServicioService hServ = new HorarioServicioService();
-        [Authorize(Roles ="Operadora")]
+        readonly HorarioServicioService hServ = new HorarioServicioService();        
+        
         [HttpPost]
+        [Route("api/Agregar/Servicio")]
         public bool AgregarServicio(List<AsignacionEntity> oService)
         {
             _ = new List<HorarioServicioEntity>();
@@ -37,8 +38,7 @@ namespace Acotma_API.Controllers
                 Console.WriteLine(ex);
             }
             return response;
-        }
-        [Authorize(Roles = "Operadora")]
+        }        
         [Route("api/UpdateAsignacion")]
         [HttpPost]
         public bool UpdateAsigancion(AsignacionEntity uAsignacion)
@@ -51,13 +51,24 @@ namespace Acotma_API.Controllers
             DateTime f = DateTime.Parse(fkFecha);
             var lista = service.AsignHorarios(f);
             return lista.ToList();
-        }
-        [Authorize(Roles = "Operadora")]
+        }        
         [Route("api/consultarAsignacionDay")]
         [HttpGet]
         public List<AsignacionEntity> GetAsignacionDay()
         {
             return service.ConsultarAsignacionDay();
+        }
+        [HttpGet]
+        [Route("api/ServiciosIniciados")]
+        public List<ServiciosIniciadosEntity> GetServiciosIniciados()
+        {
+            return service.GetServiciosIniciados();
+        }
+        [HttpGet]
+        [Route("api/ServiciosIniciadosById")]
+        public List<ServiciosIniciadosEntity> GetServiciosById(int idAsignacion)
+        {
+            return service.GetServiciosIniciadosById(idAsignacion);
         }
     }
 }   

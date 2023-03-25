@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ACOTMADBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ACOTMADBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="asignacion">
           <Key>
             <PropertyRef Name="idAsignacion" />
@@ -26,6 +26,7 @@
           <Property Name="fecha" Type="date" Nullable="false" />
           <Property Name="ruta" Type="varchar" MaxLength="100" />
           <Property Name="horarioSalida" Type="time" Precision="0" />
+          <Property Name="horaLlegada" Type="time" Precision="0" Nullable="false" />
         </EntityType>
         <EntityType Name="Informe_incidencias_tecnologicas">
           <Key>
@@ -295,8 +296,7 @@
             <End Role="permisoUsuario" EntitySet="permisoUsuario" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ACOTMADBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -324,6 +324,7 @@
           <Property Name="ruta" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="horarioSalida" Type="Time" Precision="0" />
           <NavigationProperty Name="asignacion" Relationship="Self.fkHorarioAsignacion" FromRole="horarioServicio" ToRole="asignacion" />
+          <Property Name="horaLlegada" Type="Time" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="Informe_incidencias_tecnologicas">
           <Key>
@@ -630,6 +631,7 @@
           <EntitySetMapping Name="horarioServicio">
             <EntityTypeMapping TypeName="ACOTMADBModel.horarioServicio">
               <MappingFragment StoreEntitySet="horarioServicio">
+                <ScalarProperty Name="horaLlegada" ColumnName="horaLlegada" />
                 <ScalarProperty Name="corrida" ColumnName="corrida" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="ruta" ColumnName="ruta" />

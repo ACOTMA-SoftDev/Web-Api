@@ -24,6 +24,7 @@ namespace Acotma_API.Models_DB
         public System.DateTime fecha { get; set; }
         public string ruta { get; set; }
         public Nullable<System.TimeSpan> horarioSalida { get; set; }
+        public System.TimeSpan horaLlegada { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<asignacion> asignacion { get; set; }

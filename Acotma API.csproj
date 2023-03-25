@@ -185,6 +185,7 @@
     <Compile Include="Models DB\EntityModels\HorarioServicioEntity.cs" />
     <Compile Include="Models DB\EntityModels\MatchAsignHorario.cs" />
     <Compile Include="Models DB\EntityModels\OperacionesHorario.cs" />
+    <Compile Include="Models DB\EntityModels\ServiciosIniciadosEntity.cs" />
     <Compile Include="Models DB\EntityModels\UsuariosEntity.cs" />
     <Compile Include="Models DB\EntityModels\VerificacionDiaEntity.cs" />
     <Compile Include="Models DB\EntityModels\VerificacionSalidaEntity.cs" />

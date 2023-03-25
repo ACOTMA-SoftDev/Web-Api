@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
 namespace Acotma_API.serviciosModels
 {
     public class AsignacionServicio
@@ -21,8 +20,8 @@ namespace Acotma_API.serviciosModels
                     economico = newAsignacion.economico,
                     tarjeton = newAsignacion.tarjeton,
                     nomChofer = newAsignacion.nomChofer,
-                    fkCorrida=newAsignacion.fkCorrida,
-                    fkFecha=DateTime.Now                                        
+                    fkCorrida = newAsignacion.fkCorrida,
+                    fkFecha = DateTime.Now
                 });
                 DB.asignacion.Add(insertAsignacion);
                 DB.SaveChanges();
@@ -42,13 +41,10 @@ namespace Acotma_API.serviciosModels
             {
                 asignacion newAsignacion = (new asignacion
                 {
-
                     tipoUnidad = asigna.tipoUnidad,
                     economico = asigna.economico,
                     tarjeton = asigna.tarjeton,
                     nomChofer = asigna.nomChofer
-
-
                 });
                 asignacion oldAsigancion = DB.asignacion.FirstOrDefault(a => a.idAsignacion == asigna.idAsignacion);
                 oldAsigancion.idAsignacion = newAsignacion.idAsignacion;
@@ -62,12 +58,12 @@ namespace Acotma_API.serviciosModels
             return response;
         }
         public List<MatchAsignHorario> AsignHorarios(DateTime fecha)
-        {            
+        {
             List<MatchAsignHorario> hServ = new List<MatchAsignHorario>();
             var data = from asig in DB.asignacion
                        join horario in DB.horarioServicio
                        on asig.fkCorrida equals horario.corrida
-                       where ((horario.fecha == fecha)&& (asig.fkFecha==fecha))
+                       where ((horario.fecha == fecha) && (asig.fkFecha == fecha))
                        select new
                        {
                            asig.idAsignacion,
@@ -86,16 +82,16 @@ namespace Acotma_API.serviciosModels
             {
                 hServ.Add(new MatchAsignHorario
                 {
-                    idAsignacion=dataHS.idAsignacion,
-                    tipoUnidad=dataHS.tipoUnidad,
-                    economico= (int)dataHS.economico,
-                    tarjeton= (int)dataHS.tarjeton,
-                    nomChofer=dataHS.nomChofer,
-                    fkCorrida= (int)dataHS.fkCorrida,
-                    fkFecha= (DateTime)dataHS.fkFecha,
-                    corrida=dataHS.corrida,
-                    fecha=dataHS.fecha,
-                    ruta=dataHS.ruta                    
+                    idAsignacion = dataHS.idAsignacion,
+                    tipoUnidad = dataHS.tipoUnidad,
+                    economico = (int)dataHS.economico,
+                    tarjeton = (int)dataHS.tarjeton,
+                    nomChofer = dataHS.nomChofer,
+                    fkCorrida = (int)dataHS.fkCorrida,
+                    fkFecha = (DateTime)dataHS.fkFecha,
+                    corrida = dataHS.corrida,
+                    fecha = dataHS.fecha,
+                    ruta = dataHS.ruta
                 });
             }
             return hServ;
@@ -131,6 +127,94 @@ namespace Acotma_API.serviciosModels
                 });
             }
             return conAsig;
+        }
+        public List<ServiciosIniciadosEntity> GetServiciosIniciados()
+        {
+            List<ServiciosIniciadosEntity> servStar = new List<ServiciosIniciadosEntity>();
+            var data = from asig in DB.asignacion
+                       join hor in DB.horarioServicio
+                       on asig.fkCorrida equals hor.corrida
+                       where (hor.fecha == DateTime.Today)
+                       select new
+                       {
+                           idAsignacion = asig.idAsignacion,
+                           tipoUnidad = asig.tipoUnidad,
+                           economico = asig.economico,
+                           tarjeton = asig.tarjeton,
+                           nomChofer = asig.nomChofer,
+                           fkCorrida = asig.fkCorrida,
+                           fkFecha = asig.fkFecha,
+                           corrida = hor.corrida,
+                           fecha = hor.fecha,
+                           ruta = hor.ruta,
+                           horarioSalida = hor.horarioSalida,
+                           horaLlegada = hor.horaLlegada
+                       };
+            data.ToList();
+            foreach (var servicio in data)
+            {
+                var datosServ = servicio;
+                servStar.Add(new ServiciosIniciadosEntity
+                {
+                    idAsignacion = servicio.idAsignacion,
+                    tipoUnidad = servicio.tipoUnidad,
+                    economico = (int)servicio.economico,
+                    tarjeton = (int)servicio.tarjeton,
+                    nomChofer = servicio.nomChofer,
+                    fkCorrida = (int)servicio.fkCorrida,
+                    fkFecha = (DateTime)servicio.fkFecha,
+                    corrida = servicio.corrida,
+                    fecha = servicio.fecha,
+                    ruta = servicio.ruta,
+                    horarioSalida = (TimeSpan)servicio.horarioSalida,
+                    horaLlegada = servicio.horaLlegada
+                });
+            }
+            return servStar;
+        }
+        public List<ServiciosIniciadosEntity> GetServiciosIniciadosById(int idAsignacion)
+        {
+            List<ServiciosIniciadosEntity> servStar = new List<ServiciosIniciadosEntity>();
+            var data = from asig in DB.asignacion
+                       join hor in DB.horarioServicio
+                       on asig.fkCorrida equals hor.corrida
+                       where ((hor.fecha == DateTime.Today)&&(asig.idAsignacion==idAsignacion))
+                       select new
+                       {
+                           idAsignacion = asig.idAsignacion,
+                           tipoUnidad = asig.tipoUnidad,
+                           economico = asig.economico,
+                           tarjeton = asig.tarjeton,
+                           nomChofer = asig.nomChofer,
+                           fkCorrida = asig.fkCorrida,
+                           fkFecha = asig.fkFecha,
+                           corrida = hor.corrida,
+                           fecha = hor.fecha,
+                           ruta = hor.ruta,
+                           horarioSalida = hor.horarioSalida,
+                           horaLlegada = hor.horaLlegada
+                       };
+            data.ToList();
+            foreach (var servicio in data)
+            {
+                var datosServ = servicio;
+                servStar.Add(new ServiciosIniciadosEntity
+                {
+                    idAsignacion = servicio.idAsignacion,
+                    tipoUnidad = servicio.tipoUnidad,
+                    economico = (int)servicio.economico,
+                    tarjeton = (int)servicio.tarjeton,
+                    nomChofer = servicio.nomChofer,
+                    fkCorrida = (int)servicio.fkCorrida,
+                    fkFecha = (DateTime)servicio.fkFecha,
+                    corrida = servicio.corrida,
+                    fecha = servicio.fecha,
+                    ruta = servicio.ruta,
+                    horarioSalida = (TimeSpan)servicio.horarioSalida,
+                    horaLlegada = servicio.horaLlegada
+                });
+            }
+            return servStar;
         }
     }
 }
