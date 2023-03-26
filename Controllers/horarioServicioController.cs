@@ -17,6 +17,19 @@ namespace Acotma_API.Controllers
         public bool InsertHorario(OperacionesHorario obj)
         {
             bool response = false;
+            List<SelectIdFecha> horario = new List<SelectIdFecha>();
+            horario = GetSelectIdFechas();
+            List<SelectIdFecha> fechas = new List<SelectIdFecha>();
+            fechas = GetSelectFechas();
+            var filtro = horario.Find(x => x.ruta == obj.ruta);
+            var filtro2 = fechas.Find(x => x.fecha == DateTime.Parse(obj.fechaInicio));
+            
+
+            if (filtro !=null && filtro2!=null)
+            {
+                response = false;
+            }
+            else { 
             try
             {
                 for (DateTime fecha = DateTime.Parse(obj.fechaInicio); fecha <= DateTime.Parse(obj.fechaFinal); fecha = fecha.AddDays(1))
@@ -35,6 +48,10 @@ namespace Acotma_API.Controllers
             {
                 Console.WriteLine(ex);
             }
+            }
+
+
+
             return response;
         }        
         [HttpGet]
@@ -43,6 +60,7 @@ namespace Acotma_API.Controllers
             return service.GetHorarios();
         }        
         [HttpGet]
+        [Route("api/GetHorarios/Today")]
         public List<HorarioServicioEntity> GetHorarioRutasDay()
         {
             return service.ConsultarHorarioDay();
@@ -52,6 +70,18 @@ namespace Acotma_API.Controllers
         public bool DeleteHorarioServicio(eliminarHorarioServicio fecha)
         {
             return service.DeleteHorarioServicio(fecha);
+        }
+        [HttpGet]
+        [Route("api/GetHorarios/Today/Id")]
+        public List<SelectIdFecha> GetSelectIdFechas()
+        {
+            return service.GetFechaCorrida();
+        }
+        [HttpGet]
+        [Route("api/GetFechas/Horarios")]
+        public List<SelectIdFecha> GetSelectFechas()
+        {
+            return service.GetFecha();
         }
     }
 }

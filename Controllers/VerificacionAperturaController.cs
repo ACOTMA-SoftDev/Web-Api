@@ -13,9 +13,9 @@ namespace Acotma_API.Controllers
     {
         private readonly VerificadoresService service = new VerificadoresService();        
         [HttpGet]
-        public List<GetServVerificadores> GetCheck()
+        public List<GetServVerificadores> GetCheck(int idAsignacion)
         {
-            return service.GetServiceVerficadores();
+            return service.GetServiceVerficadores(idAsignacion);
         }        
         [HttpPost]
         public bool UpdateCheck(VerificacionSalidaEntity verificacion)

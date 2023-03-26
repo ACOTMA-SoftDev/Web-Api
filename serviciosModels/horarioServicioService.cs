@@ -121,5 +121,41 @@ namespace Acotma_API.serviciosModels
             }
             return response;
         }
+        public List<SelectIdFecha> GetFechaCorrida()
+        {
+            List<SelectIdFecha> selectHorario = new List<SelectIdFecha>();
+            var datah = DB.horarioServicio
+                        .Where(h => h.fecha >= DateTime.Today)
+                        .Select(h => new { ruta = h.ruta, fecha = h.fecha })
+                        .Distinct();
+            datah.ToList();
+            foreach (var dataHora in datah)
+            {
+                var dataASi = dataHora;
+                selectHorario.Add(new SelectIdFecha
+                {                    
+                    fecha = dataHora.fecha,
+                    ruta = dataHora.ruta                    
+                });
+            }
+            return selectHorario;
+        }
+        public List<SelectIdFecha> GetFecha()
+        {
+            List<SelectIdFecha> selectHorario = new List<SelectIdFecha>();
+            var datah = DB.horarioServicio                        
+                        .Select(h => new { fecha = h.fecha })
+                        .Distinct();
+            datah.ToList();
+            foreach (var dataHora in datah)
+            {
+                var dataASi = dataHora;
+                selectHorario.Add(new SelectIdFecha
+                {
+                    fecha = dataHora.fecha,                    
+                });
+            }
+            return selectHorario;
+        }
     }
 }

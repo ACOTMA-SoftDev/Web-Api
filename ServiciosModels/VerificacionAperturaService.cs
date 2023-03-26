@@ -10,14 +10,14 @@ namespace Acotma_API.ServiciosModels
     public class VerificadoresService
     {
         private readonly ACOTMADBEntities DB = new ACOTMADBEntities();        
-        public List<GetServVerificadores> GetServiceVerficadores()
+        public List<GetServVerificadores> GetServiceVerficadores(int idAsignacion)
         {
             DateTime date = DateTime.Today;
             List<GetServVerificadores> data = new List<GetServVerificadores>();
             var servVerificadores = from asig in DB.asignacion
                                     join hour in DB.horarioServicio
                                     on asig.fkCorrida equals hour.corrida
-                                    where (hour.fecha == date)
+                                    where ((hour.fecha == date)&&(asig.fkFecha==date)&&(asig.idAsignacion==idAsignacion))
                                     select new
                                     {
                                         asig.idAsignacion,
