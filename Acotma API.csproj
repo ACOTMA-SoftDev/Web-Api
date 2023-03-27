@@ -153,6 +153,7 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AsignacionController.cs" />
+    <Compile Include="Controllers\CentroControlController.cs" />
     <Compile Include="Controllers\HorarioServicioController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegisterAccountController.cs" />
@@ -183,10 +184,12 @@
     <Compile Include="Models DB\EntityModels\eliminarHorarioServicio.cs" />
     <Compile Include="Models DB\EntityModels\GetServVerificadores.cs" />
     <Compile Include="Models DB\EntityModels\HorarioServicioEntity.cs" />
+    <Compile Include="Models DB\EntityModels\LibrearUnidadesEntity.cs" />
     <Compile Include="Models DB\EntityModels\MatchAsignHorario.cs" />
     <Compile Include="Models DB\EntityModels\OperacionesHorario.cs" />
     <Compile Include="Models DB\EntityModels\SelectIdFecha.cs" />
     <Compile Include="Models DB\EntityModels\ServiciosIniciadosEntity.cs" />
+    <Compile Include="Models DB\EntityModels\UnidadesCantidadEntity.cs" />
     <Compile Include="Models DB\EntityModels\UsuariosEntity.cs" />
     <Compile Include="Models DB\EntityModels\VerificacionDiaEntity.cs" />
     <Compile Include="Models DB\EntityModels\VerificacionSalidaEntity.cs" />
@@ -222,6 +225,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiciosModels\AsignacionServicio.cs" />
+    <Compile Include="ServiciosModels\CentroControlServices.cs" />
     <Compile Include="ServiciosModels\HorarioServicioService.cs" />
     <Compile Include="ServiciosModels\LoginService.cs" />
     <Compile Include="ServiciosModels\RegistroUsuariosService.cs" />

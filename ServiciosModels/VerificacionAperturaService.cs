@@ -27,7 +27,9 @@ namespace Acotma_API.ServiciosModels
                                         asig.tarjeton,
                                         asig.nomChofer,
                                         hour.corrida,
-                                        hour.horarioSalida
+                                        hour.horarioSalida,
+                                        hour.horaLlegada,
+                                        hour.fecha
                                     };
             servVerificadores.ToList();
             foreach (var asigH in servVerificadores)
@@ -41,7 +43,51 @@ namespace Acotma_API.ServiciosModels
                     idAsignacion = asigH.idAsignacion,
                     nomChofer = asigH.nomChofer,
                     ruta = asigH.ruta,
-                    tipoUnidad = asigH.tipoUnidad
+                    tipoUnidad = asigH.tipoUnidad,
+                    fecha=asigH.fecha
+                    
+                });
+            }
+            return data;
+        }
+        public List<GetServVerificadores> GetServiceVerficadores()
+        {
+            DateTime date = DateTime.Today;
+            TimeSpan timeGet = TimeSpan.Parse("00:00");
+            List<GetServVerificadores> data = new List<GetServVerificadores>();
+            var servVerificadores = from asig in DB.asignacion
+                                    join hour in DB.horarioServicio
+                                    on asig.fkCorrida equals hour.corrida
+                                    where ((hour.fecha == date)&&
+                                    (asig.fkFecha == date)&&
+                                    (hour.horaLlegada==timeGet))
+                                    select new
+                                    {
+                                        asig.idAsignacion,
+                                        asig.tipoUnidad,
+                                        hour.ruta,
+                                        asig.economico,
+                                        asig.tarjeton,
+                                        asig.nomChofer,
+                                        hour.corrida,
+                                        hour.horarioSalida,
+                                        hour.horaLlegada,                                        
+                                    };
+            servVerificadores.ToList();
+            foreach (var asigH in servVerificadores)
+            {
+                data.Add(new GetServVerificadores
+                {
+                    corrida = asigH.corrida,
+                    economico = (int)asigH.economico,
+                    tarjeton = (int)asigH.tarjeton,
+                    horarioSalida = (TimeSpan)asigH.horarioSalida,
+                    idAsignacion = asigH.idAsignacion,
+                    nomChofer = asigH.nomChofer,
+                    ruta = asigH.ruta,
+                    tipoUnidad = asigH.tipoUnidad,
+                    horarioLlegada=asigH.horaLlegada
+                    
                 });
             }
             return data;
@@ -93,5 +139,21 @@ namespace Acotma_API.ServiciosModels
             }
             return response;
         }
+        public bool LiberarUnidades(HorarioServicioEntity obj)
+        {
+            bool response = false;            
+            var verificacion = DB.horarioServicio.FirstOrDefault(x =>
+            x.corrida == obj.corrida&& 
+            x.fecha==obj.fecha);
+            if (verificacion != null)
+            {
+                verificacion.horaLlegada = obj.horaLlegada;
+                DB.SaveChanges();
+                response = true;
+            }
+            return response;
+        }        
+
+        
     }
 }       

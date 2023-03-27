@@ -13,10 +13,17 @@ namespace Acotma_API.Controllers
     {
         private readonly VerificadoresService service = new VerificadoresService();        
         [HttpGet]
-        public List<GetServVerificadores> GetCheck(int idAsignacion)
+        [Route("api/Verificacion/Servicio")]
+        public List<GetServVerificadores> GetCheckid(int idAsignacion)
         {
             return service.GetServiceVerficadores(idAsignacion);
-        }        
+        }
+        [HttpGet]
+        [Route("api/Verificacion/Servicio/Completo")]
+        public List<GetServVerificadores> GetCheck()
+        {
+            return service.GetServiceVerficadores();
+        }
         [HttpPost]
         public bool UpdateCheck(VerificacionSalidaEntity verificacion)
         {
@@ -27,6 +34,12 @@ namespace Acotma_API.Controllers
         public bool AgregarVerificacion(VerificacionSalidaEntity oVerificacion)
         {
             return service.AddVerificacion(oVerificacion);
+        }
+        [HttpPost]
+        [Route("api/Liberar/Unidades")]
+        public bool LiberarUnidades(HorarioServicioEntity obj)
+        {
+            return service.LiberarUnidades(obj);
         }
     }
 }

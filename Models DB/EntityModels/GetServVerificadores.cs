@@ -15,5 +15,7 @@ namespace Acotma_API.Models_DB.EntityModels
         public string nomChofer { get; set; }
         public int corrida { get; set; }
         public TimeSpan horarioSalida { get; set; }
+        public TimeSpan horarioLlegada { get; set; }
+        public DateTime fecha { get; set; }
     }    
 }

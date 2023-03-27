@@ -11,5 +11,6 @@ namespace Acotma_API.Models_DB.EntityModels
         public System.DateTime fecha { get; set; }
         public string ruta { get; set; }
         public TimeSpan horarioSalida { get; set; }
+        public TimeSpan horaLlegada { get; set; }
     }
 }
