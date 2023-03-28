@@ -21,7 +21,7 @@
     <Property Name="fecha" Type="date" Nullable="false" />
     <Property Name="ruta" Type="varchar" MaxLength="100" />
     <Property Name="horarioSalida" Type="time" Precision="0" />
-    <Property Name="horaLlegada" Type="time" Precision="0" />
+    <Property Name="horaLlegada" Type="time" Precision="0" Nullable="false" />
   </EntityType>
   <EntityType Name="Informe_incidencias_tecnologicas">
     <Key>

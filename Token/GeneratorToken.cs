@@ -14,7 +14,8 @@ namespace Acotma_API.Token
 {
     public class GeneratorToken
     {
-        private readonly string certificate = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Certificate", "certificate.p12");
+        //private readonly string certificate = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Certificate", "certificate.p12");
+        
         /// <summary>
         /// Obtencion del Certificado
         /// </summary>
@@ -23,6 +24,7 @@ namespace Acotma_API.Token
         /// </returns>
         private RsaSecurityKey GetCertificate()
         {
+            var certificate=server.MapPath("~/Certificado.p12");
             try
             {
                 var oCertificate = new X509Certificate2(certificate, "ACOTMA");

@@ -1,5 +1,6 @@
 ﻿using Acotma_API.Models_DB;
 using Acotma_API.Models_DB.EntityModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace Acotma_API.ServiciosModels
             }
             return unidades;
         }        
-        public List<UnidadesCantidadEntity> CantidadVerificadaUnidades()
+        public string CantidadVerificadaUnidades()
         {
             List<UnidadesCantidadEntity> unidades = new List<UnidadesCantidadEntity>();
             DateTime getToday = DateTime.Today;
@@ -41,16 +42,22 @@ namespace Acotma_API.ServiciosModels
                     .Where(av => av.Asignacion.fkFecha == getToday && av.VerificacionSalida.estado == "Verificado")
                     .GroupBy(av => av.Asignacion.tipoUnidad)
                     .Select(g => new { TipoUnidad = g.Key, Cantidad = g.Count() })
-                    .ToList();
-            foreach (var CantidadUnidad in cantidad)
-            {
-                unidades.Add(new UnidadesCantidadEntity
-                {
-                    cantidad = CantidadUnidad.Cantidad,
-                    tipoUnidad = CantidadUnidad.TipoUnidad
-                });
-            }
-            return unidades;
+                    .GroupBy(x => x.TipoUnidad)
+                    .ToDictionary(g => g.Key, g => g.Sum(c => c.Cantidad));
+            var jsonC= JsonConvert.SerializeObject(cantidad);
+            jsonC=jsonC.Replace("nombre_carro", "\"nombre_carro\"").Replace("cantidad", "\"cantidad\"").Trim('[', ']');
+            return jsonC;
+
+        }
+        public List<CronosListVerificacionEntity> ListLiberados()
+        {
+            var query = from a in DB.asignacion
+                        join h in DB.horarioServicio
+                        on new { a.fkCorrida, a.fkFecha } equals new { h.corrida, h.fecha }
+                        join v in DB.verificacionSalida
+                            on a.Id equals v.fkasignacion
+                        where a.Estado == "Verificado"
+                        select new { a, h, v };
         }
     }
 }

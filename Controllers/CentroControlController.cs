@@ -20,7 +20,7 @@ namespace Acotma_API.Controllers
         }
         [HttpGet]
         [Route("api/CentroControl/Verificaciones/Hoy")]
-        public List<UnidadesCantidadEntity> VerificacionesCantidad()
+        public string VerificacionesCantidad()
         {
             return service.CantidadVerificadaUnidades();
         }

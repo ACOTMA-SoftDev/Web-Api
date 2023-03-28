@@ -103,4 +103,3 @@ D:\Documentos\ACOTMA\ACOTMA API\obj\Release\Acotma API.csproj.CoreCompileInputs.
 D:\Documentos\ACOTMA\ACOTMA API\obj\Release\Acotma API.csproj.CopyComplete
 D:\Documentos\ACOTMA\ACOTMA API\obj\Release\Acotma API.dll
 D:\Documentos\ACOTMA\ACOTMA API\obj\Release\Acotma API.pdb
-D:\Documentos\ACOTMA\ACOTMA API\bin\Certificate\certificate.p12

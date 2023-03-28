@@ -181,6 +181,7 @@
       <DependentUpon>DBContext.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models DB\EntityModels\AsignacionEntity.cs" />
+    <Compile Include="Models DB\EntityModels\CronosListVerificacionEntity.cs" />
     <Compile Include="Models DB\EntityModels\eliminarHorarioServicio.cs" />
     <Compile Include="Models DB\EntityModels\GetServVerificadores.cs" />
     <Compile Include="Models DB\EntityModels\HorarioServicioEntity.cs" />

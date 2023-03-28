@@ -24,7 +24,7 @@
     <Property Name="ruta" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="horarioSalida" Type="Time" Precision="0" />
     <NavigationProperty Name="asignacion" Relationship="Self.fkHorarioAsignacion" FromRole="horarioServicio" ToRole="asignacion" />
-    <Property Name="horaLlegada" Type="Time" Precision="0" />
+    <Property Name="horaLlegada" Type="Time" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="Informe_incidencias_tecnologicas">
     <Key>
