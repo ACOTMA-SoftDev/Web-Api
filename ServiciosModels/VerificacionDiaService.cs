@@ -62,8 +62,6 @@ namespace Acotma_API.ServiciosModels
 
             }
             return response;
-        }
-
-
+        }        
     }
 }

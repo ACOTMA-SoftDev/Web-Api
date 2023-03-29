@@ -9,5 +9,6 @@ namespace Acotma_API.Models_DB.EntityModels
     {
         public string ruta { get; set; }
         public DateTime fecha { get; set; }
+        public int corrida { get; set; }
     }
 }

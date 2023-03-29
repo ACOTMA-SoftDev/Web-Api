@@ -36,5 +36,6 @@ namespace Acotma_API.Models_DB
         public virtual DbSet<usuarios> usuarios { get; set; }
         public virtual DbSet<verificacionDia> verificacionDia { get; set; }
         public virtual DbSet<verificacionSalida> verificacionSalida { get; set; }
+        public virtual DbSet<UnidadesImagen> UnidadesImagen { get; set; }
     }
 }

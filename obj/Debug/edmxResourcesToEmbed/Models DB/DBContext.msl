@@ -143,5 +143,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="UnidadesImagen">
+      <EntityTypeMapping TypeName="ACOTMADBModel.UnidadesImagen">
+        <MappingFragment StoreEntitySet="UnidadesImagen">
+          <ScalarProperty Name="NombreUnidad" ColumnName="NombreUnidad" />
+          <ScalarProperty Name="ImagenUnidad" ColumnName="ImagenUnidad" />
+          <ScalarProperty Name="idUnidadesIcon" ColumnName="idUnidadesIcon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

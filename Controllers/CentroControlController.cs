@@ -20,9 +20,27 @@ namespace Acotma_API.Controllers
         }
         [HttpGet]
         [Route("api/CentroControl/Verificaciones/Hoy")]
-        public string VerificacionesCantidad()
+        public List<UnidadesCantidadLiberadoEntity> VerificacionesCantidad()
         {
             return service.CantidadVerificadaUnidades();
+        }
+        [HttpGet]
+        [Route("api/CentroControl/Verificacion/Liberado")]
+        public List<CronosListVerificacionEntity> VerificacionResult()
+        {
+            return service.ListLiberados();
+        }
+        [HttpPost]
+        [Route("api/CentroControl/Verificacion/ImagenUnidades")]
+        public bool AddImagenUnidad(UnidadesImagenEntitySendImage unidades)
+        {
+            return service.insertarImagen(unidades);
+        }
+        [HttpGet]
+        [Route("api/CentroControl/Verificacion/GetImagenesUnidades")]
+        public List<UnidadesCantidadEntity> GetImagenesUnidad()
+        {
+            return service.GetImagenUnidadCantidad();
         }
     }
 }

@@ -308,5 +308,14 @@
       <End Role="usuarios" EntitySet="usuarios" />
       <End Role="verificacionSalida" EntitySet="verificacionSalida" />
     </AssociationSet>
+    <EntitySet Name="UnidadesImagen" EntityType="ACOTMADBModel.UnidadesImagen" />
   </EntityContainer>
+  <EntityType Name="UnidadesImagen">
+    <Key>
+      <PropertyRef Name="idUnidadesIcon" />
+    </Key>
+    <Property Name="idUnidadesIcon" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ImagenUnidad" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="NombreUnidad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

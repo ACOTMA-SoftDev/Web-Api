@@ -60,7 +60,8 @@ namespace Acotma_API.ServiciosModels
                                     on asig.fkCorrida equals hour.corrida
                                     where ((hour.fecha == date)&&
                                     (asig.fkFecha == date)&&
-                                    (hour.horaLlegada==timeGet))
+                                    (hour.horaLlegada==timeGet)
+                                    && (asig.nomChofer != "FALTA DE UNIDAD"))
                                     select new
                                     {
                                         asig.idAsignacion,

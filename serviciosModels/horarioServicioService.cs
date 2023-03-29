@@ -126,7 +126,7 @@ namespace Acotma_API.serviciosModels
             List<SelectIdFecha> selectHorario = new List<SelectIdFecha>();
             var datah = DB.horarioServicio
                         .Where(h => h.fecha >= DateTime.Today)
-                        .Select(h => new { ruta = h.ruta, fecha = h.fecha })
+                        .Select(h => new { ruta = h.ruta, fecha = h.fecha, h.corrida })
                         .Distinct();
             datah.ToList();
             foreach (var dataHora in datah)

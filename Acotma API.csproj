@@ -191,6 +191,8 @@
     <Compile Include="Models DB\EntityModels\SelectIdFecha.cs" />
     <Compile Include="Models DB\EntityModels\ServiciosIniciadosEntity.cs" />
     <Compile Include="Models DB\EntityModels\UnidadesCantidadEntity.cs" />
+    <Compile Include="Models DB\EntityModels\UnidadesCantidadLiberadoEntity.cs" />
+    <Compile Include="Models DB\EntityModels\UnidadesImagenEntity.cs" />
     <Compile Include="Models DB\EntityModels\UsuariosEntity.cs" />
     <Compile Include="Models DB\EntityModels\VerificacionDiaEntity.cs" />
     <Compile Include="Models DB\EntityModels\VerificacionSalidaEntity.cs" />
@@ -213,6 +215,9 @@
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models DB\sysdiagrams.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models DB\UnidadesImagen.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models DB\usuarios.cs">

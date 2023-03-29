@@ -102,6 +102,14 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="UnidadesImagen">
+          <Key>
+            <PropertyRef Name="idUnidadesIcon" />
+          </Key>
+          <Property Name="idUnidadesIcon" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImagenUnidad" Type="image" />
+          <Property Name="NombreUnidad" Type="varchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="usuarios">
           <Key>
             <PropertyRef Name="usuario" />
@@ -256,6 +264,7 @@
           <EntitySet Name="permisos" EntityType="Self.permisos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="permisoUsuario" EntityType="Self.permisoUsuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnidadesImagen" EntityType="Self.UnidadesImagen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="verificacionDia" EntityType="Self.verificacionDia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="verificacionSalida" EntityType="Self.verificacionSalida" Schema="dbo" store:Type="Tables" />
@@ -608,7 +617,16 @@
             <End Role="usuarios" EntitySet="usuarios" />
             <End Role="verificacionSalida" EntitySet="verificacionSalida" />
           </AssociationSet>
+          <EntitySet Name="UnidadesImagen" EntityType="ACOTMADBModel.UnidadesImagen" />
         </EntityContainer>
+        <EntityType Name="UnidadesImagen">
+          <Key>
+            <PropertyRef Name="idUnidadesIcon" />
+          </Key>
+          <Property Name="idUnidadesIcon" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImagenUnidad" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="NombreUnidad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -754,6 +772,15 @@
                 <ScalarProperty Name="horaSalida" ColumnName="horaSalida" />
                 <ScalarProperty Name="fkusuario" ColumnName="fkusuario" />
                 <ScalarProperty Name="fkasignacion" ColumnName="fkasignacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnidadesImagen">
+            <EntityTypeMapping TypeName="ACOTMADBModel.UnidadesImagen">
+              <MappingFragment StoreEntitySet="UnidadesImagen">
+                <ScalarProperty Name="NombreUnidad" ColumnName="NombreUnidad" />
+                <ScalarProperty Name="ImagenUnidad" ColumnName="ImagenUnidad" />
+                <ScalarProperty Name="idUnidadesIcon" ColumnName="idUnidadesIcon" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

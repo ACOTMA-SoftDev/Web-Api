@@ -5,10 +5,11 @@ using System.Web;
 
 namespace Acotma_API.Models_DB.EntityModels
 {
-    public class UnidadesCantidadEntity
+    public class UnidadesImagenEntitySendImage
     {
-        public string tipoUnidad { get; set; }
-        public int cantidad { get; set; }
+        public string idUnidadesIcon { get; set; }
+        public string NombreUnidad { get; set; }
         public string ImagenUnidad { get; set; }
+
     }
 }

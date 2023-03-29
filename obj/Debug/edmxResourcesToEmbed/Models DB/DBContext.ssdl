@@ -97,6 +97,14 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
+  <EntityType Name="UnidadesImagen">
+    <Key>
+      <PropertyRef Name="idUnidadesIcon" />
+    </Key>
+    <Property Name="idUnidadesIcon" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImagenUnidad" Type="image" />
+    <Property Name="NombreUnidad" Type="varchar" MaxLength="100" />
+  </EntityType>
   <EntityType Name="usuarios">
     <Key>
       <PropertyRef Name="usuario" />
@@ -251,6 +259,7 @@
     <EntitySet Name="permisos" EntityType="Self.permisos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="permisoUsuario" EntityType="Self.permisoUsuario" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UnidadesImagen" EntityType="Self.UnidadesImagen" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="verificacionDia" EntityType="Self.verificacionDia" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="verificacionSalida" EntityType="Self.verificacionSalida" Schema="dbo" store:Type="Tables" />

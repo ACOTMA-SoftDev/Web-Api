@@ -22,10 +22,11 @@ namespace Acotma_API.Controllers
             List<SelectIdFecha> fechas = new List<SelectIdFecha>();
             fechas = GetSelectFechas();
             var filtro = horario.Find(x => x.ruta == obj.ruta);
+            var filtro3 = horario.Find(x => x.corrida == obj.corridaInicial);
             var filtro2 = fechas.Find(x => x.fecha == DateTime.Parse(obj.fechaInicio));
             
 
-            if (filtro !=null && filtro2!=null)
+            if (filtro !=null && filtro2!=null && filtro3!=null)
             {
                 response = false;
             }

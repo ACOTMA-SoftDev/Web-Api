@@ -5,14 +5,14 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <_PublishTargetUrl>C:\Users\FAMC0\Desktop\AcotmaWebService</_PublishTargetUrl>
-    <History>True|2023-03-27T13:07:06.6021048Z;True|2023-03-24T01:28:06.0308973-06:00;True|2023-03-23T22:22:39.3655446-06:00;True|2023-03-23T22:11:07.1858551-06:00;True|2023-03-23T13:47:00.5668647-06:00;True|2023-03-23T11:36:01.4477932-06:00;True|2023-03-23T11:23:50.3778428-06:00;</History>
+    <History>True|2023-03-28T21:00:30.9148057Z;True|2023-03-28T02:12:05.6430630-06:00;True|2023-03-27T07:07:06.6021048-06:00;True|2023-03-24T01:28:06.0308973-06:00;True|2023-03-23T22:22:39.3655446-06:00;True|2023-03-23T22:11:07.1858551-06:00;True|2023-03-23T13:47:00.5668647-06:00;True|2023-03-23T11:36:01.4477932-06:00;True|2023-03-23T11:23:50.3778428-06:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Acotma API.dll">
-      <publishTime>03/27/2023 07:07:05</publishTime>
+      <publishTime>03/28/2023 15:00:29</publishTime>
     </File>
     <File Include="bin/Acotma API.pdb">
-      <publishTime>03/27/2023 07:07:05</publishTime>
+      <publishTime>03/28/2023 15:00:29</publishTime>
     </File>
     <File Include="bin/Certificate/certificate.p12">
       <publishTime>03/23/2023 13:38:10</publishTime>
