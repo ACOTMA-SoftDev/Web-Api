@@ -4,23 +4,29 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9530c3ea9aa341348000ee130427ab86" Name="Diagram1">
-        <EntityTypeShape EntityType="ACOTMADBModel.asignacion" Width="1.5" PointX="3.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ACOTMADBModel.horarioServicio" Width="1.5" PointX="1.5" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ACOTMADBModel.Informe_incidencias_tecnologicas" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ACOTMADBModel.Informe_Limpieza" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ACOTMADBModel.Informe_Percances" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ACOTMADBModel.permisos" Width="1.5" PointX="3.75" PointY="18" IsExpanded="true" />
-        <EntityTypeShape EntityType="ACOTMADBModel.permisoUsuario" Width="1.5" PointX="6" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ACOTMADBModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ACOTMADBModel.usuarios" Width="1.5" PointX="0.75" PointY="11.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ACOTMADBModel.verificacionDia" Width="1.5" PointX="3" PointY="20.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ACOTMADBModel.verificacionSalida" Width="1.5" PointX="6" PointY="8.375" IsExpanded="true" />
+      <Diagram DiagramId="ceb1a11cb57a40f3915ffc973028f005" Name="Diagram1">
+        <EntityTypeShape EntityType="ACOTMADBModel.asignacion" Width="1.5" PointX="3.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACOTMADBModel.Asignacion_Radios" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACOTMADBModel.horarioServicio" Width="1.5" PointX="1.5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACOTMADBModel.Informe_Accidentes" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACOTMADBModel.Informe_incidencias_tecnologicas" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACOTMADBModel.Informe_Limpieza" Width="1.5" PointX="3" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACOTMADBModel.MessajePub" Width="1.5" PointX="3" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACOTMADBModel.permisos" Width="1.5" PointX="3.75" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACOTMADBModel.permisoUsuario" Width="1.5" PointX="6" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACOTMADBModel.Registro_Vehicular" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACOTMADBModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACOTMADBModel.UnidadesImagen" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACOTMADBModel.usuarios" Width="1.5" PointX="0.75" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACOTMADBModel.verificacionDia" Width="1.5" PointX="3" PointY="29.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACOTMADBModel.verificacionSalida" Width="1.5" PointX="6" PointY="13.125" IsExpanded="true" />
         <AssociationConnector Association="ACOTMADBModel.fkAsignacionSalida" ManuallyRouted="false" />
         <AssociationConnector Association="ACOTMADBModel.fkHorarioAsignacion" ManuallyRouted="false" />
-        <AssociationConnector Association="ACOTMADBModel.FK__Informe_i__usuar__4B7734FF" ManuallyRouted="false" />
-        <AssociationConnector Association="ACOTMADBModel.FK__Informe_L__Usuar__45BE5BA9" ManuallyRouted="false" />
-        <AssociationConnector Association="ACOTMADBModel.FK__Informe_P__usuar__489AC854" ManuallyRouted="false" />
+        <AssociationConnector Association="ACOTMADBModel.FK__Asignacio__usuar__73852659" ManuallyRouted="false" />
+        <AssociationConnector Association="ACOTMADBModel.FK__Informe_A__usuar__6AEFE058" ManuallyRouted="false" />
+        <AssociationConnector Association="ACOTMADBModel.FK__Informe_i__usuar__6DCC4D03" ManuallyRouted="false" />
+        <AssociationConnector Association="ACOTMADBModel.FK__Informe_L__usuar__681373AD" ManuallyRouted="false" />
+        <AssociationConnector Association="ACOTMADBModel.FK__MessajePu__usuar__70A8B9AE" ManuallyRouted="false" />
         <AssociationConnector Association="ACOTMADBModel.permiso" ManuallyRouted="false" />
         <AssociationConnector Association="ACOTMADBModel.usuario" ManuallyRouted="false" />
         <AssociationConnector Association="ACOTMADBModel.fkUsuarioVerificacionDia" ManuallyRouted="false" />

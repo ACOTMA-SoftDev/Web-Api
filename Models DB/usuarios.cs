@@ -17,9 +17,11 @@ namespace Acotma_API.Models_DB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public usuarios()
         {
+            this.Asignacion_Radios = new HashSet<Asignacion_Radios>();
+            this.Informe_Accidentes = new HashSet<Informe_Accidentes>();
             this.Informe_incidencias_tecnologicas = new HashSet<Informe_incidencias_tecnologicas>();
             this.Informe_Limpieza = new HashSet<Informe_Limpieza>();
-            this.Informe_Percances = new HashSet<Informe_Percances>();
+            this.MessajePub = new HashSet<MessajePub>();
             this.permisoUsuario = new HashSet<permisoUsuario>();
             this.verificacionDia = new HashSet<verificacionDia>();
             this.verificacionSalida = new HashSet<verificacionSalida>();
@@ -32,11 +34,15 @@ namespace Acotma_API.Models_DB
         public string pass { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Asignacion_Radios> Asignacion_Radios { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Informe_Accidentes> Informe_Accidentes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Informe_incidencias_tecnologicas> Informe_incidencias_tecnologicas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Informe_Limpieza> Informe_Limpieza { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Informe_Percances> Informe_Percances { get; set; }
+        public virtual ICollection<MessajePub> MessajePub { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<permisoUsuario> permisoUsuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -153,16 +153,27 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AsignacionController.cs" />
+    <Compile Include="Controllers\Asignacion_RadiosController.cs" />
     <Compile Include="Controllers\CentroControlController.cs" />
     <Compile Include="Controllers\HorarioServicioController.cs" />
+    <Compile Include="Controllers\Informe_accidenteController.cs" />
+    <Compile Include="Controllers\Informe_IncidenciasTecController.cs" />
+    <Compile Include="Controllers\Informe_LimpiezaController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MessajeController.cs" />
+    <Compile Include="Controllers\permisosController.cs" />
     <Compile Include="Controllers\RegisterAccountController.cs" />
+    <Compile Include="Controllers\RegistroVehicularController.cs" />
+    <Compile Include="Controllers\usuariosController.cs" />
     <Compile Include="Controllers\VerificacionAperturaController.cs" />
     <Compile Include="Controllers\VerificacionDiaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models DB\asignacion.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models DB\Asignacion_Radios.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models DB\DBContext.Context.cs">
@@ -181,13 +192,21 @@
       <DependentUpon>DBContext.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models DB\EntityModels\AsignacionEntity.cs" />
+    <Compile Include="Models DB\EntityModels\Asignar_RadiosEntity.cs" />
     <Compile Include="Models DB\EntityModels\CronosListVerificacionEntity.cs" />
     <Compile Include="Models DB\EntityModels\eliminarHorarioServicio.cs" />
     <Compile Include="Models DB\EntityModels\GetServVerificadores.cs" />
     <Compile Include="Models DB\EntityModels\HorarioServicioEntity.cs" />
+    <Compile Include="Models DB\EntityModels\Informe_accidenteEntity.cs" />
+    <Compile Include="Models DB\EntityModels\Informe_IncidenciasTecEntity.cs" />
+    <Compile Include="Models DB\EntityModels\Informe_LimpiezaEntity.cs" />
     <Compile Include="Models DB\EntityModels\LibrearUnidadesEntity.cs" />
     <Compile Include="Models DB\EntityModels\MatchAsignHorario.cs" />
+    <Compile Include="Models DB\EntityModels\MensajesImagenEntity.cs" />
+    <Compile Include="Models DB\EntityModels\MessajeEntity.cs" />
     <Compile Include="Models DB\EntityModels\OperacionesHorario.cs" />
+    <Compile Include="Models DB\EntityModels\permisosEntity.cs" />
+    <Compile Include="Models DB\EntityModels\RegistroVehicularEntity.cs" />
     <Compile Include="Models DB\EntityModels\SelectIdFecha.cs" />
     <Compile Include="Models DB\EntityModels\ServiciosIniciadosEntity.cs" />
     <Compile Include="Models DB\EntityModels\UnidadesCantidadEntity.cs" />
@@ -199,19 +218,25 @@
     <Compile Include="Models DB\horarioServicio.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models DB\Informe_Accidentes.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models DB\Informe_incidencias_tecnologicas.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models DB\Informe_Limpieza.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models DB\Informe_Percances.cs">
+    <Compile Include="Models DB\MessajePub.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models DB\permisos.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models DB\permisoUsuario.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models DB\Registro_Vehicular.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models DB\sysdiagrams.cs">
@@ -231,10 +256,18 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiciosModels\AsignacionServicio.cs" />
+    <Compile Include="ServiciosModels\Asignar_RadiosService.cs" />
     <Compile Include="ServiciosModels\CentroControlServices.cs" />
     <Compile Include="ServiciosModels\HorarioServicioService.cs" />
+    <Compile Include="ServiciosModels\Informe_accidentesService.cs" />
+    <Compile Include="ServiciosModels\Informe_IncidenciasTecService.cs" />
+    <Compile Include="ServiciosModels\Informe_LimpiezaService.cs" />
     <Compile Include="ServiciosModels\LoginService.cs" />
+    <Compile Include="ServiciosModels\Messaje_PubService.cs" />
+    <Compile Include="ServiciosModels\permisosService.cs" />
     <Compile Include="ServiciosModels\RegistroUsuariosService.cs" />
+    <Compile Include="ServiciosModels\RegistroVehicularService.cs" />
+    <Compile Include="ServiciosModels\usuariosService.cs" />
     <Compile Include="ServiciosModels\VerificacionAperturaService.cs" />
     <Compile Include="ServiciosModels\VerificacionDiaService.cs" />
     <Compile Include="Token\GeneratorToken.cs" />

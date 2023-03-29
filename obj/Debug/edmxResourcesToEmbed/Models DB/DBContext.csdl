@@ -14,6 +14,17 @@
     <NavigationProperty Name="verificacionSalida" Relationship="Self.fkAsignacionSalida" FromRole="asignacion" ToRole="verificacionSalida" />
     <NavigationProperty Name="horarioServicio" Relationship="Self.fkHorarioAsignacion" FromRole="asignacion" ToRole="horarioServicio" />
   </EntityType>
+  <EntityType Name="Asignacion_Radios">
+    <Key>
+      <PropertyRef Name="Id_asignacionRadio" />
+    </Key>
+    <Property Name="Id_asignacionRadio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Num_Radio" Type="Int32" />
+    <Property Name="Codigo_Radio" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Tarjeta_Maestra" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="usuarios" Relationship="Self.FK__Asignacio__usuar__73852659" FromRole="Asignacion_Radios" ToRole="usuarios" />
+  </EntityType>
   <EntityType Name="horarioServicio">
     <Key>
       <PropertyRef Name="corrida" />
@@ -23,30 +34,65 @@
     <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="ruta" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="horarioSalida" Type="Time" Precision="0" />
-    <NavigationProperty Name="asignacion" Relationship="Self.fkHorarioAsignacion" FromRole="horarioServicio" ToRole="asignacion" />
     <Property Name="horaLlegada" Type="Time" Nullable="false" Precision="0" />
+    <NavigationProperty Name="asignacion" Relationship="Self.fkHorarioAsignacion" FromRole="horarioServicio" ToRole="asignacion" />
+  </EntityType>
+  <EntityType Name="Informe_Accidentes">
+    <Key>
+      <PropertyRef Name="Id_Percance" />
+    </Key>
+    <Property Name="Id_Percance" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fecha_Percance" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NoEconomico" Type="Int32" />
+    <Property Name="ServicioRuta" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TipoUnidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Ubicacion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Sentido" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Hora" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Marca" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Submarca" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Placas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Anio" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Conductor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Credencial" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="Lesionados" Type="Int32" />
+    <Property Name="Nombres" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+    <Property Name="Ambulancia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SeguridaPublica" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PatrullaNumero" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="OficialAcargo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Seguro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Supervisor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Foto_Eco" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Foto_Part" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Foto_Tarjeton" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="usuarios" Relationship="Self.FK__Informe_A__usuar__6AEFE058" FromRole="Informe_Accidentes" ToRole="usuarios" />
   </EntityType>
   <EntityType Name="Informe_incidencias_tecnologicas">
     <Key>
       <PropertyRef Name="ID_InformeIncidencias" />
     </Key>
     <Property Name="ID_InformeIncidencias" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Fecha_incidencia" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="Hora_de_registro" Type="Time" Precision="7" />
+    <Property Name="Fecha_incidencia" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="Servicio" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="VehiculoECO" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
     <Property Name="Equipo_afectado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Id_equipo_afectado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Falla" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="usuarios" Relationship="Self.FK__Informe_i__usuar__4B7734FF" FromRole="Informe_incidencias_tecnologicas" ToRole="usuarios" />
+    <NavigationProperty Name="usuarios" Relationship="Self.FK__Informe_i__usuar__6DCC4D03" FromRole="Informe_incidencias_tecnologicas" ToRole="usuarios" />
   </EntityType>
   <EntityType Name="Informe_Limpieza">
     <Key>
       <PropertyRef Name="IdInformeLimpieza" />
     </Key>
     <Property Name="IdInformeLimpieza" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Fecha_Limpieza" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="Estación" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Fecha_Limpieza" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Estacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="LimpiezaPiso" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
     <Property Name="LimpiezaVidrio" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
     <Property Name="LimpiezaAreaServicios" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
@@ -54,30 +100,20 @@
     <Property Name="LimpiezaTorniquetes" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
     <Property Name="LimpiezaSanitarios" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
     <Property Name="Observaciones" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-    <Property Name="Usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="usuarios" Relationship="Self.FK__Informe_L__Usuar__45BE5BA9" FromRole="Informe_Limpieza" ToRole="usuarios" />
-  </EntityType>
-  <EntityType Name="Informe_Percances">
-    <Key>
-      <PropertyRef Name="id_Percance" />
-    </Key>
-    <Property Name="id_Percance" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Fecha_Percance" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="NoEconomico" Type="Int32" />
-    <Property Name="ServicioRuta" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="TipoUnidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Marca" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Modelo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Placas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Conductor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Tarjeton" Type="Int32" />
-    <Property Name="Descripcion" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-    <Property Name="Ubicacion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="Hora" Type="Time" Precision="7" />
-    <Property Name="Fotos" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="usuarios" Relationship="Self.FK__Informe_P__usuar__489AC854" FromRole="Informe_Percances" ToRole="usuarios" />
+    <NavigationProperty Name="usuarios" Relationship="Self.FK__Informe_L__usuar__681373AD" FromRole="Informe_Limpieza" ToRole="usuarios" />
+  </EntityType>
+  <EntityType Name="MessajePub">
+    <Key>
+      <PropertyRef Name="Id_Publicacion" />
+    </Key>
+    <Property Name="Id_Publicacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fecha_Pub" Type="DateTime" Precision="3" />
+    <Property Name="Titulo_Pub" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion_Pub" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="ImagenP" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="usuarios" Relationship="Self.FK__MessajePu__usuar__70A8B9AE" FromRole="MessajePub" ToRole="usuarios" />
   </EntityType>
   <EntityType Name="permisos">
     <Key>
@@ -96,6 +132,21 @@
     <NavigationProperty Name="permisos" Relationship="Self.permiso" FromRole="permisoUsuario" ToRole="permisos" />
     <NavigationProperty Name="usuarios" Relationship="Self.usuario" FromRole="permisoUsuario" ToRole="usuarios" />
   </EntityType>
+  <EntityType Name="Registro_Vehicular">
+    <Key>
+      <PropertyRef Name="Id_RegistroVeh" />
+    </Key>
+    <Property Name="Id_RegistroVeh" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fecha" Type="DateTime" Precision="0" />
+    <Property Name="Nombre_solicitante" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Marca_vehiculo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Submarca" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Placa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Tiempo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Area_solicitante" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Actividades_a_realizar" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Registro_de_kilometraje" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
       <PropertyRef Name="diagram_id" />
@@ -106,6 +157,14 @@
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
+  <EntityType Name="UnidadesImagen">
+    <Key>
+      <PropertyRef Name="idUnidadesIcon" />
+    </Key>
+    <Property Name="idUnidadesIcon" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ImagenUnidad" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="NombreUnidad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
   <EntityType Name="usuarios">
     <Key>
       <PropertyRef Name="usuario" />
@@ -115,9 +174,11 @@
     <Property Name="apellidoP" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="apellidoM" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="pass" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="Informe_incidencias_tecnologicas" Relationship="Self.FK__Informe_i__usuar__4B7734FF" FromRole="usuarios" ToRole="Informe_incidencias_tecnologicas" />
-    <NavigationProperty Name="Informe_Limpieza" Relationship="Self.FK__Informe_L__Usuar__45BE5BA9" FromRole="usuarios" ToRole="Informe_Limpieza" />
-    <NavigationProperty Name="Informe_Percances" Relationship="Self.FK__Informe_P__usuar__489AC854" FromRole="usuarios" ToRole="Informe_Percances" />
+    <NavigationProperty Name="Asignacion_Radios" Relationship="Self.FK__Asignacio__usuar__73852659" FromRole="usuarios" ToRole="Asignacion_Radios" />
+    <NavigationProperty Name="Informe_Accidentes" Relationship="Self.FK__Informe_A__usuar__6AEFE058" FromRole="usuarios" ToRole="Informe_Accidentes" />
+    <NavigationProperty Name="Informe_incidencias_tecnologicas" Relationship="Self.FK__Informe_i__usuar__6DCC4D03" FromRole="usuarios" ToRole="Informe_incidencias_tecnologicas" />
+    <NavigationProperty Name="Informe_Limpieza" Relationship="Self.FK__Informe_L__usuar__681373AD" FromRole="usuarios" ToRole="Informe_Limpieza" />
+    <NavigationProperty Name="MessajePub" Relationship="Self.FK__MessajePu__usuar__70A8B9AE" FromRole="usuarios" ToRole="MessajePub" />
     <NavigationProperty Name="permisoUsuario" Relationship="Self.usuario" FromRole="usuarios" ToRole="permisoUsuario" />
     <NavigationProperty Name="verificacionDia" Relationship="Self.fkUsuarioVerificacionDia" FromRole="usuarios" ToRole="verificacionDia" />
     <NavigationProperty Name="verificacionSalida" Relationship="Self.fkUsuarioVerificacionSalida" FromRole="usuarios" ToRole="verificacionSalida" />
@@ -176,7 +237,31 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Informe_i__usuar__4B7734FF">
+  <Association Name="FK__Asignacio__usuar__73852659">
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+    <End Role="Asignacion_Radios" Type="Self.Asignacion_Radios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="usuario" />
+      </Principal>
+      <Dependent Role="Asignacion_Radios">
+        <PropertyRef Name="usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Informe_A__usuar__6AEFE058">
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
+    <End Role="Informe_Accidentes" Type="Self.Informe_Accidentes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="usuario" />
+      </Principal>
+      <Dependent Role="Informe_Accidentes">
+        <PropertyRef Name="usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Informe_i__usuar__6DCC4D03">
     <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
     <End Role="Informe_incidencias_tecnologicas" Type="Self.Informe_incidencias_tecnologicas" Multiplicity="*" />
     <ReferentialConstraint>
@@ -188,7 +273,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Informe_L__Usuar__45BE5BA9">
+  <Association Name="FK__Informe_L__usuar__681373AD">
     <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
     <End Role="Informe_Limpieza" Type="Self.Informe_Limpieza" Multiplicity="*" />
     <ReferentialConstraint>
@@ -196,18 +281,18 @@
         <PropertyRef Name="usuario" />
       </Principal>
       <Dependent Role="Informe_Limpieza">
-        <PropertyRef Name="Usuario" />
+        <PropertyRef Name="usuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Informe_P__usuar__489AC854">
+  <Association Name="FK__MessajePu__usuar__70A8B9AE">
     <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
-    <End Role="Informe_Percances" Type="Self.Informe_Percances" Multiplicity="*" />
+    <End Role="MessajePub" Type="Self.MessajePub" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="usuarios">
         <PropertyRef Name="usuario" />
       </Principal>
-      <Dependent Role="Informe_Percances">
+      <Dependent Role="MessajePub">
         <PropertyRef Name="usuario" />
       </Dependent>
     </ReferentialConstraint>
@@ -262,13 +347,17 @@
   </Association>
   <EntityContainer Name="ACOTMADBEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="asignacion" EntityType="Self.asignacion" />
+    <EntitySet Name="Asignacion_Radios" EntityType="Self.Asignacion_Radios" />
     <EntitySet Name="horarioServicio" EntityType="Self.horarioServicio" />
+    <EntitySet Name="Informe_Accidentes" EntityType="Self.Informe_Accidentes" />
     <EntitySet Name="Informe_incidencias_tecnologicas" EntityType="Self.Informe_incidencias_tecnologicas" />
     <EntitySet Name="Informe_Limpieza" EntityType="Self.Informe_Limpieza" />
-    <EntitySet Name="Informe_Percances" EntityType="Self.Informe_Percances" />
+    <EntitySet Name="MessajePub" EntityType="Self.MessajePub" />
     <EntitySet Name="permisos" EntityType="Self.permisos" />
     <EntitySet Name="permisoUsuario" EntityType="Self.permisoUsuario" />
+    <EntitySet Name="Registro_Vehicular" EntityType="Self.Registro_Vehicular" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="UnidadesImagen" EntityType="Self.UnidadesImagen" />
     <EntitySet Name="usuarios" EntityType="Self.usuarios" />
     <EntitySet Name="verificacionDia" EntityType="Self.verificacionDia" />
     <EntitySet Name="verificacionSalida" EntityType="Self.verificacionSalida" />
@@ -280,17 +369,25 @@
       <End Role="horarioServicio" EntitySet="horarioServicio" />
       <End Role="asignacion" EntitySet="asignacion" />
     </AssociationSet>
-    <AssociationSet Name="FK__Informe_i__usuar__4B7734FF" Association="Self.FK__Informe_i__usuar__4B7734FF">
+    <AssociationSet Name="FK__Asignacio__usuar__73852659" Association="Self.FK__Asignacio__usuar__73852659">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="Asignacion_Radios" EntitySet="Asignacion_Radios" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Informe_A__usuar__6AEFE058" Association="Self.FK__Informe_A__usuar__6AEFE058">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="Informe_Accidentes" EntitySet="Informe_Accidentes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Informe_i__usuar__6DCC4D03" Association="Self.FK__Informe_i__usuar__6DCC4D03">
       <End Role="usuarios" EntitySet="usuarios" />
       <End Role="Informe_incidencias_tecnologicas" EntitySet="Informe_incidencias_tecnologicas" />
     </AssociationSet>
-    <AssociationSet Name="FK__Informe_L__Usuar__45BE5BA9" Association="Self.FK__Informe_L__Usuar__45BE5BA9">
+    <AssociationSet Name="FK__Informe_L__usuar__681373AD" Association="Self.FK__Informe_L__usuar__681373AD">
       <End Role="usuarios" EntitySet="usuarios" />
       <End Role="Informe_Limpieza" EntitySet="Informe_Limpieza" />
     </AssociationSet>
-    <AssociationSet Name="FK__Informe_P__usuar__489AC854" Association="Self.FK__Informe_P__usuar__489AC854">
+    <AssociationSet Name="FK__MessajePu__usuar__70A8B9AE" Association="Self.FK__MessajePu__usuar__70A8B9AE">
       <End Role="usuarios" EntitySet="usuarios" />
-      <End Role="Informe_Percances" EntitySet="Informe_Percances" />
+      <End Role="MessajePub" EntitySet="MessajePub" />
     </AssociationSet>
     <AssociationSet Name="permiso" Association="Self.permiso">
       <End Role="permisos" EntitySet="permisos" />
@@ -308,14 +405,5 @@
       <End Role="usuarios" EntitySet="usuarios" />
       <End Role="verificacionSalida" EntitySet="verificacionSalida" />
     </AssociationSet>
-    <EntitySet Name="UnidadesImagen" EntityType="ACOTMADBModel.UnidadesImagen" />
   </EntityContainer>
-  <EntityType Name="UnidadesImagen">
-    <Key>
-      <PropertyRef Name="idUnidadesIcon" />
-    </Key>
-    <Property Name="idUnidadesIcon" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ImagenUnidad" Type="Binary" MaxLength="Max" FixedLength="false" />
-    <Property Name="NombreUnidad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-  </EntityType>
 </Schema>

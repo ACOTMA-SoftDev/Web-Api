@@ -12,23 +12,35 @@ namespace Acotma_API.Models_DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Informe_Percances
+    public partial class Informe_Accidentes
     {
-        public int id_Percance { get; set; }
+        public int Id_Percance { get; set; }
         public System.DateTime Fecha_Percance { get; set; }
         public Nullable<int> NoEconomico { get; set; }
         public string ServicioRuta { get; set; }
         public string TipoUnidad { get; set; }
+        public string Ubicacion { get; set; }
+        public string Sentido { get; set; }
+        public string Hora { get; set; }
         public string Marca { get; set; }
-        public string Modelo { get; set; }
+        public string Submarca { get; set; }
         public string Color { get; set; }
         public string Placas { get; set; }
+        public string Anio { get; set; }
         public string Conductor { get; set; }
-        public Nullable<int> Tarjeton { get; set; }
+        public string Credencial { get; set; }
         public string Descripcion { get; set; }
-        public string Ubicacion { get; set; }
-        public Nullable<System.TimeSpan> Hora { get; set; }
-        public byte[] Fotos { get; set; }
+        public Nullable<int> Lesionados { get; set; }
+        public string Nombres { get; set; }
+        public string Ambulancia { get; set; }
+        public string SeguridaPublica { get; set; }
+        public string PatrullaNumero { get; set; }
+        public string OficialAcargo { get; set; }
+        public string Seguro { get; set; }
+        public string Supervisor { get; set; }
+        public byte[] Foto_Eco { get; set; }
+        public byte[] Foto_Part { get; set; }
+        public byte[] Foto_Tarjeton { get; set; }
         public string usuario { get; set; }
     
         public virtual usuarios usuarios { get; set; }

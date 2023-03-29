@@ -12,18 +12,13 @@ namespace Acotma_API.Models_DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Informe_Limpieza
+    public partial class MessajePub
     {
-        public int IdInformeLimpieza { get; set; }
-        public System.DateTime Fecha_Limpieza { get; set; }
-        public string Estacion { get; set; }
-        public string LimpiezaPiso { get; set; }
-        public string LimpiezaVidrio { get; set; }
-        public string LimpiezaAreaServicios { get; set; }
-        public string LimpiezaAreaEstructura { get; set; }
-        public string LimpiezaTorniquetes { get; set; }
-        public string LimpiezaSanitarios { get; set; }
-        public string Observaciones { get; set; }
+        public int Id_Publicacion { get; set; }
+        public Nullable<System.DateTime> Fecha_Pub { get; set; }
+        public string Titulo_Pub { get; set; }
+        public string Descripcion_Pub { get; set; }
+        public byte[] ImagenP { get; set; }
         public string usuario { get; set; }
     
         public virtual usuarios usuarios { get; set; }

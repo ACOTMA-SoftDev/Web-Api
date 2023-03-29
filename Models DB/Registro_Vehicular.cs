@@ -12,18 +12,17 @@ namespace Acotma_API.Models_DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Informe_incidencias_tecnologicas
+    public partial class Registro_Vehicular
     {
-        public int ID_InformeIncidencias { get; set; }
-        public System.DateTime Fecha_incidencia { get; set; }
-        public string Servicio { get; set; }
-        public string VehiculoECO { get; set; }
-        public string Equipo_afectado { get; set; }
-        public string Id_equipo_afectado { get; set; }
-        public string Falla { get; set; }
-        public string Estado { get; set; }
-        public string usuario { get; set; }
-    
-        public virtual usuarios usuarios { get; set; }
+        public int Id_RegistroVeh { get; set; }
+        public Nullable<System.DateTime> Fecha { get; set; }
+        public string Nombre_solicitante { get; set; }
+        public string Marca_vehiculo { get; set; }
+        public string Submarca { get; set; }
+        public string Placa { get; set; }
+        public string Tiempo { get; set; }
+        public string Area_solicitante { get; set; }
+        public string Actividades_a_realizar { get; set; }
+        public string Registro_de_kilometraje { get; set; }
     }
 }
