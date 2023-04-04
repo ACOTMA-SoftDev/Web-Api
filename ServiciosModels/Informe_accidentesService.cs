@@ -43,9 +43,6 @@ namespace WebApplication2.Service
                             Fecha_Percance.OficialAcargo,
                             Fecha_Percance.Seguro,
                             Fecha_Percance.Supervisor,
-                            Fecha_Percance.Foto_Eco,
-                            Fecha_Percance.Foto_Part,
-                            Fecha_Percance.Foto_Tarjeton,
                             Fecha_Percance.usuario
                             
                         };
@@ -80,9 +77,9 @@ namespace WebApplication2.Service
                     OficialAcargo=dataFecha.OficialAcargo,
                     Seguro = dataFecha.Seguro,
                     Supervisor =dataFecha.Supervisor,
-                    Foto_Eco = System.Text.Encoding.UTF8.GetString(dataFecha.Foto_Eco),
-                    Foto_Part = System.Text.Encoding.UTF8.GetString(dataFecha.Foto_Part),
-                    Foto_Tarjeton = System.Text.Encoding.UTF8.GetString(dataFecha.Foto_Tarjeton),
+                    
+                    
+                    
                     usuario = dataFecha.usuario
                 });
             }
@@ -121,9 +118,9 @@ namespace WebApplication2.Service
                     OficialAcargo = nuevoAccidente.OficialAcargo,
                     Seguro = nuevoAccidente.Seguro,
                     Supervisor = nuevoAccidente.Supervisor,
-                    Foto_Eco = System.Text.Encoding.UTF8.GetBytes(nuevoAccidente.Foto_Eco),
-                    Foto_Part = System.Text.Encoding.UTF8.GetBytes(nuevoAccidente.Foto_Part),
-                    Foto_Tarjeton = System.Text.Encoding.UTF8.GetBytes(nuevoAccidente.Foto_Tarjeton),
+                    
+                    
+                    
                     usuario = nuevoAccidente.usuario
                 });
 
@@ -138,6 +135,44 @@ namespace WebApplication2.Service
                 Console.WriteLine(e.Message);
             }
             return respuesta;
+        }
+        //Mostrar todos
+        public List<Informe_Accidentes> GetAllAccidentesEntities()
+        {
+            var datos = DB.Informe_Accidentes;
+            List<Informe_Accidentes> datosAgregados = new List<Informe_Accidentes>();
+            foreach (Informe_Accidentes item in datos)
+            {
+                datosAgregados.Add(new Informe_Accidentes
+                {
+                    Fecha_Percance = DateTime.Today,
+                    NoEconomico = (int)item.NoEconomico,
+                    ServicioRuta = item.ServicioRuta,
+                    TipoUnidad = item.TipoUnidad,
+                    Ubicacion = item.Ubicacion,
+                    Sentido = item.Sentido,
+                    Hora = item.Hora,
+                    Marca = item.Marca,
+                    Submarca = item.Submarca,
+                    Color = item.Color,
+                    Placas = item.Placas,
+                    Anio = item.Anio,
+                    Conductor = item.Conductor,
+                    Credencial = item.Credencial,
+                    Descripcion = item.Descripcion,
+                    Lesionados = (int)item.Lesionados,
+                    Nombres = item.Nombres,
+                    Ambulancia = item.Ambulancia,
+                    SeguridaPublica = item.SeguridaPublica,
+                    PatrullaNumero = item.PatrullaNumero,
+                    OficialAcargo = item.OficialAcargo,
+                    Seguro = item.Seguro,
+                    Supervisor = item.Supervisor,
+                    usuario = item.usuario
+                });
+
+            }
+            return datosAgregados;
         }
     }
 }

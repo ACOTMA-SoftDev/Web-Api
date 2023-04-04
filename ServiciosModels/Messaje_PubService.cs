@@ -24,7 +24,7 @@ namespace WebApplication2.Service
                     Fecha_Pub = (DateTime)item.Fecha_Pub,
                     Titulo_Pub = item.Titulo_Pub,
                     Descripcion_Pub = item.Descripcion_Pub,
-                    ImagenP = System.Text.Encoding.UTF8.GetString(item.ImagenP),
+                    
                     usuario = item.usuario
                 });
 
@@ -43,7 +43,7 @@ namespace WebApplication2.Service
                             Fecha_Pub.Fecha_Pub,
                             Fecha_Pub.Titulo_Pub,
                             Fecha_Pub.Descripcion_Pub,
-                            Fecha_Pub.ImagenP,
+                            
                             Fecha_Pub.usuario
                         };
             dataF.ToList();
@@ -57,7 +57,7 @@ namespace WebApplication2.Service
                     Fecha_Pub = (DateTime)dataFecha.Fecha_Pub,
                     Titulo_Pub = dataFecha.Titulo_Pub,
                     Descripcion_Pub = dataFecha.Descripcion_Pub,
-                    ImagenP = System.Text.Encoding.UTF8.GetString(dataFecha.ImagenP),
+                    
                     usuario = dataFecha.usuario
                 });
             }
@@ -74,7 +74,7 @@ namespace WebApplication2.Service
                    Fecha_Pub=DateTime.Today,
                    Titulo_Pub=nuevaPublicacion.Titulo_Pub,
                    Descripcion_Pub=nuevaPublicacion.Descripcion_Pub,
-                   ImagenP= System.Text.Encoding.UTF8.GetBytes(nuevaPublicacion.ImagenP)
+                   
 
                 });
 

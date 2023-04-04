@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ACOTMADBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ACOTMADBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="asignacion">
           <Key>
             <PropertyRef Name="idAsignacion" />
@@ -156,7 +156,7 @@
             <PropertyRef Name="idUnidadesIcon" />
           </Key>
           <Property Name="idUnidadesIcon" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ImagenUnidad" Type="image" />
+          <Property Name="ImagenUnidad" Type="varchar" MaxLength="100" />
           <Property Name="NombreUnidad" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="usuarios">
@@ -193,6 +193,7 @@
           <Property Name="horaSalida" Type="time" Precision="0" />
           <Property Name="fkusuario" Type="varchar" MaxLength="100" />
           <Property Name="fkasignacion" Type="int" />
+          <Property Name="CiclosPerdidos" Type="varchar" MaxLength="100" />
         </EntityType>
         <Association Name="FK__Asignacio__usuar__73852659">
           <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />
@@ -389,8 +390,7 @@
             <End Role="permisoUsuario" EntitySet="permisoUsuario" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ACOTMADBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -556,7 +556,7 @@
             <PropertyRef Name="idUnidadesIcon" />
           </Key>
           <Property Name="idUnidadesIcon" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ImagenUnidad" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ImagenUnidad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="NombreUnidad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="usuarios">
@@ -604,6 +604,7 @@
           <Property Name="fkasignacion" Type="Int32" />
           <NavigationProperty Name="asignacion" Relationship="Self.fkAsignacionSalida" FromRole="verificacionSalida" ToRole="asignacion" />
           <NavigationProperty Name="usuarios" Relationship="Self.fkUsuarioVerificacionSalida" FromRole="verificacionSalida" ToRole="usuarios" />
+          <Property Name="CiclosPerdidos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="fkAsignacionSalida">
           <End Role="asignacion" Type="Self.asignacion" Multiplicity="0..1" />
@@ -1000,6 +1001,7 @@
           <EntitySetMapping Name="verificacionSalida">
             <EntityTypeMapping TypeName="ACOTMADBModel.verificacionSalida">
               <MappingFragment StoreEntitySet="verificacionSalida">
+                <ScalarProperty Name="CiclosPerdidos" ColumnName="CiclosPerdidos" />
                 <ScalarProperty Name="idVerificacionSalida" ColumnName="idVerificacionSalida" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="observaciones" ColumnName="observaciones" />

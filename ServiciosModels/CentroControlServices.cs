@@ -115,7 +115,7 @@ namespace Acotma_API.ServiciosModels
             {
                 UnidadesImagen insertUnidad = (new UnidadesImagen
                 {
-                    ImagenUnidad = System.Text.Encoding.UTF8.GetBytes(unidades.ImagenUnidad),
+                    ImagenUnidad = unidades.ImagenUnidad,
                     NombreUnidad = unidades.NombreUnidad
                 });
                 DB.UnidadesImagen.Add(insertUnidad);
@@ -134,7 +134,7 @@ namespace Acotma_API.ServiciosModels
         {
             List<UnidadesCantidadEntity> unidades = new List<UnidadesCantidadEntity>();
             DateTime getToday = DateTime.Today;
-            var query = "select  cast(cast(ImagenUnidad as varbinary(max)) as varchar(max)) as ImagenUnidad,tipoUnidad,count(tipoUnidad) as cantidad from asignacion inner join UnidadesImagen on asignacion.tipoUnidad = UnidadesImagen.NombreUnidad where fkfecha = CONVERT(varchar(10), GETDATE(), 111) group by tipoUnidad,cast(cast(ImagenUnidad as varbinary(max)) as varchar(max))";
+            var query = "select ImagenUnidad,tipoUnidad,count(tipoUnidad) as cantidad from asignacion inner join UnidadesImagen on asignacion.tipoUnidad = UnidadesImagen.NombreUnidad where fkfecha = CONVERT(varchar(10), GETDATE(), 111) group by tipoUnidad,ImagenUnidad";
             var Cantidad = DB.Database.SqlQuery<UnidadesCantidadEntity>(query, 1).ToList();
             DB.Database.Connection.Close();
             foreach (var CantidadUnidad in Cantidad)
@@ -149,5 +149,38 @@ namespace Acotma_API.ServiciosModels
             }
             return unidades;        
     }
+        public List<CiclosPerdidosEntity> GetCiclosPerdidos()
+        {
+            List<CiclosPerdidosEntity> ciclos = new List<CiclosPerdidosEntity>();
+            DateTime getToday = DateTime.Today;
+
+            var datos = from a in DB.asignacion
+                        join h in DB.horarioServicio
+                        on a.fkCorrida equals h.corrida
+                        join v in DB.verificacionSalida
+                        on a.idAsignacion equals v.fkasignacion
+                        where (a.fkFecha == getToday) && (h.fecha == getToday) && (v.CiclosPerdidos != null)
+                        select new
+                        {
+                            a.economico,
+                            h.ruta,
+                            h.corrida,
+                            v.CiclosPerdidos,
+                            v.observaciones
+                        };
+            datos.ToList();
+            foreach (var getDatos in datos)
+            {
+                ciclos.Add(new CiclosPerdidosEntity
+                {
+                    economico = (int)getDatos.economico,
+                    ruta = getDatos.ruta,
+                    corrida = getDatos.corrida,
+                    CiclosPerdidos = getDatos.CiclosPerdidos,
+                    observaciones = getDatos.observaciones
+                });
+            }
+            return ciclos;
+        }
     }
 }

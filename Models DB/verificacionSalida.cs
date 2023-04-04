@@ -20,6 +20,7 @@ namespace Acotma_API.Models_DB
         public Nullable<System.TimeSpan> horaSalida { get; set; }
         public string fkusuario { get; set; }
         public Nullable<int> fkasignacion { get; set; }
+        public string CiclosPerdidos { get; set; }
     
         public virtual asignacion asignacion { get; set; }
         public virtual usuarios usuarios { get; set; }

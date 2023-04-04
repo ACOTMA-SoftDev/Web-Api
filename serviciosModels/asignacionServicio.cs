@@ -216,5 +216,22 @@ namespace Acotma_API.serviciosModels
             }
             return servStar;
         }
+        public bool DeleteAsignacionToday() 
+        {
+            bool response = false;
+            DateTime time = DateTime.Today;
+            try
+            {
+                var asignaciones = DB.asignacion.Where(x => x.fkFecha == time );
+                DB.asignacion.RemoveRange(asignaciones);
+                DB.SaveChanges();
+                response = true;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            return response;
+        }
     }
 }

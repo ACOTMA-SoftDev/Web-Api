@@ -193,8 +193,11 @@
     </Compile>
     <Compile Include="Models DB\EntityModels\AsignacionEntity.cs" />
     <Compile Include="Models DB\EntityModels\Asignar_RadiosEntity.cs" />
+    <Compile Include="Models DB\EntityModels\CiclosPerdidosEntity.cs" />
     <Compile Include="Models DB\EntityModels\CronosListVerificacionEntity.cs" />
+    <Compile Include="Models DB\EntityModels\DeleteAsignacionEntity.cs" />
     <Compile Include="Models DB\EntityModels\eliminarHorarioServicio.cs" />
+    <Compile Include="Models DB\EntityModels\EliminarVerificacionEntity.cs" />
     <Compile Include="Models DB\EntityModels\GetServVerificadores.cs" />
     <Compile Include="Models DB\EntityModels\HorarioServicioEntity.cs" />
     <Compile Include="Models DB\EntityModels\Informe_accidenteEntity.cs" />
@@ -212,6 +215,7 @@
     <Compile Include="Models DB\EntityModels\UnidadesCantidadEntity.cs" />
     <Compile Include="Models DB\EntityModels\UnidadesCantidadLiberadoEntity.cs" />
     <Compile Include="Models DB\EntityModels\UnidadesImagenEntity.cs" />
+    <Compile Include="Models DB\EntityModels\UpdateActualizacionEntity.cs" />
     <Compile Include="Models DB\EntityModels\UsuariosEntity.cs" />
     <Compile Include="Models DB\EntityModels\VerificacionDiaEntity.cs" />
     <Compile Include="Models DB\EntityModels\VerificacionSalidaEntity.cs" />

@@ -162,7 +162,7 @@
       <PropertyRef Name="idUnidadesIcon" />
     </Key>
     <Property Name="idUnidadesIcon" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ImagenUnidad" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ImagenUnidad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="NombreUnidad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="usuarios">
@@ -210,6 +210,7 @@
     <Property Name="fkasignacion" Type="Int32" />
     <NavigationProperty Name="asignacion" Relationship="Self.fkAsignacionSalida" FromRole="verificacionSalida" ToRole="asignacion" />
     <NavigationProperty Name="usuarios" Relationship="Self.fkUsuarioVerificacionSalida" FromRole="verificacionSalida" ToRole="usuarios" />
+    <Property Name="CiclosPerdidos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="fkAsignacionSalida">
     <End Role="asignacion" Type="Self.asignacion" Multiplicity="0..1" />

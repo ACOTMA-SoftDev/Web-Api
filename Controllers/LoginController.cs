@@ -15,14 +15,15 @@ namespace Acotma_API.Controllers
     {
         readonly LoginService loginService = new LoginService();
         readonly GeneratorToken generatorToken = new GeneratorToken();
-        [HttpPost]
+        [HttpPost]        
         public IHttpActionResult Login(UsuariosEntity usuario)
         {
             string[] rolUser = loginService.GetPermisos(usuario);
             var user = loginService.Usuarios(usuario);
             if (user != null)
             {
-                return Ok(generatorToken.GeneratingToken(usuario, rolUser));
+                usuario.rol = rolUser[0];
+                return Ok(usuario);
             }
             else
             {

@@ -84,5 +84,11 @@ namespace Acotma_API.Controllers
         {
             return service.GetFecha();
         }
+        [HttpGet]
+        [Route("api/Delete/Horario")]
+        public bool DeleteHorario()
+        {
+            return service.DeleteAll();
+        }
     }
 }

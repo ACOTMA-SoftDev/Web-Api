@@ -5,9 +5,8 @@ using System.Web;
 
 namespace Acotma_API.Models_DB.EntityModels
 {
-    public class eliminarHorarioServicio
+    public class DeleteAsignacionEntity
     {
-        public DateTime fechaDelete { get; set; }
-        public string rutaDelete { get; set; }
+        public string fecha { get; set; }
     }
 }

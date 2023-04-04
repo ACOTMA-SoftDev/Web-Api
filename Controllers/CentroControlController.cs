@@ -42,5 +42,11 @@ namespace Acotma_API.Controllers
         {
             return service.GetImagenUnidadCantidad();
         }
+        [HttpGet]
+        [Route("api/CentroControl/GetCiclos")]
+        public List<CiclosPerdidosEntity> GetCiclosPerdidos()
+        {
+            return service.GetCiclosPerdidos();
+        }
     }
 }

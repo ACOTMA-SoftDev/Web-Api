@@ -123,8 +123,9 @@ namespace Acotma_API.ServiciosModels
                 {
                     estado = newVeriSalida.Estado,
                     observaciones = newVeriSalida.Observaciones,
+                    CiclosPerdidos=newVeriSalida.ciclosPerdidos,
                     horaSalida = newVeriSalida.HoraSalida,
-                     fkasignacion = newVeriSalida.Fkasignacion,
+                    fkasignacion = newVeriSalida.Fkasignacion,
                     fkusuario = newVeriSalida.Fkusuario
                 });
 
@@ -153,8 +154,50 @@ namespace Acotma_API.ServiciosModels
                 response = true;
             }
             return response;
-        }        
-
-        
+        }
+        public bool EliminarVerificacion(EliminarVerificacionEntity eliminar)
+        {
+            bool response=false;
+            DateTime getToday = DateTime.Today;
+            try
+            {
+                var setHorario = DB.horarioServicio.FirstOrDefault(x => x.fecha == getToday && x.corrida == eliminar.corrida);
+                var dropVerificacion = DB.verificacionSalida.FirstOrDefault(x => x.fkasignacion == eliminar.idAsignacion);
+                if (setHorario != null)
+                {
+                    TimeSpan hora=TimeSpan.Zero;
+                    setHorario.horaLlegada = hora;
+                    DB.SaveChanges();
+                    if (dropVerificacion != null)
+                    {
+                        DB.verificacionSalida.Remove(dropVerificacion);
+                        DB.SaveChanges();
+                    }
+                    response = true;
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return response;
+        }
+        public bool ActualizarAsignacion(GetServVerificadores update)
+        {
+            bool response = false;
+            try
+            {
+                var selectAsignacion = DB.asignacion.FirstOrDefault(x => x.idAsignacion == update.idAsignacion);
+                selectAsignacion.economico = update.economico;
+                selectAsignacion.tarjeton = update.tarjeton;
+                DB.SaveChanges();
+                response = true;
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
+            return response;
+        }
     }
 }       

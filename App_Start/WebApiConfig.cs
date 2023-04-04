@@ -13,6 +13,7 @@ namespace Acotma_API
         {
 
             // Configuración y servicios de API web
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
             //crea una variable para habilitar el acceso al api
             var cors = new EnableCorsAttribute("*", "*", "*");
             //brinda el acceso al api 

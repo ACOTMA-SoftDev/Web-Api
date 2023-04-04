@@ -15,7 +15,7 @@ namespace Acotma_API.Models_DB
     public partial class UnidadesImagen
     {
         public int idUnidadesIcon { get; set; }
-        public byte[] ImagenUnidad { get; set; }
+        public string ImagenUnidad { get; set; }
         public string NombreUnidad { get; set; }
     }
 }

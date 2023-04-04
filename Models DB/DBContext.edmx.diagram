@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ceb1a11cb57a40f3915ffc973028f005" Name="Diagram1">
+      <Diagram DiagramId="efc06dc79a8d4722aec43d8678c94737" Name="Diagram1">
         <EntityTypeShape EntityType="ACOTMADBModel.asignacion" Width="1.5" PointX="3.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="ACOTMADBModel.Asignacion_Radios" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ACOTMADBModel.horarioServicio" Width="1.5" PointX="1.5" PointY="1.25" IsExpanded="true" />

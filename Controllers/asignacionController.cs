@@ -18,19 +18,19 @@ namespace Acotma_API.Controllers
         [HttpPost]
         [Route("api/Agregar/Servicio")]
         public bool AgregarServicio(List<AsignacionEntity> oService)
-        {
-            _ = new List<HorarioServicioEntity>();
+        {            
             bool response = false;
             try
             {
                 for (int i = 0; i < oService.Count; i++)
                 {
                     List<HorarioServicioEntity> horario = hServ.GetCorridaToday(oService[i].fkCorrida);
-                    if (horario.Count>0) { 
-                    service.AddAsignacion(oService[i]);
-                    }
+                    if (horario.Count>0) {                       
+                            service.AddAsignacion(oService[i]);
+                            response = true;
+                    }                   
                 }
-                response = true;
+                
             }
             catch (Exception e)
             {
@@ -69,6 +69,12 @@ namespace Acotma_API.Controllers
         public List<ServiciosIniciadosEntity> GetServiciosById(int idAsignacion)
         {
             return service.GetServiciosIniciadosById(idAsignacion);
+        }
+        [HttpGet]
+        [Route("api/Delete/Asignacion")]
+        public bool DeleteResponseAsignacion()
+        {
+            return service.DeleteAsignacionToday();
         }
     }
 }   

@@ -41,5 +41,19 @@ namespace Acotma_API.Controllers
         {
             return service.LiberarUnidades(obj);
         }
+        [HttpPost]
+        [Route("api/EliminarVerificacion")]
+        public bool EliminarVerificadores(EliminarVerificacionEntity eliminarVerificacion)
+        {
+            return service.EliminarVerificacion(eliminarVerificacion);
+        }
+
+        
+        [HttpPost]
+        [Route("api/Update/Verificacion")]
+        public bool UpdateVerificacion(GetServVerificadores update)
+        {                        
+                return service.ActualizarAsignacion(update);                                                                                     
+        }
     }
 }

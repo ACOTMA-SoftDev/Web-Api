@@ -110,8 +110,9 @@ namespace Acotma_API.serviciosModels
             try
             {
                 var eliminarHoarios = DB.horarioServicio;
-               var deletHorarioServicio = eliminarHoarios.Where(a => a.fecha >= fecha.fechaInicio && a.fecha <= fecha.fechaFinal);
-                eliminarHoarios.RemoveRange(deletHorarioServicio);
+                var deletHorarioServicio = eliminarHoarios.Where(a => a.fecha == fecha.fechaDelete &&
+                a.ruta==fecha.rutaDelete);
+                DB.horarioServicio.RemoveRange(deletHorarioServicio);
                 DB.SaveChanges();
                 response = true;
             }
@@ -123,19 +124,20 @@ namespace Acotma_API.serviciosModels
         }
         public List<SelectIdFecha> GetFechaCorrida()
         {
+            DateTime today = DateTime.Today;
             List<SelectIdFecha> selectHorario = new List<SelectIdFecha>();
-            var datah = DB.horarioServicio
-                        .Where(h => h.fecha >= DateTime.Today)
-                        .Select(h => new { ruta = h.ruta, fecha = h.fecha, h.corrida })
-                        .Distinct();
-            datah.ToList();
-            foreach (var dataHora in datah)
+
+            var selectData = DB.horarioServicio.
+                Where(h => h.fecha >= today).
+                GroupBy(h =>new { h.fecha,h.ruta}).
+                ToList();
+            foreach (var dataHora in selectData)
             {
                 var dataASi = dataHora;
                 selectHorario.Add(new SelectIdFecha
                 {                    
-                    fecha = dataHora.fecha,
-                    ruta = dataHora.ruta                    
+                    fecha = dataHora.Key.fecha,
+                    ruta = dataHora.Key.ruta                    
                 });
             }
             return selectHorario;
@@ -156,6 +158,22 @@ namespace Acotma_API.serviciosModels
                 });
             }
             return selectHorario;
+        }
+        public bool DeleteAll()
+        {
+            bool response = false;
+            DateTime time = DateTime.Today;
+            try
+            {
+                var selectHorarios = DB.horarioServicio.Where(x => x.fecha>=time);
+                DB.horarioServicio.RemoveRange(selectHorarios);
+                DB.SaveChanges();
+                response = true;
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
+            return response;
         }
     }
 }

@@ -195,6 +195,7 @@
     <EntitySetMapping Name="verificacionSalida">
       <EntityTypeMapping TypeName="ACOTMADBModel.verificacionSalida">
         <MappingFragment StoreEntitySet="verificacionSalida">
+          <ScalarProperty Name="CiclosPerdidos" ColumnName="CiclosPerdidos" />
           <ScalarProperty Name="idVerificacionSalida" ColumnName="idVerificacionSalida" />
           <ScalarProperty Name="estado" ColumnName="estado" />
           <ScalarProperty Name="observaciones" ColumnName="observaciones" />

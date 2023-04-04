@@ -13,16 +13,16 @@ namespace WebApplication2.Controllers
     {
         RegistroVehicularService servicio = new RegistroVehicularService();
         [HttpGet]
-        [Route("api/ver_Registro_de_Asignacion_de_Radios")]
-        public List<RegistroVehicularEntity> Asignar_Radios()
+        [Route("api/ver_Registro_Vehicular")]
+        public List<RegistroVehicularEntity> VerRegistro()
         {
             return servicio.GetAsignacionVehicularEntities();
         }
 
 
         [HttpPost]
-        [Route("api/agregar_Asignacion_de_Radios")]
-        public bool agregarAsignacion(RegistroVehicularEntity nuevoRegistro)
+        [Route("api/agregar_RegistroVehicular")]
+        public bool agregarAsignacionVehicular(RegistroVehicularEntity nuevoRegistro)
         {
             return servicio.agregarAsignacionVehicular(nuevoRegistro);
         }

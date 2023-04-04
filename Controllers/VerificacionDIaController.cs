@@ -24,5 +24,6 @@ namespace Acotma_API.Controllers
         {
             return service.InsertarVerificacionDay(newVerificacion);
         }
+        
     }
 }

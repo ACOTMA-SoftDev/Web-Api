@@ -151,7 +151,7 @@
       <PropertyRef Name="idUnidadesIcon" />
     </Key>
     <Property Name="idUnidadesIcon" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ImagenUnidad" Type="image" />
+    <Property Name="ImagenUnidad" Type="varchar" MaxLength="100" />
     <Property Name="NombreUnidad" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="usuarios">
@@ -188,6 +188,7 @@
     <Property Name="horaSalida" Type="time" Precision="0" />
     <Property Name="fkusuario" Type="varchar" MaxLength="100" />
     <Property Name="fkasignacion" Type="int" />
+    <Property Name="CiclosPerdidos" Type="varchar" MaxLength="100" />
   </EntityType>
   <Association Name="FK__Asignacio__usuar__73852659">
     <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1" />

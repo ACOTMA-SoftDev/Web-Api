@@ -11,6 +11,7 @@ namespace Acotma_API.Models_DB.EntityModels
         public string nombre { get; set; }
         public string apellidoP { get; set; }
         public string apellidoM { get; set; }
-        public string pass { get; set; }        
+        public string pass { get; set; }
+        public string rol { get; set; }
     }
 }
