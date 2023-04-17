@@ -12,18 +12,25 @@ namespace Acotma_API.Controllers
 {
     public class VerificacionDiaController : ApiController
     {
-        readonly VerificacionDiaService service = new VerificacionDiaService();        
+        // Crear una instancia del servicio VerificacionDiaService
+        readonly VerificacionDiaService service = new VerificacionDiaService();
+
+        // Método HTTP POST para actualizar la verificación del día
         [HttpPost]
         public bool UpdateServApert(VerificacionDiaEntity verificacion)
         {
+            // Llamar al método UpdateVerificacionDia del servicio VerificacionDiaService y pasarle la entidad de verificación como parámetro
             return service.UpdateVerificacionDia(verificacion);
-        }        
-        [Route ("api/InsertarVerificacionDay")]
+        }
+
+        // Decorador de ruta para especificar la ruta de la API para el método InsertarVerificacionDay
+        [Route("api/InsertarVerificacionDay")]
         [HttpPost]
-        public bool InsertarVerificacionDay (VerificacionDiaEntity newVerificacion)
+        // Método HTTP POST para insertar una nueva verificación del día
+        public bool InsertarVerificacionDay(VerificacionDiaEntity newVerificacion)
         {
+            // Llamar al método InsertarVerificacionDay del servicio VerificacionDiaService y pasarle la entidad de verificación como parámetro
             return service.InsertarVerificacionDay(newVerificacion);
         }
-        
     }
 }

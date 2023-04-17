@@ -9,15 +9,15 @@ using System.Web.Http;
 
 namespace Acotma_API.Controllers
 {
-
     public class RegisterAccountController : ApiController
     {
-        readonly RegistroUsuariosService service = new RegistroUsuariosService();
+        readonly RegistroUsuariosService service = new RegistroUsuariosService(); // Servicio de registro de usuarios
 
+        // Método para agregar una nueva cuenta de usuario
         [HttpPost]
         public bool AddAccountUser(UsuariosEntity oUser)
         {
-            return service.RegisterAccount(oUser);
+            return service.RegisterAccount(oUser); // Retorna true si la cuenta de usuario se registró correctamente, false si no
         }
     }
 }
